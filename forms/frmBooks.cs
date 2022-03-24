@@ -19,21 +19,31 @@ namespace Biblioteca.forms
         List<Libro> libriData;
         string booksPath = Directory.GetCurrentDirectory() + @"\books.json";
         private static object lockerFile = new Object();
-        public static event EventHandler OnPrestitiChange;
+        //public static event EventHandler OnPrestitiChange;
         public frmBooks()
         {
             InitializeComponent();
             //new frmMainPage();
-           
+            frmMainPage.OnBookChange += FrmMainPage_OnBookChange;
             libriData = new List<Libro>();            
             Init();
-            
 
         }
+        private void FrmMainPage_OnBookChange(object sender, EventArgs e)
+        {
+            Init();
+        }
+
         private void Init()
         {
             foreach (Control item in this.tlpMain.Controls)
             {
+                if (tlpMain.InvokeRequired)
+                {
+                    tlpMain.Invoke(new Action(Init));
+                    return;
+                }
+
                 tlpMain.Controls.Remove(item);
             }
             tlpMain.ColumnCount = 1;
@@ -59,23 +69,22 @@ namespace Biblioteca.forms
             lblPages.Text = $"/{Pagination.PagesNumber}";
             SetData();
         }
-
         private void UserPrenota(object sender, components.Data e)
         {
             if (TryOrderBook(e.Book.Isbn))
             {
-                OnPrestitiChange?.Invoke(null, null);
+                //OnPrestitiChange?.Invoke(null, null);
             };
         }
         public bool TryOrderBook(string isbn)
         {
             DateTime x = File.GetLastWriteTime(booksPath);
             double difference = frmMainPage.ExecutedTime.Subtract(x).TotalMinutes;
-            if (difference > 0) // file modificato dopo esecuzione file
-            {
-                frmMainPage.ReloadBooks();
-                Init();
-            }
+            //if (difference > 0) // file modificato dopo esecuzione file
+            //{
+            //    frmMainPage.ReloadBooks();
+            //    Init();
+            //}
             if (!FileIsLocked(booksPath))
             {
                 WriteToFile(isbn);
@@ -90,20 +99,48 @@ namespace Biblioteca.forms
             lock (lockerFile)
             {
                 FileStream file = new FileStream(booksPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                //FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                MessageBox.Show(frmMainPage.libriElenco[isbn].Quantita.ToString());
+                FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                
                 frmMainPage.libriElenco[isbn].Quantita--;
                 StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
-                    
+                StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
+
                 writer.Write(String.Empty);
                 string output = JsonConvert.SerializeObject(frmMainPage.libriElenco.Values, Formatting.Indented);
                 writer.Write(output);
                 writer.Close();
 
-                frmMainPage.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now}));
+                if (frmMainPage.prestiti != null)
+                {
+                    if (frmMainPage.prestiti.Any(prest => prest.Isbn == isbn))
+                    {
+                        int position = frmMainPage.prestiti.Select((item, i) => new {
+                            Item = item,
+                            Position = i
+                        }).Where(m => m.Item.Isbn == isbn).First().Position;
+                        frmMainPage.prestiti[position].Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now);
+                        //frmMainPage.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now); });
+                    }
+                    else
+                    {
+                        frmMainPage.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
 
-                frmMainPage.libriElenco.Clear();
+                    }
+                    
+                } else
+                {
+                    frmMainPage.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
+                }
+                
+                writer2.Write(String.Empty);
+                string output2 = JsonConvert.SerializeObject(frmMainPage.prestiti, Formatting.Indented);
+                writer2.Write(output2);
+                writer2.Close();
+
+                
                 frmMainPage.ReloadBooks();
+                frmMainPage.ReloadPrestiti();
+                
                 Init();
             }
         }

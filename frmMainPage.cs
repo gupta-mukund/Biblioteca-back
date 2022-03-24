@@ -20,8 +20,10 @@ namespace Biblioteca
         public static Dictionary<string, Libro> libriElenco;
         public static List<Prestito> prestiti;
         public static DateTime ExecutedTime;
+        public FileSystemWatcher watcher;
 
-        
+        public static event EventHandler OnPrestitiChange;
+        public static event EventHandler OnBookChange;
 
         private string currentForm;
 
@@ -32,10 +34,21 @@ namespace Biblioteca
             libriElenco = new Dictionary<string, Libro>();
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libriElenco);
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out prestiti);
+            watcher = new FileSystemWatcher();
+            watcher.Path = Directory.GetCurrentDirectory();
             ExecutedTime = DateTime.Now;
-            
-            
-            
+            watcher.NotifyFilter = NotifyFilters.Attributes |
+                NotifyFilters.CreationTime |
+                NotifyFilters.DirectoryName |
+                NotifyFilters.FileName |
+                NotifyFilters.LastAccess |
+                NotifyFilters.LastWrite |
+                NotifyFilters.Security |
+                NotifyFilters.Size;
+            watcher.Filter = "*.json";
+            watcher.Changed += new FileSystemEventHandler(OnChanged);
+            watcher.EnableRaisingEvents = true;
+
             this.formReference = new Dictionary<string, Form>();
             currentUser = user;
             lblNome.Text = currentUser.GetFullName();
@@ -49,12 +62,33 @@ namespace Biblioteca
             
         }
 
+        public static void OnChanged(object source, FileSystemEventArgs e)
+        {
+            switch (e.Name)
+            {
+                case "prestiti.json":
+                    ReloadPrestiti();
+                    OnPrestitiChange?.Invoke(null, null);
+                    break;
+                case "books.json":
+                    ReloadBooks();
+                    OnBookChange?.Invoke(null, null);
+                    break;
+                default:
+                    break;
+            }
+            //Console.WriteLine("{0}, with path {1} has been {2}", e.Name, e.FullPath, e.ChangeType);
+        }
+
         public static void ReloadBooks()
         {
             libriElenco = null;
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libriElenco);
-
-            
+        }
+        public static void ReloadPrestiti()
+        {
+            prestiti = null;
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out prestiti);
         }
         public void ChangeForm(object form)
         {

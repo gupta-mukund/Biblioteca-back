@@ -16,11 +16,18 @@ namespace Biblioteca.forms
         public frmPrestiti()
         {
             InitializeComponent();
-            frmBooks.OnPrestitiChange += FrmBooks_OnPrestitiChange;
+            frmMainPage.OnPrestitiChange += FrmMainPage_OnPrestitiChange;
+            //frmBooks.OnPrestitiChange += FrmBooks_OnPrestitiChange;
             myPrestiti = new List<Prestito>();
             //dgvPrestiti.DataSource = frmMainPage.currentUser.GetPrestiti().Where(o => new { });
             GetPrestiti();
 
+            BindPrenotazioni();
+        }
+
+        private void FrmMainPage_OnPrestitiChange(object sender, EventArgs e)
+        {
+            GetPrestiti();
             BindPrenotazioni();
         }
 
@@ -45,7 +52,6 @@ namespace Biblioteca.forms
             {
                 dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = frmMainPage.libriElenco[p.Isbn].Titolo}).ToList();
             }
-            
             return;
         }
     }
