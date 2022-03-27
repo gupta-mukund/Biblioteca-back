@@ -34,25 +34,29 @@ namespace Biblioteca
         [JsonProperty("birth_date")]
         public string DataNascita { get; set; }
 
-        private List<Libro> Prestiti;
+        [JsonProperty("Prestiti")]
+        public int Prestiti { get; set; } = 0;
         public string GetFullName()
         {
             return $"{Nome} {Cognome}";
         }
-        public void AddPrestito(Libro libro)
+        public void AddPrestito()
         {
-            if (Prestiti.Count < 3)
+            if (Prestiti < 3)
             {
-                Prestiti.Add(libro);
+                Prestiti++;
             }
         }
         public int NumeroPrestiti()
         {
-            return Prestiti.Count;
-        }
-        public List<Libro> GetPrestiti()
-        {
             return Prestiti;
+        }
+        public void RemovePrestito()
+        {
+            if (Prestiti > 0)
+            {
+                Prestiti--;
+            }
         }
     }
 }

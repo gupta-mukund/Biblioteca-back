@@ -24,6 +24,7 @@ namespace Biblioteca
 
         public static event EventHandler OnPrestitiChange;
         public static event EventHandler OnBookChange;
+        public static event EventHandler OnUsersChange;
 
         private string currentForm;
 
@@ -59,7 +60,6 @@ namespace Biblioteca
             formReference.Add("UserPrestiti", PrestitiForm);
             currentForm = "UserBook";
             ChangeForm(formReference["UserBooks"]);
-            
         }
 
         public static void OnChanged(object source, FileSystemEventArgs e)
@@ -73,6 +73,10 @@ namespace Biblioteca
                 case "books.json":
                     ReloadBooks();
                     OnBookChange?.Invoke(null, null);
+                    break;
+                case "users.json":
+                    Form1.ReloadUsers();
+                    OnUsersChange?.Invoke(null, null);
                     break;
                 default:
                     break;
@@ -124,7 +128,6 @@ namespace Biblioteca
                 }
             }
         }
-
         private void DisableButton()
         {
             foreach (Control previousBtn in pnlMain.Controls)

@@ -12,7 +12,7 @@ namespace Biblioteca
 {
     public partial class Form1 : Form
     {
-        public Dictionary<string, User> usersElenco;
+        public static Dictionary<string, User> usersElenco;
         public Form1()
         {
             InitializeComponent();
@@ -21,7 +21,12 @@ namespace Biblioteca
             txtUsername.Texts = "TYJIKR47F60M553C";
             txtPassword.Texts = "dIIosgaCb4w";
             btnLogin_Click(null, null);
+        }
 
+        public static void ReloadUsers()
+        {
+            usersElenco = null;
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out usersElenco);
         }
         private void btnLogin_Click(object sender, EventArgs e)
         {

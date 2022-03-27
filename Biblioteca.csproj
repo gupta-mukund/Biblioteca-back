@@ -63,6 +63,12 @@
     <Compile Include="components\BookTextCell.Designer.cs">
       <DependentUpon>BookTextCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmAdmin.Designer.cs">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="components\LoginCustomTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +96,12 @@
     <Compile Include="forms\frmPrestiti.Designer.cs">
       <DependentUpon>frmPrestiti.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmRestituzione.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmRestituzione.Designer.cs">
+      <DependentUpon>frmRestituzione.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +128,9 @@
     <EmbeddedResource Include="components\BookTextCell.resx">
       <DependentUpon>BookTextCell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmAdmin.resx">
+      <DependentUpon>frmAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="components\LoginCustomTextBox.resx">
       <DependentUpon>LoginCustomTextBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPrestiti.resx">
       <DependentUpon>frmPrestiti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmRestituzione.resx">
+      <DependentUpon>frmRestituzione.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

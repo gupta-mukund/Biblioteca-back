@@ -20,31 +20,43 @@ namespace Biblioteca.forms
         string booksPath = Directory.GetCurrentDirectory() + @"\books.json";
         private static object lockerFile = new Object();
         //public static event EventHandler OnPrestitiChange;
+        private delegate void InitCallback();
         public frmBooks()
         {
             InitializeComponent();
             //new frmMainPage();
             frmMainPage.OnBookChange += FrmMainPage_OnBookChange;
+            frmMainPage.OnUsersChange += FrmMainPage_OnUsersChange;
             libriData = new List<Libro>();            
             Init();
 
         }
+
+        private void FrmMainPage_OnUsersChange(object sender, EventArgs e)
+        {
+            frmMainPage.currentUser = Form1.usersElenco[frmMainPage.currentUser.CodiceFiscale];
+            
+        }
+
         private void FrmMainPage_OnBookChange(object sender, EventArgs e)
         {
-            Init();
+            SetData();
         }
 
         private void Init()
         {
             foreach (Control item in this.tlpMain.Controls)
             {
-                if (tlpMain.InvokeRequired)
+                if (this.tlpMain.InvokeRequired)
                 {
-                    tlpMain.Invoke(new Action(Init));
-                    return;
+                    InitCallback d = new InitCallback(Init);
+                    this.Invoke(d);
+                } else
+                {
+                    tlpMain.Controls.Remove(item);
                 }
 
-                tlpMain.Controls.Remove(item);
+                
             }
             tlpMain.ColumnCount = 1;
             tlpMain.RowCount = 0;
@@ -63,18 +75,24 @@ namespace Biblioteca.forms
                 comp.Prenota += UserPrenota;
                 myBooks.Add(comp);
                 tlpMain.Controls.Add(comp, 0, tlpMain.RowCount - 1);
-                //comp.BringToFront();
+                comp.BringToFront();
             }
-            txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart)+1).ToString();
+            txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart) + 1).ToString();
             lblPages.Text = $"/{Pagination.PagesNumber}";
             SetData();
         }
         private void UserPrenota(object sender, components.Data e)
         {
-            if (TryOrderBook(e.Book.Isbn))
+            if (frmMainPage.currentUser.NumeroPrestiti() < 3)
             {
-                //OnPrestitiChange?.Invoke(null, null);
-            };
+                if (TryOrderBook(e.Book.Isbn))
+                {
+                    //OnPrestitiChange?.Invoke(null, null);
+                };
+            } else
+            {
+                MessageBox.Show("No prenota");
+            }
         }
         public bool TryOrderBook(string isbn)
         {
@@ -96,53 +114,60 @@ namespace Biblioteca.forms
 
         public void WriteToFile(string isbn)
         {
-            lock (lockerFile)
-            {
-                FileStream file = new FileStream(booksPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                
-                frmMainPage.libriElenco[isbn].Quantita--;
-                StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
-                StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
-
-                writer.Write(String.Empty);
-                string output = JsonConvert.SerializeObject(frmMainPage.libriElenco.Values, Formatting.Indented);
-                writer.Write(output);
-                writer.Close();
-
-                if (frmMainPage.prestiti != null)
+                lock (lockerFile)
                 {
-                    if (frmMainPage.prestiti.Any(prest => prest.Isbn == isbn))
+                    FileStream file = new FileStream(booksPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                    FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                    FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                    frmMainPage.libriElenco[isbn].Quantita--;
+                    StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
+                    StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
+                    StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
+
+                    writer.Write(String.Empty);
+                    string output = JsonConvert.SerializeObject(frmMainPage.libriElenco.Values, Formatting.Indented);
+                    writer.Write(output);
+                    writer.Close();
+
+                    if (frmMainPage.prestiti != null)
                     {
-                        int position = frmMainPage.prestiti.Select((item, i) => new {
-                            Item = item,
-                            Position = i
-                        }).Where(m => m.Item.Isbn == isbn).First().Position;
-                        frmMainPage.prestiti[position].Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now);
-                        //frmMainPage.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now); });
+                        if (frmMainPage.prestiti.Any(prest => prest.Isbn == isbn))
+                        {
+                            int position = frmMainPage.prestiti.Select((item, i) => new {
+                                Item = item,
+                                Position = i
+                            }).Where(m => m.Item.Isbn == isbn).First().Position;
+                            frmMainPage.prestiti[position].Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now);
+                            //frmMainPage.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now); });
+                        }
+                        else
+                        {
+                            frmMainPage.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
+
+                        }
+
                     }
                     else
                     {
                         frmMainPage.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
-
                     }
-                    
-                } else
-                {
-                    frmMainPage.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
-                }
-                
-                writer2.Write(String.Empty);
-                string output2 = JsonConvert.SerializeObject(frmMainPage.prestiti, Formatting.Indented);
-                writer2.Write(output2);
-                writer2.Close();
+                    Form1.usersElenco[frmMainPage.currentUser.CodiceFiscale].AddPrestito();
+                    writer2.Write(String.Empty);
+                    string output2 = JsonConvert.SerializeObject(frmMainPage.prestiti, Formatting.Indented);
+                    writer2.Write(output2);
+                    writer2.Close();
 
-                
-                frmMainPage.ReloadBooks();
-                frmMainPage.ReloadPrestiti();
-                
-                Init();
-            }
+                    writer3.Write(String.Empty);
+                    string output3 = JsonConvert.SerializeObject(Form1.usersElenco, Formatting.Indented);
+                    writer3.Write(output3);
+                    writer3.Close();
+
+                Form1.ReloadUsers();
+                    frmMainPage.ReloadBooks();
+                    frmMainPage.ReloadPrestiti();
+
+                    SetData();
+                }
         }
 
         private bool FileIsLocked(string filename)
@@ -168,8 +193,25 @@ namespace Biblioteca.forms
             for (int i = 0; i < Pagination.PaginationData.Count; i++)
             {
                 myBooks[i].Identity= Pagination.PaginationData[i];
-                if (myBooks[i].Identity.Quantita == 0) myBooks[i].FinishedBook();
-                else myBooks[i].NormalizeButton();
+                if (myBooks[i].Identity.Quantita == 0)
+                {
+                    myBooks[i].FinishedBook();
+                }
+                else if (frmMainPage.prestiti.Count > 0 && frmMainPage.currentUser.Prestiti > 0)
+                {
+                    var tmp = frmMainPage.prestiti.Where(x => x.Isbn == Pagination.PaginationData[i].Isbn)
+                        .Select(y => y.Prestiti)
+                        .Where(z => z.ContainsKey(frmMainPage.currentUser.CodiceFiscale));
+                    if (tmp.Count() > 0)
+                    {
+                        myBooks[i].AlreadyHaveBook();
+                    }
+
+                }
+                else
+                {
+                    myBooks[i].NormalizeButton();
+                }
                                     
             }
             //if (Pagination.PaginationData.Count < Pagination.DataPerPage)
@@ -179,11 +221,16 @@ namespace Biblioteca.forms
             //        tlpMain.Controls.Remove(tlpMain.GetControlFromPosition(0, i));
             //    }
             //}
-            
-            panel1.AutoScroll = true;
-            panel1.AutoScrollPosition = new Point(panel1.AutoScrollPosition.X, 0);
-            panel1.VerticalScroll.Value = 0;
-            txtCurrentPages.Text = (Pagination.CurrentStart + 1).ToString();
+            if (panel1.InvokeRequired)
+            {
+                panel1.Invoke((MethodInvoker)(() =>
+                {
+                    panel1.AutoScroll = true;
+                    panel1.AutoScrollPosition = new Point(panel1.AutoScrollPosition.X, 0);
+                    panel1.VerticalScroll.Value = 0;
+                    txtCurrentPages.Text = (Pagination.CurrentStart + 1).ToString();
+                }));
+            }
             //lblPages.Text = $"{Pagination.CurrentStart + 1}/{Pagination.PagesNumber}";
         }
 

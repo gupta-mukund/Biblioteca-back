@@ -61,7 +61,6 @@ namespace Biblioteca
 
         [JsonProperty("qta")]
         public int Quantita { get; set; }
-        public bool InPrestito { get; set; } = false;
 
         public List<User> Users = new List<User>();
 

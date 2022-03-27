@@ -12,7 +12,8 @@ namespace Biblioteca.forms
 {
     public partial class frmPrestiti : Form
     {
-        List<Prestito> myPrestiti;
+        public static List<Prestito> myPrestiti;
+        private delegate void BindingCallback(); 
         public frmPrestiti()
         {
             InitializeComponent();
@@ -30,13 +31,6 @@ namespace Biblioteca.forms
             GetPrestiti();
             BindPrenotazioni();
         }
-
-        private void FrmBooks_OnPrestitiChange(object sender, EventArgs e)
-        {
-            GetPrestiti();
-            BindPrenotazioni();
-        }
-
         private void GetPrestiti()
         {
             if (frmMainPage.prestiti != null)
@@ -48,11 +42,15 @@ namespace Biblioteca.forms
         }
         private void BindPrenotazioni()
         {
-            if (myPrestiti.Count > 0)
+            if (dgvPrestiti.InvokeRequired)
             {
-                dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = frmMainPage.libriElenco[p.Isbn].Titolo}).ToList();
+                BindingCallback d = new BindingCallback(BindPrenotazioni);
+                this.Invoke(d);
+            } else
+            {
+                dgvPrestiti.DataSource = null;
+                dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = frmMainPage.libriElenco[p.Isbn].Titolo }).ToList();   
             }
-            return;
         }
     }
 }

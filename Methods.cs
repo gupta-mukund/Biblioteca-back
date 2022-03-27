@@ -20,17 +20,25 @@ namespace Biblioteca
         public static bool Deserialize<T>(string path, string field, out Dictionary<string, T> dict)
         {
             List<T> list = new List<T>();
+            
             if (File.Exists(path))
             {
-                list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
-                //Console.WriteLine(list[0].ToString());
-                dict = list.ToDictionary(keySelector: m => (string)typeof(T).GetProperty(field).GetValue(m, null), elementSelector: m => m);
+                var tmp = JsonConvert.DeserializeObject(File.ReadAllText(path));
+                string tmp2 = tmp.ToString().Trim();
+                if (tmp2.StartsWith("{") && tmp2.EndsWith("}"))
+                {
+                    dict = JsonConvert.DeserializeObject<Dictionary<string, T>>(File.ReadAllText(path));
+                }
+                else
+                {
+                    list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
+                    dict = list.ToDictionary(keySelector: m => (string)typeof(T).GetProperty(field).GetValue(m, null), elementSelector: m => m);
+                }
                 return true;
             }
             else
             {
                 File.WriteAllText(path, String.Empty);
-                list = null;
                 dict = new Dictionary<string, T>();
                 return false;
             }
