@@ -54,6 +54,7 @@ namespace Biblioteca
                     list = new List<T>();
                     return false;
                 }
+                list = null;
                 list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
                 
                 //Console.WriteLine(list[0].ToString());

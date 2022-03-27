@@ -18,7 +18,12 @@ namespace Biblioteca
         public static Dictionary<string, Libro> libri;
         public static List<Prestito> utentiPrestiti;
         private List<Libro> libriData;
+        public FileSystemWatcher watcher;
         private User currentUser = null;
+        public static event EventHandler OnPrestitiChange;
+        public static event EventHandler OnBookChange;
+        public static event EventHandler OnUsersChange;
+        private delegate void BindingCallback();
         public frmAdmin()
         {
             InitializeComponent();
@@ -27,25 +32,82 @@ namespace Biblioteca
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libri);
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out utentiPrestiti);
             libriData = libri.Values.ToList();
+            watcher = new FileSystemWatcher();
+            watcher.Path = Directory.GetCurrentDirectory();
+            watcher.NotifyFilter = NotifyFilters.Attributes |
+                NotifyFilters.CreationTime |
+                NotifyFilters.DirectoryName |
+                NotifyFilters.FileName |
+                NotifyFilters.LastAccess |
+                NotifyFilters.LastWrite |
+                NotifyFilters.Security |
+                NotifyFilters.Size;
+            watcher.Filter = "*.json";
+            watcher.Changed += new FileSystemEventHandler(OnChanged);
+            watcher.EnableRaisingEvents = true;
             BindingData();
         }
+        public static void ReloadPrestiti()
+        {
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out utentiPrestiti);
+        }
 
+        public static void ReloadBooks()
+        {
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libri);
+        }
+        public static void ReloadUsers()
+        {
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out utenti);
+        }
+        public void OnChanged(object source, FileSystemEventArgs e)
+        {
+            switch (e.Name)
+            {
+                case "prestiti.json":
+                    ReloadPrestiti();
+                    BindingData();
+                    OnPrestitiChange?.Invoke(null, null);
+                    break;
+                case "books.json":
+                    BindingData();
+                    ReloadBooks();
+                    OnBookChange?.Invoke(null, null);
+                    break;
+                case "users.json":
+                    ReloadUsers();
+                    OnUsersChange?.Invoke(null, null);
+                    break;
+                default:
+                    break;
+            }
+            //Console.WriteLine("{0}, with path {1} has been {2}", e.Name, e.FullPath, e.ChangeType);
+        }
         public void BindingData()
         {
-            dgvLibri.DataSource = libri.Select(x => new {
-                Isbn = x.Key,
-                Titolo = x.Value.Titolo,
-                Autore = x.Value.Autori,
-                Categoria = x.Value.Categorie,
-                Pagine = x.Value.Pagine
-            }).ToList();
-            dgvUtenti.DataSource = utenti.Select(x => new {
-                Nome = x.Value.Nome,
-                Cognome = x.Value.Cognome,
-                Codice = x.Value.CodiceFiscale,
-                Prestiti = x.Value.Prestiti,
+            if (this.dgvLibri.InvokeRequired)
+            {
+                BindingCallback d = new BindingCallback(BindingData);
+                this.Invoke(d);
+            }
+            else
+            {
+                dgvLibri.DataSource = libri.Select(x => new {
+                    Isbn = x.Key,
+                    Titolo = x.Value.Titolo,
+                    Autore = x.Value.Autori,
+                    Categoria = x.Value.Categorie,
+                    Pagine = x.Value.Pagine
+                }).ToList();
+                dgvUtenti.DataSource = utenti.Select(x => new {
+                    Nome = x.Value.Nome,
+                    Cognome = x.Value.Cognome,
+                    Codice = x.Value.CodiceFiscale,
+                    Prestiti = x.Value.Prestiti,
 
-            }).ToList();
+                }).ToList();
+            }
+            
 
 
 

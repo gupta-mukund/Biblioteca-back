@@ -21,9 +21,17 @@ namespace Biblioteca
         {
             InitializeComponent();
             myUser = user;
+            frmAdmin.OnPrestitiChange += FrmAdmin_OnPrestitiChange;
             Init();
             BindData();
         }
+
+        private void FrmAdmin_OnPrestitiChange(object sender, EventArgs e)
+        {
+            Init();
+            BindData();
+        }
+
         private void Init()
         {
             if (frmAdmin.utentiPrestiti != null)
@@ -33,10 +41,20 @@ namespace Biblioteca
                               select u).ToList();
             }
         }
+
+        public delegate void Del();
         private void BindData()
-        {           
+        {
+            if (this.dgvPrestiti.InvokeRequired)
+            {
+                Del d = new Del(BindData);
+                this.Invoke(d);
+            } else
+            {
+
             dgvPrestiti.DataSource = null;
             dgvPrestiti.DataSource = myPrestiti.Select(p => new { Isbn = p.Isbn, Titolo = frmAdmin.libri[p.Isbn].Titolo , Scadenza = p.Prestiti[myUser.CodiceFiscale]}).ToList();
+            }
         }
 
         private void dgvPrestiti_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -72,7 +90,7 @@ namespace Biblioteca
                 StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
 
                 writer.Write(String.Empty);
-                string output = JsonConvert.SerializeObject(frmMainPage.libriElenco.Values, Formatting.Indented);
+                string output = JsonConvert.SerializeObject(frmAdmin.libri, Formatting.Indented);
                 writer.Write(output);
                 writer.Close();
 
@@ -84,7 +102,9 @@ namespace Biblioteca
                         Item = item,
                         Position = i
                     }).Where(m => m.Item.Isbn == isbn).First().Position;
-                    frmAdmin.utentiPrestiti[position].Prestiti.Remove(frmAdmin.utentiPrestiti[position].Prestiti[myUser.CodiceFiscale].ToString());
+                    List<string> list = (frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key)).ToList();
+                    MessageBox.Show(frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
+                    frmAdmin.utentiPrestiti[position].Prestiti.Remove(frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
                     //frmAdmin.utentiPrestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(this.myUser.CodiceFiscale, DateTime.Now); });
                 }
                 frmAdmin.utenti[myUser.CodiceFiscale].RemovePrestito();
@@ -94,12 +114,12 @@ namespace Biblioteca
                 writer2.Close();
 
                 writer3.Write(String.Empty);
-                string output3 = JsonConvert.SerializeObject(Form1.usersElenco, Formatting.Indented);
+                string output3 = JsonConvert.SerializeObject(frmAdmin.utenti, Formatting.Indented);
                 writer3.Write(output3);
                 writer3.Close();
 
-                Form1.ReloadUsers();
-                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "", out frmAdmin.libri);
+                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out frmAdmin.utenti);
+                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out frmAdmin.libri);
                 Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out frmAdmin.utentiPrestiti);
                 Init();
                 BindData();
