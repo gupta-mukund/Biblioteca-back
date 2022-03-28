@@ -9,7 +9,7 @@ namespace Biblioteca
 {
     public class User
     {
-
+        
         [JsonProperty("first_name")]
         public string Nome { get; set; }
 
@@ -58,5 +58,6 @@ namespace Biblioteca
                 Prestiti--;
             }
         }
+        
     }
 }
