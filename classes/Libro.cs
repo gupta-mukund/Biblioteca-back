@@ -26,6 +26,11 @@ namespace Biblioteca
             Quantita = quantita;
         }
 
+        public void CalculateRating()
+        {
+            Rating = (int)Math.Round(MediaVoti / 100d, 0);
+        }
+
         [JsonProperty("isbn")]
         public string Isbn { get; set; }
 
@@ -61,7 +66,8 @@ namespace Biblioteca
 
         [JsonProperty("qta")]
         public int Quantita { get; set; }
-
+        public int Rating { get; set; }
+        
         public List<User> Users = new List<User>();
 
 

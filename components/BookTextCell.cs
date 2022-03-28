@@ -40,7 +40,7 @@ namespace Biblioteca.components
             this.lblDescrizione.DataBindings.Add(new Binding("Text", dataSource, "Descrizione"));
             this.lblAutore.DataBindings.Add(new Binding("Text", dataSource, "Autori"));
             this.lblAnno.DataBindings.Add(new Binding("Text", dataSource, "Anno"));
-            this.lblRating.DataBindings.Add(new Binding("Text", dataSource, "QuantitaVoti/Quantita"));
+            this.lblRating.DataBindings.Add(new Binding("Text", dataSource, "Rating"));
             this.pcbPicture.DataBindings.Add(new Binding("ImageLocation", dataSource, "Immagine"));
 
         }

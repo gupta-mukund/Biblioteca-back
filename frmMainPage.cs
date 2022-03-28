@@ -34,6 +34,10 @@ namespace Biblioteca
             InitializeComponent();
             libriElenco = new Dictionary<string, Libro>();
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libriElenco);
+            foreach (KeyValuePair<string, Libro> item in libriElenco)
+            {
+                item.Value.CalculateRating();
+            }
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out prestiti);
             watcher = new FileSystemWatcher();
             watcher.Path = Directory.GetCurrentDirectory();

@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.IO;
 namespace Biblioteca
 {
@@ -30,9 +29,9 @@ namespace Biblioteca
             pnlLogin.BackColor = ColorTranslator.FromHtml(NotSelectedPanelColour);
             pcbIconMain.Image = Properties.Resources.libraryIcon;
             pcbIconMain.SizeMode = PictureBoxSizeMode.StretchImage;
-            //txtUsername.Texts = "TYJIKR47F60M553C";
-            //txtPassword.Texts = "dIIosgaCb4w";
-            //btnLogin_Click(null, null);
+            txtUsername.Texts = "tyjikr47f60m553c";
+            txtPassword.Texts = "dIIosgaCb4w";
+            btnLogin_Click(null, null);
         }
 
         public static void ReloadUsers()
@@ -55,15 +54,15 @@ namespace Biblioteca
         {
             if(!String.IsNullOrEmpty(txtUsername.Texts.Trim()) && !string.IsNullOrEmpty(txtPassword.Texts.Trim()))
             {
-                if (usersElenco.ContainsKey(txtUsername.Texts))
+                if (usersElenco.ContainsKey(txtUsername.Texts.ToUpper()))
                 {
-                    if (usersElenco[txtUsername.Texts].Password == txtPassword.Texts) {
-                        if (usersElenco[txtUsername.Texts].Ruolo == "admin")
+                    if (usersElenco[txtUsername.Texts.ToUpper()].Password == txtPassword.Texts) {
+                        if (usersElenco[txtUsername.Texts.ToUpper()].Ruolo == "admin")
                         {
-                            AdminLogin(usersElenco[txtUsername.Texts]);
+                            AdminLogin(usersElenco[txtUsername.Texts.ToUpper()]);
                         } else
                         {
-                            UserLogin(usersElenco[txtUsername.Texts]);
+                            UserLogin(usersElenco[txtUsername.Texts.ToUpper()]);
                         }
                     }
                     
