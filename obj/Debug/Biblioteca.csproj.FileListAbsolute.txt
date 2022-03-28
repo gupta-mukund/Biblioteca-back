@@ -76,3 +76,4 @@ C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Bib
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.pdb
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.frmAdmin.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.frmRestituzione.resources
+C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.components.Rating.resources

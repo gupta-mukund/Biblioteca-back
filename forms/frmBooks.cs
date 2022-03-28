@@ -111,7 +111,10 @@ namespace Biblioteca.forms
             return false;
             //MessageBox.Show(FileIsLocked(booksPath).ToString());
         }
+        private void DoRating()
+        {
 
+        }
         public void WriteToFile(string isbn)
         {
                 lock (lockerFile)

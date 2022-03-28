@@ -63,6 +63,12 @@
     <Compile Include="components\BookTextCell.Designer.cs">
       <DependentUpon>BookTextCell.cs</DependentUpon>
     </Compile>
+    <Compile Include="components\Rating.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="components\Rating.Designer.cs">
+      <DependentUpon>Rating.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,6 +133,9 @@
     </Compile>
     <EmbeddedResource Include="components\BookTextCell.resx">
       <DependentUpon>BookTextCell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="components\Rating.resx">
+      <DependentUpon>Rating.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>

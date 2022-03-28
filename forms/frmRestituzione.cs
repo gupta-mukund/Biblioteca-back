@@ -81,12 +81,13 @@ namespace Biblioteca
         {
             lock (locker)
             {
+                
                 FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                
                 FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
                 frmAdmin.libri[isbn].Quantita++;
                 StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
-                StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
+                
                 StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
 
                 writer.Write(String.Empty);
@@ -102,19 +103,27 @@ namespace Biblioteca
                         Item = item,
                         Position = i
                     }).Where(m => m.Item.Isbn == isbn).First().Position;
-                    List<string> list = (frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key)).ToList();
-                    MessageBox.Show(frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
+                    //List<string> list = (frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key)).ToList();
+                    //MessageBox.Show(frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
                     frmAdmin.utentiPrestiti[position].Prestiti.Remove(frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
+                    if (frmAdmin.utentiPrestiti[position].Prestiti.Count == 0)
+                    {
+                        frmAdmin.utentiPrestiti.RemoveAt(position);
+                    }
                     //frmAdmin.utentiPrestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(this.myUser.CodiceFiscale, DateTime.Now); });
                 }
                 frmAdmin.utenti[myUser.CodiceFiscale].RemovePrestito();
-                writer2.Write(String.Empty);
+                File.WriteAllText(Directory.GetCurrentDirectory() + @"\prestiti.json", String.Empty);
+                FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
                 string output2 = JsonConvert.SerializeObject(frmAdmin.utentiPrestiti, Formatting.Indented);
+                
                 writer2.Write(output2);
                 writer2.Close();
 
                 writer3.Write(String.Empty);
                 string output3 = JsonConvert.SerializeObject(frmAdmin.utenti, Formatting.Indented);
+               
                 writer3.Write(output3);
                 writer3.Close();
 
