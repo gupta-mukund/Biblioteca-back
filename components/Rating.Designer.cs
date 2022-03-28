@@ -34,6 +34,7 @@ namespace Biblioteca.components
             this.btn5 = new FontAwesome.Sharp.IconPictureBox();
             this.btn3 = new FontAwesome.Sharp.IconPictureBox();
             this.btn2 = new FontAwesome.Sharp.IconPictureBox();
+            this.btnSubmit = new Biblioteca.CustomButton();
             ((System.ComponentModel.ISupportInitialize)(this.btn1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btn5)).BeginInit();
@@ -126,10 +127,30 @@ namespace Biblioteca.components
             this.btn2.MouseLeave += new System.EventHandler(this.StarOut);
             this.btn2.MouseHover += new System.EventHandler(this.StarHover);
             // 
+            // btnSubmit
+            // 
+            this.btnSubmit.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnSubmit.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnSubmit.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnSubmit.BorderRadius = 0;
+            this.btnSubmit.BorderSize = 0;
+            this.btnSubmit.FlatAppearance.BorderSize = 0;
+            this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubmit.ForeColor = System.Drawing.Color.White;
+            this.btnSubmit.Location = new System.Drawing.Point(53, 74);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(150, 40);
+            this.btnSubmit.TabIndex = 5;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.TextColor = System.Drawing.Color.White;
+            this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
             // Rating
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.btn2);
             this.Controls.Add(this.btn3);
             this.Controls.Add(this.btn5);
@@ -153,5 +174,6 @@ namespace Biblioteca.components
         private FontAwesome.Sharp.IconPictureBox btn5;
         private FontAwesome.Sharp.IconPictureBox btn3;
         private FontAwesome.Sharp.IconPictureBox btn2;
+        private CustomButton btnSubmit;
     }
 }

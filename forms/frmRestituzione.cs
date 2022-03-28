@@ -17,10 +17,13 @@ namespace Biblioteca
         private User myUser;
         private List<Prestito> myPrestiti;
         private static object locker = new Object();
+        private int currentRating = 0;
+        TaskCompletionSource<bool> tsc = null;
         public frmRestituzione(User user)
         {
             InitializeComponent();
             myUser = user;
+            
             frmAdmin.OnPrestitiChange += FrmAdmin_OnPrestitiChange;
             Init();
             BindData();
@@ -66,15 +69,35 @@ namespace Biblioteca
                 
             }
         }
-        private bool HandleRestituzione(string isbn)
+        Form tmpForm;
+        private void HandleRating()
         {
-            //frmAdmin.libri[isbn].Quantita++;
+            tmpForm = new Form();
+            components.Rating tmpRat = new components.Rating();
+            tmpRat.RatingDone += TmpRat_RatingDone;
+            tmpForm.Controls.Add(tmpRat);
+            tmpForm.Show();
+        }
+
+        private void TmpRat_RatingDone(object sender, components.RatingEvent e)
+        {
+            tmpForm.Dispose();
+            currentRating = e.NumberOfStars;
+            tsc.TrySetResult(true);
+        }
+
+        private async void HandleRestituzione(string isbn)
+        {          
             if (!FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json"))
             {
+                currentRating = 0;
+                tsc = new TaskCompletionSource<bool>();
+                HandleRating();
+                
+                await tsc.Task;
+                MessageBox.Show(currentRating.ToString());
                 WriteToFile(isbn);
-                return true;
-            }
-            return false;
+            }   
         }
 
         public void WriteToFile(string isbn)
@@ -89,7 +112,12 @@ namespace Biblioteca
                 StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
                 
                 StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
-
+                int totalVotanti = frmAdmin.libri[isbn].QuantitaVoti;
+                float totalStars = frmAdmin.libri[isbn].MediaVoti * totalVotanti;
+                totalVotanti++;
+                totalStars += this.currentRating * 100;
+                frmAdmin.libri[isbn].MediaVoti = totalStars / totalVotanti;
+                frmAdmin.libri[isbn].QuantitaVoti = totalVotanti;
                 writer.Write(String.Empty);
                 string output = JsonConvert.SerializeObject(frmAdmin.libri, Formatting.Indented);
                 writer.Write(output);

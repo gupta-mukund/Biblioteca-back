@@ -14,16 +14,18 @@ namespace Biblioteca.components
     public partial class Rating : UserControl
     {
         private int currentStars;
-        private bool hasAlreadyBeenClicked;
+        private bool hasEverBeenClicked;
+        private bool noRating;
+        public event EventHandler<RatingEvent> RatingDone;
         public Rating()
         {
             InitializeComponent();
             currentStars = 1;
-            hasAlreadyBeenClicked = false;
+            noRating = false;
+            hasEverBeenClicked = false;
             InitStars();
             
         }
-
         private List<IconPictureBox> FindClickedList(int numberOfStars)
         {
             InitStars();
@@ -39,20 +41,24 @@ namespace Biblioteca.components
 
         private void InitStars()
         {
-            List<IconPictureBox> obj = this.Controls.OfType<IconPictureBox>().ToList();
-            foreach (IconPictureBox item in obj)
+            foreach (IconPictureBox item in this.Controls.OfType<IconPictureBox>())
             {
-                if (item == obj.First())
-                {
-
-                }
                 item.IconChar = IconChar.Star;
                 item.IconFont = IconFont.Solid;
-                item.IconColor = Color.White;
+                if (Convert.ToInt32(item.Tag) > currentStars)
+                {
+                    item.IconColor = Color.White;
+                }
+                else
+                {
+                    item.IconColor = Color.Yellow;
+                }
+                
             }
         }
         private void StarClick(object sender, EventArgs e)
         {
+            this.hasEverBeenClicked = true;
             int number = Convert.ToInt32(((IconPictureBox)sender).Tag);
             currentStars = number;
 
@@ -69,10 +75,16 @@ namespace Biblioteca.components
         }
         private void LetHover(IconPictureBox star)
         {
-            star.IconFont = IconFont.Regular;
-            star.IconColor = Color.Yellow;
+            if (Convert.ToInt32(star.Tag) > currentStars)
+            {
+                star.IconFont = IconFont.Regular;
+                star.IconColor = Color.Yellow;   
+            } else
+            {
+                star.IconFont = IconFont.Solid;
+                star.IconColor = Color.Yellow;
+            }
         }
-
         private void StarHover(object sender, EventArgs e)
         {
             int number = Convert.ToInt32(((IconPictureBox)sender).Tag);
@@ -85,6 +97,26 @@ namespace Biblioteca.components
         private void StarOut(object sender, EventArgs e)
         {
             InitStars();
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (!hasEverBeenClicked && !noRating)
+            {
+                MessageBox.Show("Sure about not leaving a rating?");
+                noRating = true;
+            } else
+            {
+                RatingDone?.Invoke(this, new RatingEvent(currentStars));
+            }
+        }
+    }
+    public class RatingEvent : EventArgs
+    {
+        public int NumberOfStars { get; set; }
+        public RatingEvent(int stars)
+        {
+            NumberOfStars = stars;
         }
     }
 }
