@@ -57,9 +57,20 @@ namespace Biblioteca
             {
                 if (usersElenco.ContainsKey(txtUsername.Texts))
                 {
-                    if (usersElenco[txtUsername.Texts].Password == txtPassword.Texts) UserLogin(usersElenco[txtUsername.Texts]);
+                    if (usersElenco[txtUsername.Texts].Password == txtPassword.Texts) {
+                        if (usersElenco[txtUsername.Texts].Ruolo == "admin")
+                        {
+                            AdminLogin(usersElenco[txtUsername.Texts]);
+                        } else
+                        {
+                            UserLogin(usersElenco[txtUsername.Texts]);
+                        }
+                    }
+                    
                     else MessageBox.Show("wrong password");
                 }
+
+                
                 else
                 {
                     MessageBox.Show("no user");
@@ -86,7 +97,8 @@ namespace Biblioteca
         }
         private void AdminLogin(User user)
         {
-
+            var form = new frmAdmin(user);
+            form.Show();
         }
         private void UserLogin(User user)
         {

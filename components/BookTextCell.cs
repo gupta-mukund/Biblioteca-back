@@ -32,6 +32,7 @@ namespace Biblioteca.components
         {
             InitializeComponent();
             pcbPicture.SizeMode = PictureBoxSizeMode.StretchImage;
+            
             dataSource = new BindingSource();
             dataSource.DataSource = typeof(Libro);
             this.lblGenere.DataBindings.Add(new Binding("Text", dataSource, "Categorie"));
@@ -39,6 +40,7 @@ namespace Biblioteca.components
             this.lblDescrizione.DataBindings.Add(new Binding("Text", dataSource, "Descrizione"));
             this.lblAutore.DataBindings.Add(new Binding("Text", dataSource, "Autori"));
             this.lblAnno.DataBindings.Add(new Binding("Text", dataSource, "Anno"));
+            this.lblRating.DataBindings.Add(new Binding("Text", dataSource, "QuantitaVoti/Quantita"));
             this.pcbPicture.DataBindings.Add(new Binding("ImageLocation", dataSource, "Immagine"));
 
         }

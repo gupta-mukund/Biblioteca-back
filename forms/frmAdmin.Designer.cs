@@ -36,13 +36,13 @@ namespace Biblioteca
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnFiltra = new System.Windows.Forms.Button();
             this.cmbGenres = new System.Windows.Forms.ComboBox();
+            this.txtBookName = new Biblioteca.components.LoginCustomTextBox();
+            this.txtAutori = new Biblioteca.components.LoginCustomTextBox();
             this.dgvLibri = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvUtenti = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtBookName = new Biblioteca.components.LoginCustomTextBox();
-            this.txtAutori = new Biblioteca.components.LoginCustomTextBox();
             this.txtLoginCodice = new Biblioteca.components.LoginCustomTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnEntraUser = new Biblioteca.CustomButton();
@@ -144,6 +144,44 @@ namespace Biblioteca
             this.cmbGenres.Size = new System.Drawing.Size(194, 24);
             this.cmbGenres.TabIndex = 3;
             // 
+            // txtBookName
+            // 
+            this.txtBookName.BackColor = System.Drawing.SystemColors.Window;
+            this.txtBookName.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtBookName.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtBookName.BorderSize = 2;
+            this.txtBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBookName.ForeColor = System.Drawing.Color.DimGray;
+            this.txtBookName.Location = new System.Drawing.Point(3, 4);
+            this.txtBookName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBookName.Multiline = false;
+            this.txtBookName.Name = "txtBookName";
+            this.txtBookName.Padding = new System.Windows.Forms.Padding(7);
+            this.txtBookName.PasswordChar = false;
+            this.txtBookName.Size = new System.Drawing.Size(194, 35);
+            this.txtBookName.TabIndex = 4;
+            this.txtBookName.Texts = "";
+            this.txtBookName.UnderlinedStyle = false;
+            // 
+            // txtAutori
+            // 
+            this.txtAutori.BackColor = System.Drawing.SystemColors.Window;
+            this.txtAutori.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtAutori.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtAutori.BorderSize = 2;
+            this.txtAutori.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAutori.ForeColor = System.Drawing.Color.DimGray;
+            this.txtAutori.Location = new System.Drawing.Point(3, 81);
+            this.txtAutori.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtAutori.Multiline = false;
+            this.txtAutori.Name = "txtAutori";
+            this.txtAutori.Padding = new System.Windows.Forms.Padding(7);
+            this.txtAutori.PasswordChar = false;
+            this.txtAutori.Size = new System.Drawing.Size(194, 35);
+            this.txtAutori.TabIndex = 5;
+            this.txtAutori.Texts = "";
+            this.txtAutori.UnderlinedStyle = false;
+            // 
             // dgvLibri
             // 
             this.dgvLibri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -208,44 +246,6 @@ namespace Biblioteca
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(792, 355);
             this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // txtBookName
-            // 
-            this.txtBookName.BackColor = System.Drawing.SystemColors.Window;
-            this.txtBookName.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtBookName.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtBookName.BorderSize = 2;
-            this.txtBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBookName.ForeColor = System.Drawing.Color.DimGray;
-            this.txtBookName.Location = new System.Drawing.Point(3, 4);
-            this.txtBookName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtBookName.Multiline = false;
-            this.txtBookName.Name = "txtBookName";
-            this.txtBookName.Padding = new System.Windows.Forms.Padding(7);
-            this.txtBookName.PasswordChar = false;
-            this.txtBookName.Size = new System.Drawing.Size(194, 35);
-            this.txtBookName.TabIndex = 4;
-            this.txtBookName.Texts = "";
-            this.txtBookName.UnderlinedStyle = false;
-            // 
-            // txtAutori
-            // 
-            this.txtAutori.BackColor = System.Drawing.SystemColors.Window;
-            this.txtAutori.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtAutori.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtAutori.BorderSize = 2;
-            this.txtAutori.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAutori.ForeColor = System.Drawing.Color.DimGray;
-            this.txtAutori.Location = new System.Drawing.Point(3, 81);
-            this.txtAutori.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAutori.Multiline = false;
-            this.txtAutori.Name = "txtAutori";
-            this.txtAutori.Padding = new System.Windows.Forms.Padding(7);
-            this.txtAutori.PasswordChar = false;
-            this.txtAutori.Size = new System.Drawing.Size(194, 35);
-            this.txtAutori.TabIndex = 5;
-            this.txtAutori.Texts = "";
-            this.txtAutori.UnderlinedStyle = false;
             // 
             // txtLoginCodice
             // 

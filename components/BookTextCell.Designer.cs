@@ -36,9 +36,10 @@ namespace Biblioteca.components
             this.lblTitolo = new System.Windows.Forms.Label();
             this.lblAutore = new System.Windows.Forms.Label();
             this.lblGenere = new System.Windows.Forms.Label();
+            this.btnPrenota = new Biblioteca.CustomButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pcbPicture = new System.Windows.Forms.PictureBox();
-            this.btnPrenota = new Biblioteca.CustomButton();
+            this.lblRating = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -65,23 +66,26 @@ namespace Biblioteca.components
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.lblRating, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.lblDescrizione, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.lblAnno, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.lblTitolo, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.lblAutore, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.lblGenere, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnPrenota, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.btnPrenota, 0, 6);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(210, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 6;
+            this.tableLayoutPanel2.RowCount = 7;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 55F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(493, 404);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
@@ -92,7 +96,7 @@ namespace Biblioteca.components
             this.lblDescrizione.Location = new System.Drawing.Point(0, 150);
             this.lblDescrizione.Margin = new System.Windows.Forms.Padding(0);
             this.lblDescrizione.Name = "lblDescrizione";
-            this.lblDescrizione.Size = new System.Drawing.Size(493, 45);
+            this.lblDescrizione.Size = new System.Drawing.Size(493, 55);
             this.lblDescrizione.TabIndex = 15;
             this.lblDescrizione.Text = "label1";
             // 
@@ -144,6 +148,25 @@ namespace Biblioteca.components
             this.lblGenere.Text = "label1";
             this.lblGenere.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnPrenota
+            // 
+            this.btnPrenota.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnPrenota.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnPrenota.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnPrenota.BorderRadius = 0;
+            this.btnPrenota.BorderSize = 0;
+            this.btnPrenota.FlatAppearance.BorderSize = 0;
+            this.btnPrenota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrenota.ForeColor = System.Drawing.Color.White;
+            this.btnPrenota.Location = new System.Drawing.Point(3, 233);
+            this.btnPrenota.Name = "btnPrenota";
+            this.btnPrenota.Size = new System.Drawing.Size(150, 40);
+            this.btnPrenota.TabIndex = 16;
+            this.btnPrenota.Text = "Prenota";
+            this.btnPrenota.TextColor = System.Drawing.Color.White;
+            this.btnPrenota.UseVisualStyleBackColor = false;
+            this.btnPrenota.Click += new System.EventHandler(this.btnPrenota_Click);
+            // 
             // tableLayoutPanel3
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
@@ -169,24 +192,17 @@ namespace Biblioteca.components
             this.pcbPicture.TabIndex = 0;
             this.pcbPicture.TabStop = false;
             // 
-            // btnPrenota
+            // lblRating
             // 
-            this.btnPrenota.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnPrenota.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnPrenota.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnPrenota.BorderRadius = 0;
-            this.btnPrenota.BorderSize = 0;
-            this.btnPrenota.FlatAppearance.BorderSize = 0;
-            this.btnPrenota.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPrenota.ForeColor = System.Drawing.Color.White;
-            this.btnPrenota.Location = new System.Drawing.Point(3, 198);
-            this.btnPrenota.Name = "btnPrenota";
-            this.btnPrenota.Size = new System.Drawing.Size(150, 40);
-            this.btnPrenota.TabIndex = 16;
-            this.btnPrenota.Text = "Prenota";
-            this.btnPrenota.TextColor = System.Drawing.Color.White;
-            this.btnPrenota.UseVisualStyleBackColor = false;
-            this.btnPrenota.Click += new System.EventHandler(this.btnPrenota_Click);
+            this.lblRating.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRating.Location = new System.Drawing.Point(0, 205);
+            this.lblRating.Margin = new System.Windows.Forms.Padding(0);
+            this.lblRating.Name = "lblRating";
+            this.lblRating.Size = new System.Drawing.Size(493, 25);
+            this.lblRating.TabIndex = 17;
+            this.lblRating.Text = "label1";
+            this.lblRating.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // BookTextCell
             // 
@@ -216,5 +232,6 @@ namespace Biblioteca.components
         public System.Windows.Forms.Label lblAnno;
         public System.Windows.Forms.Label lblDescrizione;
         private CustomButton btnPrenota;
+        public System.Windows.Forms.Label lblRating;
     }
 }

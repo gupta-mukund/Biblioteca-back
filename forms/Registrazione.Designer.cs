@@ -107,6 +107,7 @@ namespace Biblioteca
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(361, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Registrazione";
             this.Text = "Registrazione";
             this.tableLayoutPanel1.ResumeLayout(false);

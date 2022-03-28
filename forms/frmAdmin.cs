@@ -24,7 +24,7 @@ namespace Biblioteca
         public static event EventHandler OnBookChange;
         public static event EventHandler OnUsersChange;
         private delegate void BindingCallback();
-        public frmAdmin()
+        public frmAdmin(User admin)
         {
             InitializeComponent();
             libriData = new List<Libro>();
@@ -32,6 +32,7 @@ namespace Biblioteca
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libri);
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out utentiPrestiti);
             libriData = libri.Values.ToList();
+            currentUser = admin;
             watcher = new FileSystemWatcher();
             watcher.Path = Directory.GetCurrentDirectory();
             watcher.NotifyFilter = NotifyFilters.Attributes |
@@ -107,12 +108,6 @@ namespace Biblioteca
 
                 }).ToList();
             }
-            
-
-
-
-
-
         }
 
         private void frmAdmin_Load(object sender, EventArgs e)
