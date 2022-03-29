@@ -130,7 +130,7 @@ namespace Biblioteca.forms
                     StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
                     StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
                     StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
-
+                    
                     writer.Write(String.Empty);
                     string output = JsonConvert.SerializeObject(Form1.libriElenco.Values, Formatting.Indented);
                     writer.Write(output);

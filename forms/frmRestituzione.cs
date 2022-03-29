@@ -105,25 +105,22 @@ namespace Biblioteca
             lock (locker)
             {
                 //File.WriteAllText(Directory.GetCurrentDirectory() + @"\books.json", string.Empty);
-                using (FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                using (FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None))
-                using (FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None))
+                using (FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                using (FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                using (FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
                 {
                     Form1.libriElenco[isbn].Quantita++;
-                    StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
-                    StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
-                    StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
+                    
                     int totalVotanti = Form1.libriElenco[isbn].QuantitaVoti;
                     float totalStars = Form1.libriElenco[isbn].MediaVoti * totalVotanti;
                     totalVotanti++;
                     totalStars += this.currentRating * 100;
                     Form1.libriElenco[isbn].MediaVoti = totalStars / totalVotanti;
                     Form1.libriElenco[isbn].QuantitaVoti = totalVotanti;
-                    string output = JsonConvert.SerializeObject(Form1.libriElenco, Formatting.Indented);
-                    writer.Write(output);
-                    writer.Close();
-                    if (Form1.prestiti != null)
-                    {
+                    //MessageBox.Show(Methods.FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json").ToString());
+                    
+                    
+                    
                         int position = Form1.prestiti.FindIndex(s => s.Isbn == isbn );
                         //int position = Form1.prestiti.Select((item, i) => new
                         //{
@@ -139,20 +136,23 @@ namespace Biblioteca
                             Form1.prestiti.RemoveAt(position);
                         }
                         //Form1.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(this.myUser.CodiceFiscale, DateTime.Now); });
-                    }
+                    
                     Form1.usersElenco[myUser.CodiceFiscale].Storico.Add(isbn);
                     Form1.usersElenco[myUser.CodiceFiscale].RemovePrestito();
-   
-                    
-                    
+
+                    StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
+                    StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
+                    StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
+                    string output = JsonConvert.SerializeObject(Form1.libriElenco, Formatting.Indented);
                     string output2 = JsonConvert.SerializeObject(Form1.prestiti, Formatting.Indented);
-
-                    writer2.Write(output2);
-                    writer2.Close();
-
-                    //writer3.Write(String.Empty);
                     string output3 = JsonConvert.SerializeObject(Form1.usersElenco, Formatting.Indented);
 
+                    //writer3.Write(String.Empty);
+                    
+                    writer.Write(output);
+                    writer.Close();
+                    writer2.Write(output2);
+                    writer2.Close();
                     writer3.Write(output3);
                     writer3.Close();
                 }
@@ -168,9 +168,10 @@ namespace Biblioteca
                 
 
                 
-                Init();
-                BindData();
+                
             }
+            //init();
+            //binddata();
         }
 
         private bool FileIsLocked(string filename)

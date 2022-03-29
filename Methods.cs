@@ -34,11 +34,14 @@ namespace Biblioteca
             }
             return Locked;
         }
-        public static void Deserialize<T>(string path, string field, ref Dictionary<string, T> dict)
+        public static bool Deserialize<T>(string path, string field, ref Dictionary<string, T> dict)
         {
-            List<T> list = new List<T>();
-            if (!FileIsLocked(path))
+            if (FileIsLocked(path))
             {
+                return false;                
+            } else
+            {
+                List<T> list = new List<T>();
                 if (File.Exists(path))
                 {
                     var tmp = JsonConvert.DeserializeObject(File.ReadAllText(path));
@@ -58,24 +61,28 @@ namespace Biblioteca
                     File.WriteAllText(path, String.Empty);
                     dict = new Dictionary<string, T>();
                 }
-                
+                return true;
             }
             
         }
 
-        public static void Deserialize<T>(string path, string field, ref List<T> list)
+        public static bool Deserialize<T>(string path, string field, ref List<T> list)
         {
-            if (!FileIsLocked(path))
+            if (FileIsLocked(path))
+            {
+                return false;
+                
+            } else
             {
                 if (File.Exists(path))
                 {
                     if (new FileInfo(path).Length <= 3)
                     {
                         list = new List<T>();
+                    } else
+                    {
+                        list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
                     }
-                    list = null;
-                    list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
-
                     //Console.WriteLine(list[0].ToString());
 
                 }
@@ -85,19 +92,18 @@ namespace Biblioteca
                     list = new List<T>();
 
                 }
-            }           
+                return true;
+            }          
             
         }
 
-        public static void ReloadData<T>(string path, string field, ref Dictionary<string, T> dict)
+        public static bool ReloadData<T>(string path, string field, ref Dictionary<string, T> dict)
         {
-            dict = null;
-            Methods.Deserialize(path, field, ref dict);
+            return Methods.Deserialize(path, field, ref dict);
         }
-        public static void ReloadData<T>(string path, string field, ref List<T> list)
+        public static bool ReloadData<T>(string path, string field, ref List<T> list)
         {
-            list = null;
-            Methods.Deserialize(path, field, ref list);
+            return Methods.Deserialize(path, field, ref list);
         }
     }
 }
