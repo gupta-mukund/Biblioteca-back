@@ -96,6 +96,12 @@
     <Compile Include="forms\frmBooks.Designer.cs">
       <DependentUpon>frmBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmCarta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCarta.Designer.cs">
+      <DependentUpon>frmCarta.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmPrestiti.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     <EmbeddedResource Include="forms\frmBooks.resx">
       <DependentUpon>frmBooks.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCarta.resx">
+      <DependentUpon>frmCarta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPrestiti.resx">
       <DependentUpon>frmPrestiti.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +211,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\libraryIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

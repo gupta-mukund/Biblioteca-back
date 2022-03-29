@@ -56,7 +56,7 @@ namespace Biblioteca
             {
 
             dgvPrestiti.DataSource = null;
-            dgvPrestiti.DataSource = myPrestiti.Select(p => new { Isbn = p.Isbn, Titolo = frmAdmin.libri[p.Isbn].Titolo , Scadenza = p.Prestiti[myUser.CodiceFiscale]}).ToList();
+            dgvPrestiti.DataSource = myPrestiti.Select(p => new { Isbn = p.Isbn, Titolo = Form1.libriElenco[p.Isbn].Titolo , Scadenza = p.Prestiti[myUser.CodiceFiscale]}).ToList();
             }
         }
 
@@ -108,18 +108,18 @@ namespace Biblioteca
                 FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
                 
                 FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                frmAdmin.libri[isbn].Quantita++;
+                Form1.libriElenco[isbn].Quantita++;
                 StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
                 
                 StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
-                int totalVotanti = frmAdmin.libri[isbn].QuantitaVoti;
-                float totalStars = frmAdmin.libri[isbn].MediaVoti * totalVotanti;
+                int totalVotanti = Form1.libriElenco[isbn].QuantitaVoti;
+                float totalStars = Form1.libriElenco[isbn].MediaVoti * totalVotanti;
                 totalVotanti++;
                 totalStars += this.currentRating * 100;
-                frmAdmin.libri[isbn].MediaVoti = totalStars / totalVotanti;
-                frmAdmin.libri[isbn].QuantitaVoti = totalVotanti;
+                Form1.libriElenco[isbn].MediaVoti = totalStars / totalVotanti;
+                Form1.libriElenco[isbn].QuantitaVoti = totalVotanti;
                 writer.Write(String.Empty);
-                string output = JsonConvert.SerializeObject(frmAdmin.libri, Formatting.Indented);
+                string output = JsonConvert.SerializeObject(Form1.libriElenco, Formatting.Indented);
                 writer.Write(output);
                 writer.Close();
 
@@ -140,8 +140,8 @@ namespace Biblioteca
                     }
                     //Form1.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(this.myUser.CodiceFiscale, DateTime.Now); });
                 }
-                frmAdmin.utenti[myUser.CodiceFiscale].Storico.Add(isbn);
-                frmAdmin.utenti[myUser.CodiceFiscale].RemovePrestito();
+                Form1.usersElenco[myUser.CodiceFiscale].Storico.Add(isbn);
+                Form1.usersElenco[myUser.CodiceFiscale].RemovePrestito();
                 File.WriteAllText(Directory.GetCurrentDirectory() + @"\prestiti.json", String.Empty);
                 FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
                 StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
@@ -151,13 +151,13 @@ namespace Biblioteca
                 writer2.Close();
 
                 writer3.Write(String.Empty);
-                string output3 = JsonConvert.SerializeObject(frmAdmin.utenti, Formatting.Indented);
+                string output3 = JsonConvert.SerializeObject(Form1.usersElenco, Formatting.Indented);
                
                 writer3.Write(output3);
                 writer3.Close();
 
-                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out frmAdmin.utenti);
-                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out frmAdmin.libri);
+                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out Form1.usersElenco);
+                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
                 Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
                 Init();
                 BindData();

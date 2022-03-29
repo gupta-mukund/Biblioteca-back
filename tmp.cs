@@ -11,46 +11,78 @@ using Biblioteca.components;
 
 namespace Biblioteca
 {
-    public partial class tmp : Form
+    public partial class tmp : Form, INotifyPropertyChanged
     {
-        
+        //List<string> list;
+        //public tmp()
+        //{
+        //    InitializeComponent();
+        //    list = new List<string>();
+        //    list.Add("ciao");
+        //    txt.DataBindings.Add(new Binding("Text", list[0], ""));
+        //    //dgv.Columns.Clear();
+        //    //DataGridViewImageColumn clm = new DataGridViewImageColumn();
+        //    //clm.HeaderText = "phtoo";
+        //    //clm.Name = "photo";
+        //    //dgv.Columns.Add(clm);
+        //    //dgv.RowTemplate.Height = 200;
+        //    ////DataGridViewColumn clom = new DataGridViewColumn();
+        //    ////clm.HeaderText = "text";
+        //    ////clm.Name = "text";
+        //    ////dgv.Columns.Add(clom);
+        //    //dgv.BackgroundColor = Color.White;
+        //    //dgv.RowHeadersVisible = false;
+
+
+        //    ////BookTextCell cell1 = new BookTextCell();
+        //    ////this.dgv.Controls.Add(cell1);
+        //    ////cell1.Dock = DockStyle.Top;
+        //    //dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        //    //flowLayoutPanel1.Controls.Add(new BookTextCell());
+        //    //flowLayoutPanel1.Controls.Add(new BookTextCell());
+        //    //flowLayoutPanel1.Controls.Add(new BookTextCell());
+        //    //flowLayoutPanel1.Controls.Add(new BookTextCell());
+        //    //flowLayoutPanel1.Controls.Add(new BookTextCell());
+
+
+        //    //Image img = Image.FromFile(@"C:\Users\gupta\OneDrive\Desktop\Image_created_with_a_mobile_phone.png");
+        //    // dgv.Rows.Add(img, "ciao");
+
+        //    //dgv.Rows.Add(Image.FromFile(@"C:\Users\gupta\OneDrive\Desktop\offset_comp_772626-opt.jpg"), "sisisiis");
+        //}
+
+        //private void dgv_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        //{
+        //   e.AdvancedBorderStyle.All = DataGridViewAdvancedCellBorderStyle.None;
+        //}
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public tmp()
         {
             InitializeComponent();
-            //dgv.Columns.Clear();
-            //DataGridViewImageColumn clm = new DataGridViewImageColumn();
-            //clm.HeaderText = "phtoo";
-            //clm.Name = "photo";
-            //dgv.Columns.Add(clm);
-            dgv.RowTemplate.Height = 200;
-            //DataGridViewColumn clom = new DataGridViewColumn();
-            //clm.HeaderText = "text";
-            //clm.Name = "text";
-            //dgv.Columns.Add(clom);
-            dgv.BackgroundColor = Color.White;
-            dgv.RowHeadersVisible = false;
-
-
-            //BookTextCell cell1 = new BookTextCell();
-            //this.dgv.Controls.Add(cell1);
-            //cell1.Dock = DockStyle.Top;
-            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            flowLayoutPanel1.Controls.Add(new BookTextCell());
-            flowLayoutPanel1.Controls.Add(new BookTextCell());
-            flowLayoutPanel1.Controls.Add(new BookTextCell());
-            flowLayoutPanel1.Controls.Add(new BookTextCell());
-            flowLayoutPanel1.Controls.Add(new BookTextCell());
-
-
-            //Image img = Image.FromFile(@"C:\Users\gupta\OneDrive\Desktop\Image_created_with_a_mobile_phone.png");
-            // dgv.Rows.Add(img, "ciao");
-
-            //dgv.Rows.Add(Image.FromFile(@"C:\Users\gupta\OneDrive\Desktop\offset_comp_772626-opt.jpg"), "sisisiis");
+            txt.DataBindings.Clear();
+            txt.DataBindings.Add("Text", this, "Title", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
-        private void dgv_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        string _title = "";
+        public string Title
         {
-           e.AdvancedBorderStyle.All = DataGridViewAdvancedCellBorderStyle.None;
+            get { return _title; }
+            set
+            {
+                _title = value;
+                if (Title == _title)
+                {
+                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Title"));
+                }
+            }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Title);
+        }
+
     }
 }

@@ -14,8 +14,6 @@ namespace Biblioteca
 {
     public partial class frmAdmin : Form
     {
-        public static Dictionary<string, User> utenti;
-        public static Dictionary<string, Libro> libri;
         private List<Libro> libriData;
         public FileSystemWatcher watcher;
         private User currentUser = null;
@@ -27,10 +25,11 @@ namespace Biblioteca
         {
             InitializeComponent();
             libriData = new List<Libro>();
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out utenti);
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libri);
-            libriData = libri.Values.ToList();
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out Form1.usersElenco);
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
+            libriData = Form1.libriElenco.Values.ToList();
             currentUser = admin;
+            lblNome.Text = "Admin: " + currentUser.GetFullName();
             watcher = new FileSystemWatcher();
             watcher.Path = Directory.GetCurrentDirectory();
             watcher.NotifyFilter = NotifyFilters.Attributes |
@@ -53,11 +52,11 @@ namespace Biblioteca
 
         public static void ReloadBooks()
         {
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libri);
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
         }
         public static void ReloadUsers()
         {
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out utenti);
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out Form1.libriElenco);
         }
         public void OnChanged(object source, FileSystemEventArgs e)
         {
@@ -91,14 +90,14 @@ namespace Biblioteca
             }
             else
             {
-                dgvLibri.DataSource = libri.Select(x => new {
+                dgvLibri.DataSource = Form1.libriElenco.Select(x => new {
                     Isbn = x.Key,
                     Titolo = x.Value.Titolo,
                     Autore = x.Value.Autori,
                     Categoria = x.Value.Categorie,
                     Pagine = x.Value.Pagine
                 }).ToList();
-                dgvUtenti.DataSource = utenti.Select(x => new {
+                dgvUtenti.DataSource = Form1.usersElenco.Select(x => new {
                     Nome = x.Value.Nome,
                     Cognome = x.Value.Cognome,
                     Codice = x.Value.CodiceFiscale,
@@ -128,7 +127,7 @@ namespace Biblioteca
 
         private void btnFiltra_Click(object sender, EventArgs e)
         {
-            libriData = libri.Values.ToList();
+            libriData = Form1.libriElenco.Values.ToList();
             Dictionary<string, string> filters = new Dictionary<string, string>();
             if (!String.IsNullOrWhiteSpace(txtBookName.Texts)) filters.Add("Titolo", txtBookName.Texts);
             if (!String.IsNullOrWhiteSpace(txtAutori.Texts)) filters.Add("Autori", txtAutori.Texts);
@@ -156,9 +155,9 @@ namespace Biblioteca
         {
             if (txtLoginCodice.Texts.Trim() != "")
             {
-                if (utenti.ContainsKey(txtLoginCodice.Texts.Trim()) && utenti[txtLoginCodice.Texts.Trim()].Ruolo != "admin")
+                if (Form1.usersElenco.ContainsKey(txtLoginCodice.Texts.Trim()) && Form1.usersElenco[txtLoginCodice.Texts.Trim()].Ruolo != "admin")
                 {
-                    new frmRestituzione(utenti[txtLoginCodice.Texts.Trim()]).Show();
+                    new frmRestituzione(Form1.usersElenco[txtLoginCodice.Texts.Trim()]).Show();
                 }
             }
         }

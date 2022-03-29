@@ -19,12 +19,18 @@ namespace Biblioteca.forms
         {
             InitializeComponent();
             frmMainPage.OnPrestitiChange += FrmMainPage_OnPrestitiChange;
+            frmMainPage.OnUsersChange += FrmMainPage_OnUsersChange;
             //frmBooks.OnPrestitiChange += FrmBooks_OnPrestitiChange;
             myPrestiti = new List<Prestito>();
             //dgvPrestiti.DataSource = frmMainPage.currentUser.GetPrestiti().Where(o => new { });
             GetPrestiti();
-
             BindPrenotazioni();
+            BindStorico();
+        }
+
+        private void FrmMainPage_OnUsersChange(object sender, EventArgs e)
+        {
+            BindStorico();
         }
 
         private void FrmMainPage_OnPrestitiChange(object sender, EventArgs e)
@@ -50,8 +56,24 @@ namespace Biblioteca.forms
             } else
             {
                 dgvPrestiti.DataSource = null;
-                dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = frmMainPage.libriElenco[p.Isbn].Titolo, Scadenza = p.Prestiti[frmMainPage.currentUser.CodiceFiscale].AddDays(30) }).ToList();   
+                dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = Form1.libriElenco[p.Isbn].Titolo, Scadenza = p.Prestiti[frmMainPage.currentUser.CodiceFiscale].AddDays(30) }).ToList();   
             }
+        }
+
+        public void BindStorico()
+        {
+            if (Form1.usersElenco[frmMainPage.currentUser.CodiceFiscale].Storico != null)
+            {
+                this.dgvStorico.DataSource = Form1.usersElenco[frmMainPage.currentUser.CodiceFiscale].Storico
+                .Select(p => new
+                {
+                    Isbn = p,
+                    Titolo = Form1.libriElenco[p].Titolo,
+                    Autore = Form1.libriElenco[p].Autori,
+                    Anno = Form1.libriElenco[p].Anno,
+                }).ToList();
+            }
+
         }
     }
 }

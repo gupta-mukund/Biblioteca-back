@@ -16,6 +16,7 @@ namespace Biblioteca
         public static Dictionary<string, User> usersElenco;
         private string SelectedPanelColour = "#6FE0CC";
         public static List<Prestito> prestiti;
+        public static Dictionary<string, Libro> libriElenco;
         private Label currentLabel;
         private string NotSelectedPanelColour = "#505F74";
         private BackgroundWorker emailWorker;
@@ -46,8 +47,11 @@ namespace Biblioteca
             pnlLogin.BackColor = ColorTranslator.FromHtml(NotSelectedPanelColour);
             pcbIconMain.Image = Properties.Resources.libraryIcon;
             pcbIconMain.SizeMode = PictureBoxSizeMode.StretchImage;
-            txtUsername.Texts = "tyjikr47f60m553c";
-            txtPassword.Texts = "dIIosgaCb4w";
+            //txtUsername.Texts = "tyjikr47f60m553c";
+            //txtPassword.Texts = "dIIosgaCb4w";
+            txtUsername.Texts = "KLBSIN66B98X469N";
+            txtPassword.Texts = "nc7cOVbGg";
+            
             btnLogin_Click(null, null);
         }
 
@@ -75,14 +79,14 @@ namespace Biblioteca
                     if (it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes <= 40)
                     {    
                          text = "Buongiorno gentile cliente,\n" +
-                            $"Le informiamo che il suo prestito '{frmMainPage.libriElenco[item.Isbn].Titolo}' scade tra poco.\n\n" +
+                            $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' scade tra poco.\n\n" +
                             "Biblioteca di Manchester";
                         client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
                     }
                     else if (it.Value.AddDays(30) <= DateTime.Now)
                     {
                         text = "Buongiorno gentile cliente,\n" +
-                            $"Le informiamo che il suo prestito '{frmMainPage.libriElenco[item.Isbn].Titolo}' non è stato consegnato in tempo.\n\n" +
+                            $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' non è stato consegnato in tempo.\n\n" +
                             "Biblioteca di Manchester";
                         client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
                         HandleRitardoPrestito(item.Isbn, index);

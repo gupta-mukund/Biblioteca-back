@@ -17,7 +17,7 @@ namespace Biblioteca
         public static User currentUser;
         public forms.frmBooks BooksForm;
         public forms.frmPrestiti PrestitiForm;
-        public static Dictionary<string, Libro> libriElenco;
+        public forms.frmCarta CartaForm;
         
         public static DateTime ExecutedTime;
         public FileSystemWatcher watcher;
@@ -32,9 +32,9 @@ namespace Biblioteca
         public frmMainPage(User user)
         {
             InitializeComponent();
-            libriElenco = new Dictionary<string, Libro>();
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libriElenco);
-            foreach (KeyValuePair<string, Libro> item in libriElenco)
+            Form1.libriElenco = new Dictionary<string, Libro>();
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
+            foreach (KeyValuePair<string, Libro> item in Form1.libriElenco)
             {
                 item.Value.CalculateRating();
             }
@@ -56,12 +56,15 @@ namespace Biblioteca
 
             this.formReference = new Dictionary<string, Form>();
             currentUser = user;
-            lblNome.Text = currentUser.GetFullName();
-            
+            lblCodiceFiscale.Text = currentUser.CodiceFiscale;
+            //pcbProfile.ImageLocation = $"https://via.placeholder.com/1000.png/FFFFFF/000000?text={currentUser.GetFullName()}";
+
             BooksForm = new forms.frmBooks();
             PrestitiForm = new forms.frmPrestiti();
+            CartaForm = new forms.frmCarta();
             formReference.Add("UserBooks", BooksForm);
             formReference.Add("UserPrestiti", PrestitiForm);
+            formReference.Add("Carta", CartaForm);
             currentForm = "UserBook";
             ChangeForm(formReference["UserBooks"]);
         }
@@ -90,8 +93,8 @@ namespace Biblioteca
 
         public static void ReloadBooks()
         {
-            libriElenco = null;
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libriElenco);
+            Form1.libriElenco = null;
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
         }
         public static void ReloadPrestiti()
         {

@@ -46,6 +46,8 @@ namespace Biblioteca
             this.txtLoginCodice = new Biblioteca.components.LoginCustomTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnEntraUser = new Biblioteca.CustomButton();
+            this.lblNome = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -60,6 +62,7 @@ namespace Biblioteca
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Chocolate;
+            this.panel1.Controls.Add(this.lblNome);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -298,6 +301,17 @@ namespace Biblioteca
             this.btnEntraUser.UseVisualStyleBackColor = false;
             this.btnEntraUser.Click += new System.EventHandler(this.btnEntraUser_Click);
             // 
+            // lblNome
+            // 
+            this.lblNome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNome.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblNome.Location = new System.Drawing.Point(0, 0);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(800, 66);
+            this.lblNome.TabIndex = 0;
+            this.lblNome.Text = "label2";
+            this.lblNome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -308,6 +322,7 @@ namespace Biblioteca
             this.Name = "frmAdmin";
             this.Text = "frmAdmin";
             this.Load += new System.EventHandler(this.frmAdmin_Load);
+            this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -340,5 +355,6 @@ namespace Biblioteca
         private components.LoginCustomTextBox txtLoginCodice;
         private System.Windows.Forms.Label label1;
         private CustomButton btnEntraUser;
+        private System.Windows.Forms.Label lblNome;
     }
 }

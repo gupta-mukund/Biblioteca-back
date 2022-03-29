@@ -68,7 +68,7 @@ namespace Biblioteca.forms
             tlpMain.ColumnCount = 1;
             tlpMain.RowCount = 0;
             myBooks = new List<components.BookTextCell>();
-            libriData = frmMainPage.libriElenco.Values.ToList();
+            libriData = Form1.libriElenco.Values.ToList();
             InitialPagination();
 
             for (int i = 0; i < Pagination.DataPerPage; i++)
@@ -77,6 +77,7 @@ namespace Biblioteca.forms
                 tlpMain.RowStyles.Add(new RowStyle());
                 components.BookTextCell comp = new components.BookTextCell();
                 comp.Prenota += UserPrenota;
+                comp.Dock = DockStyle.Fill;
                 myBooks.Add(comp);
                 tlpMain.Controls.Add(comp, 0, tlpMain.RowCount - 1);
                 comp.BringToFront();
@@ -125,13 +126,13 @@ namespace Biblioteca.forms
                     FileStream file = new FileStream(booksPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
                     FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
                     FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                    frmMainPage.libriElenco[isbn].Quantita--;
+                    Form1.libriElenco[isbn].Quantita--;
                     StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
                     StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
                     StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
 
                     writer.Write(String.Empty);
-                    string output = JsonConvert.SerializeObject(frmMainPage.libriElenco.Values, Formatting.Indented);
+                    string output = JsonConvert.SerializeObject(Form1.libriElenco.Values, Formatting.Indented);
                     writer.Write(output);
                     writer.Close();
 
@@ -319,7 +320,7 @@ namespace Biblioteca.forms
 
         private void btnFiltra_Click(object sender, EventArgs e)
         {
-            libriData = frmMainPage.libriElenco.Values.ToList();
+            libriData = Form1.libriElenco.Values.ToList();
             Dictionary<string,string> filters = new Dictionary<string, string>();
             if (!String.IsNullOrWhiteSpace(txtBookName.Texts)) filters.Add("Titolo", txtBookName.Texts);
             if (!String.IsNullOrWhiteSpace(txtAutori.Texts)) filters.Add("Autori", txtAutori.Texts);
@@ -343,7 +344,7 @@ namespace Biblioteca.forms
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-            libriData = frmMainPage.libriElenco.Values.ToList();
+            libriData = Form1.libriElenco.Values.ToList();
             InitialPagination();
             SetData();
         }
