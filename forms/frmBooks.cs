@@ -135,31 +135,31 @@ namespace Biblioteca.forms
                     writer.Write(output);
                     writer.Close();
 
-                    if (frmMainPage.prestiti != null)
+                    if (Form1.prestiti != null)
                     {
-                        if (frmMainPage.prestiti.Any(prest => prest.Isbn == isbn))
+                        if (Form1.prestiti.Any(prest => prest.Isbn == isbn))
                         {
-                            int position = frmMainPage.prestiti.Select((item, i) => new {
+                            int position = Form1.prestiti.Select((item, i) => new {
                                 Item = item,
                                 Position = i
                             }).Where(m => m.Item.Isbn == isbn).First().Position;
-                            frmMainPage.prestiti[position].Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now);
+                            Form1.prestiti[position].Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now);
                             //frmMainPage.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(frmMainPage.currentUser.CodiceFiscale, DateTime.Now); });
                         }
                         else
                         {
-                            frmMainPage.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
+                            Form1.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
 
                         }
 
                     }
                     else
                     {
-                        frmMainPage.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
+                        Form1.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
                     }
                     Form1.usersElenco[frmMainPage.currentUser.CodiceFiscale].AddPrestito();
                     writer2.Write(String.Empty);
-                    string output2 = JsonConvert.SerializeObject(frmMainPage.prestiti, Formatting.Indented);
+                    string output2 = JsonConvert.SerializeObject(Form1.prestiti, Formatting.Indented);
                     writer2.Write(output2);
                     writer2.Close();
 
@@ -200,13 +200,13 @@ namespace Biblioteca.forms
             {
                 myBooks[i].Identity= Pagination.PaginationData[i];
 
-                bool isPrestito = frmMainPage.prestiti.Count > 0 && frmMainPage.currentUser.Prestiti > 0;
+                bool isPrestito = Form1.prestiti.Count > 0 && frmMainPage.currentUser.Prestiti > 0;
                 if (!isPrestito && myBooks[i].Identity.Quantita == 0)
                 {
                     myBooks[i].FinishedBook();
                 } else if (isPrestito)
                 {
-                    var tmp = frmMainPage.prestiti.Where(x => x.Isbn == Pagination.PaginationData[i].Isbn)
+                    var tmp = Form1.prestiti.Where(x => x.Isbn == Pagination.PaginationData[i].Isbn)
                         .Select(y => y.Prestiti)
                         .Where(z => z.ContainsKey(frmMainPage.currentUser.CodiceFiscale));
                     if (tmp.Count() > 0)

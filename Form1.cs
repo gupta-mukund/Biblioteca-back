@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Mail;
+using System.Net;
 using System.IO;
 namespace Biblioteca
 {
@@ -13,11 +15,26 @@ namespace Biblioteca
     {
         public static Dictionary<string, User> usersElenco;
         private string SelectedPanelColour = "#6FE0CC";
+        public static List<Prestito> prestiti;
         private Label currentLabel;
         private string NotSelectedPanelColour = "#505F74";
+        private BackgroundWorker emailWorker;
+        private System.Timers.Timer emailTimer;
         public Form1()
         {
             InitializeComponent();
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out prestiti);
+            emailWorker = new BackgroundWorker();
+            emailWorker.DoWork += EmailWorker_DoWork;
+            emailTimer = new System.Timers.Timer(5000);
+            emailTimer.Elapsed += EmailTimer_Elapsed;
+            emailTimer.Start();
+
+
+
+
+
+
             currentLabel = this.lblLogin;
             lblTitolo.Text = currentLabel.Text;
             btnLogin.Text = currentLabel.Text;
@@ -32,6 +49,34 @@ namespace Biblioteca
             txtUsername.Texts = "tyjikr47f60m553c";
             txtPassword.Texts = "dIIosgaCb4w";
             btnLogin_Click(null, null);
+        }
+
+        private void EmailTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (!emailWorker.IsBusy)
+            {
+                emailWorker.RunWorkerAsync();
+            }
+        }
+
+        private void EmailWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            foreach (Prestito item in prestiti)
+            {
+                foreach (KeyValuePair<string, DateTime> it in item.Prestiti)
+                {
+                    if (it.Value.AddDays(30).AddMinutes(-20) == DateTime.Now)
+                    {
+                        var client = new SmtpClient("smtp.mailtrap.io", 2525)
+                        {
+                            Credentials = new NetworkCredential("9e08f2fd43d2b3", "e7426694403040"),
+                            EnableSsl = true
+                        };
+                        client.Send("biblioteca_reception@example.com", "to@USER.com", "Hello world", "testbody");
+                    }
+                }
+            }
+
         }
 
         public static void ReloadUsers()

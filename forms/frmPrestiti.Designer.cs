@@ -31,8 +31,8 @@ namespace Biblioteca.forms
         {
             this.tbcPrenotazioni = new System.Windows.Forms.TabControl();
             this.tbpInCorso = new System.Windows.Forms.TabPage();
-            this.tbpPrenotazioni = new System.Windows.Forms.TabPage();
             this.dgvPrestiti = new System.Windows.Forms.DataGridView();
+            this.tbpPrenotazioni = new System.Windows.Forms.TabPage();
             this.tbcPrenotazioni.SuspendLayout();
             this.tbpInCorso.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestiti)).BeginInit();
@@ -60,18 +60,13 @@ namespace Biblioteca.forms
             this.tbpInCorso.Text = "In Corso";
             this.tbpInCorso.UseVisualStyleBackColor = true;
             // 
-            // tbpPrenotazioni
-            // 
-            this.tbpPrenotazioni.Location = new System.Drawing.Point(4, 25);
-            this.tbpPrenotazioni.Name = "tbpPrenotazioni";
-            this.tbpPrenotazioni.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPrenotazioni.Size = new System.Drawing.Size(792, 421);
-            this.tbpPrenotazioni.TabIndex = 1;
-            this.tbpPrenotazioni.Text = "Prenotazioni";
-            this.tbpPrenotazioni.UseVisualStyleBackColor = true;
-            // 
             // dgvPrestiti
             // 
+            this.dgvPrestiti.AllowUserToAddRows = false;
+            this.dgvPrestiti.AllowUserToDeleteRows = false;
+            this.dgvPrestiti.AllowUserToResizeColumns = false;
+            this.dgvPrestiti.AllowUserToResizeRows = false;
+            this.dgvPrestiti.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPrestiti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrestiti.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPrestiti.Location = new System.Drawing.Point(3, 3);
@@ -81,6 +76,16 @@ namespace Biblioteca.forms
             this.dgvPrestiti.RowTemplate.Height = 24;
             this.dgvPrestiti.Size = new System.Drawing.Size(786, 415);
             this.dgvPrestiti.TabIndex = 1;
+            // 
+            // tbpPrenotazioni
+            // 
+            this.tbpPrenotazioni.Location = new System.Drawing.Point(4, 25);
+            this.tbpPrenotazioni.Name = "tbpPrenotazioni";
+            this.tbpPrenotazioni.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpPrenotazioni.Size = new System.Drawing.Size(792, 421);
+            this.tbpPrenotazioni.TabIndex = 1;
+            this.tbpPrenotazioni.Text = "Prenotazioni";
+            this.tbpPrenotazioni.UseVisualStyleBackColor = true;
             // 
             // frmPrestiti
             // 

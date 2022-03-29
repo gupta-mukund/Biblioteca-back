@@ -16,7 +16,6 @@ namespace Biblioteca
     {
         public static Dictionary<string, User> utenti;
         public static Dictionary<string, Libro> libri;
-        public static List<Prestito> utentiPrestiti;
         private List<Libro> libriData;
         public FileSystemWatcher watcher;
         private User currentUser = null;
@@ -30,7 +29,6 @@ namespace Biblioteca
             libriData = new List<Libro>();
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out utenti);
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out libri);
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out utentiPrestiti);
             libriData = libri.Values.ToList();
             currentUser = admin;
             watcher = new FileSystemWatcher();
@@ -50,7 +48,7 @@ namespace Biblioteca
         }
         public static void ReloadPrestiti()
         {
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out utentiPrestiti);
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
         }
 
         public static void ReloadBooks()

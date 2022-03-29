@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Biblioteca.forms
 {
     public partial class frmPrestiti : Form
@@ -49,7 +50,7 @@ namespace Biblioteca.forms
             } else
             {
                 dgvPrestiti.DataSource = null;
-                dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = frmMainPage.libriElenco[p.Isbn].Titolo }).ToList();   
+                dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = frmMainPage.libriElenco[p.Isbn].Titolo, Scadenza = p.Prestiti[frmMainPage.currentUser.CodiceFiscale].AddDays(30) }).ToList();   
             }
         }
     }

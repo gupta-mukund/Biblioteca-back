@@ -18,7 +18,7 @@ namespace Biblioteca
         public forms.frmBooks BooksForm;
         public forms.frmPrestiti PrestitiForm;
         public static Dictionary<string, Libro> libriElenco;
-        public static List<Prestito> prestiti;
+        
         public static DateTime ExecutedTime;
         public FileSystemWatcher watcher;
 
@@ -38,7 +38,7 @@ namespace Biblioteca
             {
                 item.Value.CalculateRating();
             }
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out prestiti);
+            
             watcher = new FileSystemWatcher();
             watcher.Path = Directory.GetCurrentDirectory();
             ExecutedTime = DateTime.Now;
@@ -95,8 +95,8 @@ namespace Biblioteca
         }
         public static void ReloadPrestiti()
         {
-            prestiti = null;
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out prestiti);
+            Form1.prestiti = null;
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
         }
         public void ChangeForm(object form)
         {
