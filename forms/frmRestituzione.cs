@@ -37,9 +37,9 @@ namespace Biblioteca
 
         private void Init()
         {
-            if (frmAdmin.utentiPrestiti != null)
+            if (Form1.prestiti != null)
             {
-                myPrestiti = (from u in frmAdmin.utentiPrestiti
+                myPrestiti = (from u in Form1.prestiti
                               where u.Prestiti.ContainsKey(myUser.CodiceFiscale)
                               select u).ToList();
             }
@@ -95,7 +95,7 @@ namespace Biblioteca
                 HandleRating();
                 
                 await tsc.Task;
-                MessageBox.Show(currentRating.ToString());
+                
                 WriteToFile(isbn);
             }   
         }
@@ -123,28 +123,29 @@ namespace Biblioteca
                 writer.Write(output);
                 writer.Close();
 
-                if (frmAdmin.utentiPrestiti != null)
+                if (Form1.prestiti != null)
                 {
 
-                    int position = frmAdmin.utentiPrestiti.Select((item, i) => new
+                    int position = Form1.prestiti.Select((item, i) => new
                     {
                         Item = item,
                         Position = i
                     }).Where(m => m.Item.Isbn == isbn).First().Position;
-                    //List<string> list = (frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key)).ToList();
-                    //MessageBox.Show(frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
-                    frmAdmin.utentiPrestiti[position].Prestiti.Remove(frmAdmin.utentiPrestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
-                    if (frmAdmin.utentiPrestiti[position].Prestiti.Count == 0)
+                    //List<string> list = (Form1.prestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key)).ToList();
+                    //MessageBox.Show(Form1.prestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
+                    Form1.prestiti[position].Prestiti.Remove(Form1.prestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
+                    if (Form1.prestiti[position].Prestiti.Count == 0)
                     {
-                        frmAdmin.utentiPrestiti.RemoveAt(position);
+                        Form1.prestiti.RemoveAt(position);
                     }
-                    //frmAdmin.utentiPrestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(this.myUser.CodiceFiscale, DateTime.Now); });
+                    //Form1.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(this.myUser.CodiceFiscale, DateTime.Now); });
                 }
+                frmAdmin.utenti[myUser.CodiceFiscale].Storico.Add(isbn);
                 frmAdmin.utenti[myUser.CodiceFiscale].RemovePrestito();
                 File.WriteAllText(Directory.GetCurrentDirectory() + @"\prestiti.json", String.Empty);
                 FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
                 StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
-                string output2 = JsonConvert.SerializeObject(frmAdmin.utentiPrestiti, Formatting.Indented);
+                string output2 = JsonConvert.SerializeObject(Form1.prestiti, Formatting.Indented);
                 
                 writer2.Write(output2);
                 writer2.Close();
@@ -157,7 +158,7 @@ namespace Biblioteca
 
                 Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out frmAdmin.utenti);
                 Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out frmAdmin.libri);
-                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out frmAdmin.utentiPrestiti);
+                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
                 Init();
                 BindData();
             }

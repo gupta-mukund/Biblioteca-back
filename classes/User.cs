@@ -36,6 +36,7 @@ namespace Biblioteca
 
         [JsonProperty("Prestiti")]
         public int Prestiti { get; set; } = 0;
+        public List<string> Storico;
         public string GetFullName()
         {
             return $"{Nome} {Cognome}";

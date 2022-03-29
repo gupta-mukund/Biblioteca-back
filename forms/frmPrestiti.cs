@@ -34,9 +34,9 @@ namespace Biblioteca.forms
         }
         private void GetPrestiti()
         {
-            if (frmMainPage.prestiti != null)
+            if (Form1.prestiti != null)
             {
-                myPrestiti = (from u in frmMainPage.prestiti
+                myPrestiti = (from u in Form1.prestiti
                               where u.Prestiti.ContainsKey(frmMainPage.currentUser.CodiceFiscale)
                               select u).ToList();
             }

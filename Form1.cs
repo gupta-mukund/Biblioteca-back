@@ -61,24 +61,41 @@ namespace Biblioteca
 
         private void EmailWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            int index = 0;
             foreach (Prestito item in prestiti)
             {
                 foreach (KeyValuePair<string, DateTime> it in item.Prestiti)
                 {
-                    if (it.Value.AddDays(30).AddMinutes(-20) == DateTime.Now)
+                    var client = new SmtpClient("smtp.mailtrap.io", 2525)
                     {
-                        var client = new SmtpClient("smtp.mailtrap.io", 2525)
-                        {
-                            Credentials = new NetworkCredential("9e08f2fd43d2b3", "e7426694403040"),
-                            EnableSsl = true
-                        };
-                        client.Send("biblioteca_reception@example.com", "to@USER.com", "Hello world", "testbody");
+                        Credentials = new NetworkCredential("9e08f2fd43d2b3", "e7426694403040"),
+                        EnableSsl = true
+                    };
+                    string text;
+                    if (it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes <= 40)
+                    {    
+                         text = "Buongiorno gentile cliente,\n" +
+                            $"Le informiamo che il suo prestito '{frmMainPage.libriElenco[item.Isbn].Titolo}' scade tra poco.\n\n" +
+                            "Biblioteca di Manchester";
+                        client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
+                    }
+                    else if (it.Value.AddDays(30) <= DateTime.Now)
+                    {
+                        text = "Buongiorno gentile cliente,\n" +
+                            $"Le informiamo che il suo prestito '{frmMainPage.libriElenco[item.Isbn].Titolo}' non è stato consegnato in tempo.\n\n" +
+                            "Biblioteca di Manchester";
+                        client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
+                        HandleRitardoPrestito(item.Isbn, index);
                     }
                 }
+                index++;
             }
 
         }
-
+        private void HandleRitardoPrestito(string isbn, int position)
+        {
+            prestiti[position].Prestiti.Remove(isbn);
+        }
         public static void ReloadUsers()
         {
             usersElenco = null;

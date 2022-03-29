@@ -198,6 +198,7 @@ namespace Biblioteca.forms
             Pagination.PaginationData = libriData.Skip(Pagination.CurrentStart).Take(Pagination.CurrentEnd - Pagination.CurrentStart).ToList();
             for (int i = 0; i < Pagination.PaginationData.Count; i++)
             {
+                myBooks[i].Visible = true;
                 myBooks[i].Identity= Pagination.PaginationData[i];
 
                 bool isPrestito = Form1.prestiti.Count > 0 && frmMainPage.currentUser.Prestiti > 0;
@@ -216,9 +217,14 @@ namespace Biblioteca.forms
                     {
                         myBooks[i].NormalizeButton();
                     }
-                }  
-                
-                                    
+                }                                     
+            }
+            if (Pagination.PaginationData.Count < Pagination.DataPerPage)
+            {
+                for (int i = Pagination.PaginationData.Count; i < Pagination.DataPerPage; i++)
+                {
+                    myBooks[i].Visible = false;
+                }
             }
             //if (Pagination.PaginationData.Count < Pagination.DataPerPage)
             //{
@@ -337,6 +343,7 @@ namespace Biblioteca.forms
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            libriData = frmMainPage.libriElenco.Values.ToList();
             InitialPagination();
             SetData();
         }
