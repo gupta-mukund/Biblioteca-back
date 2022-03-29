@@ -32,6 +32,13 @@ namespace Biblioteca.forms
 
         }
 
+        private void InitialPagination()
+        {
+            Pagination.DataPerPage = 10;
+            Pagination.PagesNumber = (int)Math.Ceiling((double)libriData.Count / 10);
+            Pagination.CurrentStart = 0;
+            Pagination.CurrentEnd = Pagination.CurrentStart + Pagination.DataPerPage;
+        }
         private void FrmMainPage_OnUsersChange(object sender, EventArgs e)
         {
             frmMainPage.currentUser = Form1.usersElenco[frmMainPage.currentUser.CodiceFiscale];
@@ -62,10 +69,7 @@ namespace Biblioteca.forms
             tlpMain.RowCount = 0;
             myBooks = new List<components.BookTextCell>();
             libriData = frmMainPage.libriElenco.Values.ToList();
-            Pagination.DataPerPage = 10;
-            Pagination.PagesNumber = (int)Math.Ceiling((double)libriData.Count / 10);
-            Pagination.CurrentStart = 0;
-            Pagination.CurrentEnd = Pagination.CurrentStart + Pagination.DataPerPage;
+            InitialPagination();
 
             for (int i = 0; i < Pagination.DataPerPage; i++)
             {
@@ -77,7 +81,8 @@ namespace Biblioteca.forms
                 tlpMain.Controls.Add(comp, 0, tlpMain.RowCount - 1);
                 comp.BringToFront();
             }
-            txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart) + 1).ToString();
+            //txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart/10) + 1).ToString();
+            txtCurrentPages.Text = 1.ToString();
             lblPages.Text = $"/{Pagination.PagesNumber}";
             SetData();
         }
@@ -87,6 +92,7 @@ namespace Biblioteca.forms
             {
                 if (TryOrderBook(e.Book.Isbn))
                 {
+                    SetData();
                     //OnPrestitiChange?.Invoke(null, null);
                 };
             } else
@@ -106,14 +112,11 @@ namespace Biblioteca.forms
             if (!FileIsLocked(booksPath))
             {
                 WriteToFile(isbn);
+                
                 return true;
             }
             return false;
             //MessageBox.Show(FileIsLocked(booksPath).ToString());
-        }
-        private void DoRating()
-        {
-
         }
         public void WriteToFile(string isbn)
         {
@@ -169,7 +172,7 @@ namespace Biblioteca.forms
                     frmMainPage.ReloadBooks();
                     frmMainPage.ReloadPrestiti();
 
-                    SetData();
+                    
                 }
         }
 
@@ -196,11 +199,12 @@ namespace Biblioteca.forms
             for (int i = 0; i < Pagination.PaginationData.Count; i++)
             {
                 myBooks[i].Identity= Pagination.PaginationData[i];
-                if (myBooks[i].Identity.Quantita == 0)
+
+                bool isPrestito = frmMainPage.prestiti.Count > 0 && frmMainPage.currentUser.Prestiti > 0;
+                if (!isPrestito && myBooks[i].Identity.Quantita == 0)
                 {
                     myBooks[i].FinishedBook();
-                }
-                else if (frmMainPage.prestiti.Count > 0 && frmMainPage.currentUser.Prestiti > 0)
+                } else if (isPrestito)
                 {
                     var tmp = frmMainPage.prestiti.Where(x => x.Isbn == Pagination.PaginationData[i].Isbn)
                         .Select(y => y.Prestiti)
@@ -208,13 +212,12 @@ namespace Biblioteca.forms
                     if (tmp.Count() > 0)
                     {
                         myBooks[i].AlreadyHaveBook();
+                    } else
+                    {
+                        myBooks[i].NormalizeButton();
                     }
-
-                }
-                else
-                {
-                    myBooks[i].NormalizeButton();
-                }
+                }  
+                
                                     
             }
             //if (Pagination.PaginationData.Count < Pagination.DataPerPage)
@@ -231,7 +234,8 @@ namespace Biblioteca.forms
                     panel1.AutoScroll = true;
                     panel1.AutoScrollPosition = new Point(panel1.AutoScrollPosition.X, 0);
                     panel1.VerticalScroll.Value = 0;
-                    txtCurrentPages.Text = (Pagination.CurrentStart + 1).ToString();
+                    txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart/10) + 1).ToString();
+                    //txtCurrentPages.Text = (Pagination.CurrentStart + 1).ToString();
                 }));
             }
             //lblPages.Text = $"{Pagination.CurrentStart + 1}/{Pagination.PagesNumber}";
@@ -248,6 +252,7 @@ namespace Biblioteca.forms
                 Pagination.CurrentEnd = Pagination.CurrentEnd - Pagination.DataPerPage;
                 SetData();
             }
+            txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart / 10) + 1).ToString();
         }
 
         private void btnRight_Click(object sender, EventArgs e)
@@ -262,6 +267,8 @@ namespace Biblioteca.forms
                 Pagination.CurrentEnd += Pagination.DataPerPage;
                 SetData();
             }
+            txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart/10) + 1).ToString();
+
         }
         private void txtCurrentPages_KeyDown(object sender, KeyEventArgs e)
         {
@@ -270,13 +277,11 @@ namespace Biblioteca.forms
                 if (Int32.TryParse(this.txtCurrentPages.Text, out int n) && n > 0 && n <= Pagination.PagesNumber)
                 {
                     
-                    Pagination.CurrentStart = n * Pagination.DataPerPage;
+                    Pagination.CurrentStart = n * Pagination.DataPerPage - Pagination.DataPerPage;
                     Pagination.CurrentEnd = Pagination.CurrentStart + Pagination.DataPerPage;
+                    txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart/10) + 1).ToString();
                     SetData();
-                } else
-                {
-                    txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart) + 1).ToString();
-                }
+                } 
             }
         }
         private static class Pagination
@@ -324,10 +329,16 @@ namespace Biblioteca.forms
                 Pagination.CurrentStart = 0;
                 Pagination.CurrentEnd = libriData.Count > 10 ? Pagination.CurrentStart + Pagination.DataPerPage : libriData.Count;
                 Pagination.PagesNumber = (int)Math.Ceiling((double)libriData.Count / 10);
-                txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart) + 1).ToString();
+                txtCurrentPages.Text = (Math.Floor((double)Pagination.CurrentStart/10) + 1).ToString();
                 lblPages.Text = $"/{Pagination.PagesNumber}";
                 SetData();
             }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            InitialPagination();
+            SetData();
         }
     }
     

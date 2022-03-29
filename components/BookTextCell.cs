@@ -64,7 +64,7 @@ namespace Biblioteca.components
         {
             if (btnPrenota.InvokeRequired)
             {
-                ButtonHandler d = new ButtonHandler(NormalizeButton);
+                ButtonHandler d = new ButtonHandler(FinishedBook);
                 this.Invoke(d);
 
             }
@@ -80,7 +80,7 @@ namespace Biblioteca.components
         {
             if (btnPrenota.InvokeRequired)
             {
-                ButtonHandler d = new ButtonHandler(NormalizeButton);
+                ButtonHandler d = new ButtonHandler(AlreadyHaveBook);
                 this.Invoke(d);
 
             }

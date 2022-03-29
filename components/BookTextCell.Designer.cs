@@ -36,21 +36,25 @@ namespace Biblioteca.components
             this.lblTitolo = new System.Windows.Forms.Label();
             this.lblAutore = new System.Windows.Forms.Label();
             this.lblGenere = new System.Windows.Forms.Label();
-            this.btnPrenota = new Biblioteca.CustomButton();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.pcbPicture = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.lblRating = new System.Windows.Forms.Label();
+            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.btnPrenota = new Biblioteca.CustomButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -59,22 +63,22 @@ namespace Biblioteca.components
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(703, 404);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1307, 404);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.lblRating, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.lblDescrizione, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.lblAnno, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.lblTitolo, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.lblAutore, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.lblGenere, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnPrenota, 0, 6);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel4, 0, 5);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(210, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(250, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
@@ -86,7 +90,7 @@ namespace Biblioteca.components
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(493, 404);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1057, 404);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // lblDescrizione
@@ -96,7 +100,7 @@ namespace Biblioteca.components
             this.lblDescrizione.Location = new System.Drawing.Point(0, 150);
             this.lblDescrizione.Margin = new System.Windows.Forms.Padding(0);
             this.lblDescrizione.Name = "lblDescrizione";
-            this.lblDescrizione.Size = new System.Drawing.Size(493, 55);
+            this.lblDescrizione.Size = new System.Drawing.Size(1057, 55);
             this.lblDescrizione.TabIndex = 15;
             this.lblDescrizione.Text = "label1";
             // 
@@ -107,7 +111,7 @@ namespace Biblioteca.components
             this.lblAnno.Location = new System.Drawing.Point(0, 125);
             this.lblAnno.Margin = new System.Windows.Forms.Padding(0);
             this.lblAnno.Name = "lblAnno";
-            this.lblAnno.Size = new System.Drawing.Size(493, 25);
+            this.lblAnno.Size = new System.Drawing.Size(1057, 25);
             this.lblAnno.TabIndex = 14;
             this.lblAnno.Text = "label1";
             this.lblAnno.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -119,7 +123,7 @@ namespace Biblioteca.components
             this.lblTitolo.Location = new System.Drawing.Point(0, 75);
             this.lblTitolo.Margin = new System.Windows.Forms.Padding(0);
             this.lblTitolo.Name = "lblTitolo";
-            this.lblTitolo.Size = new System.Drawing.Size(493, 50);
+            this.lblTitolo.Size = new System.Drawing.Size(1057, 50);
             this.lblTitolo.TabIndex = 13;
             this.lblTitolo.Text = "label1";
             this.lblTitolo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -131,7 +135,7 @@ namespace Biblioteca.components
             this.lblAutore.Location = new System.Drawing.Point(0, 35);
             this.lblAutore.Margin = new System.Windows.Forms.Padding(0);
             this.lblAutore.Name = "lblAutore";
-            this.lblAutore.Size = new System.Drawing.Size(493, 40);
+            this.lblAutore.Size = new System.Drawing.Size(1057, 40);
             this.lblAutore.TabIndex = 12;
             this.lblAutore.Text = "label1";
             this.lblAutore.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -143,10 +147,77 @@ namespace Biblioteca.components
             this.lblGenere.Location = new System.Drawing.Point(0, 0);
             this.lblGenere.Margin = new System.Windows.Forms.Padding(0);
             this.lblGenere.Name = "lblGenere";
-            this.lblGenere.Size = new System.Drawing.Size(493, 35);
+            this.lblGenere.Size = new System.Drawing.Size(1057, 35);
             this.lblGenere.TabIndex = 10;
             this.lblGenere.Text = "label1";
             this.lblGenere.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Controls.Add(this.pcbPicture, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(250, 404);
+            this.tableLayoutPanel3.TabIndex = 2;
+            // 
+            // pcbPicture
+            // 
+            this.pcbPicture.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pcbPicture.Location = new System.Drawing.Point(0, 0);
+            this.pcbPicture.Margin = new System.Windows.Forms.Padding(0);
+            this.pcbPicture.Name = "pcbPicture";
+            this.pcbPicture.Size = new System.Drawing.Size(250, 300);
+            this.pcbPicture.TabIndex = 0;
+            this.pcbPicture.TabStop = false;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.lblRating, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.iconPictureBox1, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 205);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1057, 25);
+            this.tableLayoutPanel4.TabIndex = 17;
+            // 
+            // lblRating
+            // 
+            this.lblRating.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lblRating.Location = new System.Drawing.Point(3, 0);
+            this.lblRating.Name = "lblRating";
+            this.lblRating.Size = new System.Drawing.Size(54, 25);
+            this.lblRating.TabIndex = 18;
+            this.lblRating.Text = "label1";
+            this.lblRating.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // iconPictureBox1
+            // 
+            this.iconPictureBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.iconPictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.iconPictureBox1.ForeColor = System.Drawing.Color.Gold;
+            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Star;
+            this.iconPictureBox1.IconColor = System.Drawing.Color.Gold;
+            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.iconPictureBox1.IconSize = 25;
+            this.iconPictureBox1.Location = new System.Drawing.Point(60, 0);
+            this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.iconPictureBox1.Name = "iconPictureBox1";
+            this.iconPictureBox1.Size = new System.Drawing.Size(32, 25);
+            this.iconPictureBox1.TabIndex = 19;
+            this.iconPictureBox1.TabStop = false;
             // 
             // btnPrenota
             // 
@@ -167,43 +238,6 @@ namespace Biblioteca.components
             this.btnPrenota.UseVisualStyleBackColor = false;
             this.btnPrenota.Click += new System.EventHandler(this.btnPrenota_Click);
             // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.pcbPicture, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(210, 404);
-            this.tableLayoutPanel3.TabIndex = 2;
-            // 
-            // pcbPicture
-            // 
-            this.pcbPicture.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pcbPicture.Location = new System.Drawing.Point(0, 0);
-            this.pcbPicture.Margin = new System.Windows.Forms.Padding(0);
-            this.pcbPicture.Name = "pcbPicture";
-            this.pcbPicture.Size = new System.Drawing.Size(210, 250);
-            this.pcbPicture.TabIndex = 0;
-            this.pcbPicture.TabStop = false;
-            // 
-            // lblRating
-            // 
-            this.lblRating.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblRating.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRating.Location = new System.Drawing.Point(0, 205);
-            this.lblRating.Margin = new System.Windows.Forms.Padding(0);
-            this.lblRating.Name = "lblRating";
-            this.lblRating.Size = new System.Drawing.Size(493, 25);
-            this.lblRating.TabIndex = 17;
-            this.lblRating.Text = "label1";
-            this.lblRating.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // BookTextCell
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -211,11 +245,13 @@ namespace Biblioteca.components
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "BookTextCell";
-            this.Size = new System.Drawing.Size(703, 404);
+            this.Size = new System.Drawing.Size(1307, 404);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbPicture)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -232,6 +268,8 @@ namespace Biblioteca.components
         public System.Windows.Forms.Label lblAnno;
         public System.Windows.Forms.Label lblDescrizione;
         private CustomButton btnPrenota;
-        public System.Windows.Forms.Label lblRating;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label lblRating;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
     }
 }
