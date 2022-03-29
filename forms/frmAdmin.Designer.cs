@@ -30,14 +30,24 @@ namespace Biblioteca
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblNome = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnFiltra = new System.Windows.Forms.Button();
-            this.cmbGenres = new System.Windows.Forms.ComboBox();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnModifica = new Biblioteca.CustomButton();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnElimina = new Biblioteca.CustomButton();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnReset = new Biblioteca.CustomButton();
+            this.btnFiltra = new Biblioteca.CustomButton();
             this.txtBookName = new Biblioteca.components.LoginCustomTextBox();
-            this.txtAutori = new Biblioteca.components.LoginCustomTextBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtNewIsbn = new Biblioteca.components.LoginCustomTextBox();
+            this.btnAdd = new Biblioteca.CustomButton();
             this.dgvLibri = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvUtenti = new System.Windows.Forms.DataGridView();
@@ -46,12 +56,16 @@ namespace Biblioteca
             this.txtLoginCodice = new Biblioteca.components.LoginCustomTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnEntraUser = new Biblioteca.CustomButton();
-            this.lblNome = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibri)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).BeginInit();
@@ -66,8 +80,19 @@ namespace Biblioteca
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 66);
+            this.panel1.Size = new System.Drawing.Size(1170, 40);
             this.panel1.TabIndex = 0;
+            // 
+            // lblNome
+            // 
+            this.lblNome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNome.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblNome.Location = new System.Drawing.Point(0, 0);
+            this.lblNome.Name = "lblNome";
+            this.lblNome.Size = new System.Drawing.Size(1170, 40);
+            this.lblNome.TabIndex = 0;
+            this.lblNome.Text = "label2";
+            this.lblNome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // tabControl1
             // 
@@ -75,10 +100,10 @@ namespace Biblioteca
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 66);
+            this.tabControl1.Location = new System.Drawing.Point(0, 40);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 384);
+            this.tabControl1.Size = new System.Drawing.Size(1170, 520);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -87,7 +112,7 @@ namespace Biblioteca
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 355);
+            this.tabPage1.Size = new System.Drawing.Size(1162, 491);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -105,47 +130,187 @@ namespace Biblioteca
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 349);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1156, 485);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.btnFiltra, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.cmbGenres, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.txtBookName, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.txtAutori, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel8, 0, 3);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel4, 0, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 4;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.22222F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(200, 349);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(200, 485);
             this.tableLayoutPanel5.TabIndex = 17;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 1;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel8.Controls.Add(this.btnModifica, 0, 1);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 387);
+            this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 3;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(200, 98);
+            this.tableLayoutPanel8.TabIndex = 10;
+            // 
+            // btnModifica
+            // 
+            this.btnModifica.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnModifica.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnModifica.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnModifica.BorderRadius = 0;
+            this.btnModifica.BorderSize = 0;
+            this.btnModifica.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnModifica.FlatAppearance.BorderSize = 0;
+            this.btnModifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModifica.ForeColor = System.Drawing.Color.White;
+            this.btnModifica.Location = new System.Drawing.Point(3, 32);
+            this.btnModifica.Name = "btnModifica";
+            this.btnModifica.Size = new System.Drawing.Size(194, 34);
+            this.btnModifica.TabIndex = 1;
+            this.btnModifica.Text = "Modifica";
+            this.btnModifica.TextColor = System.Drawing.Color.White;
+            this.btnModifica.UseVisualStyleBackColor = false;
+            this.btnModifica.Click += new System.EventHandler(this.btnModifica_Click);
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 1;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel7.Controls.Add(this.btnElimina, 0, 1);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 290);
+            this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 3;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(200, 97);
+            this.tableLayoutPanel7.TabIndex = 9;
+            // 
+            // btnElimina
+            // 
+            this.btnElimina.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnElimina.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnElimina.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnElimina.BorderRadius = 0;
+            this.btnElimina.BorderSize = 0;
+            this.btnElimina.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnElimina.FlatAppearance.BorderSize = 0;
+            this.btnElimina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnElimina.ForeColor = System.Drawing.Color.White;
+            this.btnElimina.Location = new System.Drawing.Point(3, 31);
+            this.btnElimina.Name = "btnElimina";
+            this.btnElimina.Size = new System.Drawing.Size(194, 34);
+            this.btnElimina.TabIndex = 1;
+            this.btnElimina.Text = "Elimina";
+            this.btnElimina.TextColor = System.Drawing.Color.White;
+            this.btnElimina.UseVisualStyleBackColor = false;
+            this.btnElimina.Click += new System.EventHandler(this.btnElimina_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.tableLayoutPanel3, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.txtBookName, 0, 1);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(200, 145);
+            this.tableLayoutPanel6.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label2.Location = new System.Drawing.Point(3, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(194, 23);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Nome Libro";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.btnReset, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnFiltra, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 86);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(200, 59);
+            this.tableLayoutPanel3.TabIndex = 7;
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnReset.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnReset.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnReset.BorderRadius = 0;
+            this.btnReset.BorderSize = 0;
+            this.btnReset.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Location = new System.Drawing.Point(103, 3);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(94, 27);
+            this.btnReset.TabIndex = 13;
+            this.btnReset.Text = "Reset";
+            this.btnReset.TextColor = System.Drawing.Color.White;
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnFiltra
             // 
-            this.btnFiltra.Location = new System.Drawing.Point(3, 157);
+            this.btnFiltra.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnFiltra.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnFiltra.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnFiltra.BorderRadius = 0;
+            this.btnFiltra.BorderSize = 0;
+            this.btnFiltra.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFiltra.FlatAppearance.BorderSize = 0;
+            this.btnFiltra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltra.ForeColor = System.Drawing.Color.White;
+            this.btnFiltra.Location = new System.Drawing.Point(3, 3);
             this.btnFiltra.Name = "btnFiltra";
-            this.btnFiltra.Size = new System.Drawing.Size(75, 23);
-            this.btnFiltra.TabIndex = 1;
+            this.btnFiltra.Size = new System.Drawing.Size(94, 27);
+            this.btnFiltra.TabIndex = 12;
             this.btnFiltra.Text = "Filtra";
-            this.btnFiltra.UseVisualStyleBackColor = true;
+            this.btnFiltra.TextColor = System.Drawing.Color.White;
+            this.btnFiltra.UseVisualStyleBackColor = false;
             this.btnFiltra.Click += new System.EventHandler(this.btnFiltra_Click);
-            // 
-            // cmbGenres
-            // 
-            this.cmbGenres.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbGenres.FormattingEnabled = true;
-            this.cmbGenres.Location = new System.Drawing.Point(3, 234);
-            this.cmbGenres.Name = "cmbGenres";
-            this.cmbGenres.Size = new System.Drawing.Size(194, 24);
-            this.cmbGenres.TabIndex = 3;
             // 
             // txtBookName
             // 
@@ -153,40 +318,85 @@ namespace Biblioteca
             this.txtBookName.BorderColor = System.Drawing.Color.MediumSlateBlue;
             this.txtBookName.BorderFocusColor = System.Drawing.Color.HotPink;
             this.txtBookName.BorderSize = 2;
+            this.txtBookName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtBookName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBookName.ForeColor = System.Drawing.Color.DimGray;
-            this.txtBookName.Location = new System.Drawing.Point(3, 4);
+            this.txtBookName.Location = new System.Drawing.Point(3, 47);
             this.txtBookName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtBookName.Multiline = false;
             this.txtBookName.Name = "txtBookName";
             this.txtBookName.Padding = new System.Windows.Forms.Padding(7);
             this.txtBookName.PasswordChar = false;
             this.txtBookName.Size = new System.Drawing.Size(194, 35);
-            this.txtBookName.TabIndex = 4;
+            this.txtBookName.TabIndex = 8;
             this.txtBookName.Texts = "";
             this.txtBookName.UnderlinedStyle = false;
             // 
-            // txtAutori
+            // tableLayoutPanel4
             // 
-            this.txtAutori.BackColor = System.Drawing.SystemColors.Window;
-            this.txtAutori.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtAutori.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtAutori.BorderSize = 2;
-            this.txtAutori.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAutori.ForeColor = System.Drawing.Color.DimGray;
-            this.txtAutori.Location = new System.Drawing.Point(3, 81);
-            this.txtAutori.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtAutori.Multiline = false;
-            this.txtAutori.Name = "txtAutori";
-            this.txtAutori.Padding = new System.Windows.Forms.Padding(7);
-            this.txtAutori.PasswordChar = false;
-            this.txtAutori.Size = new System.Drawing.Size(194, 35);
-            this.txtAutori.TabIndex = 5;
-            this.txtAutori.Texts = "";
-            this.txtAutori.UnderlinedStyle = false;
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.txtNewIsbn, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnAdd, 0, 2);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 145);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 4;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.52632F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.84211F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(200, 145);
+            this.tableLayoutPanel4.TabIndex = 8;
+            // 
+            // txtNewIsbn
+            // 
+            this.txtNewIsbn.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNewIsbn.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtNewIsbn.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtNewIsbn.BorderSize = 2;
+            this.txtNewIsbn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtNewIsbn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewIsbn.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNewIsbn.Location = new System.Drawing.Point(3, 29);
+            this.txtNewIsbn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNewIsbn.Multiline = false;
+            this.txtNewIsbn.Name = "txtNewIsbn";
+            this.txtNewIsbn.Padding = new System.Windows.Forms.Padding(7);
+            this.txtNewIsbn.PasswordChar = false;
+            this.txtNewIsbn.Size = new System.Drawing.Size(194, 35);
+            this.txtNewIsbn.TabIndex = 9;
+            this.txtNewIsbn.Texts = "";
+            this.txtNewIsbn.UnderlinedStyle = false;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnAdd.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnAdd.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnAdd.BorderRadius = 0;
+            this.btnAdd.BorderSize = 0;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.ForeColor = System.Drawing.Color.White;
+            this.btnAdd.Location = new System.Drawing.Point(3, 71);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(194, 32);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Nuovo";
+            this.btnAdd.TextColor = System.Drawing.Color.White;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dgvLibri
             // 
+            this.dgvLibri.AllowUserToAddRows = false;
+            this.dgvLibri.AllowUserToDeleteRows = false;
+            this.dgvLibri.AllowUserToResizeColumns = false;
+            this.dgvLibri.AllowUserToResizeRows = false;
+            this.dgvLibri.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvLibri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLibri.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLibri.Location = new System.Drawing.Point(203, 3);
@@ -194,7 +404,7 @@ namespace Biblioteca
             this.dgvLibri.RowHeadersVisible = false;
             this.dgvLibri.RowHeadersWidth = 51;
             this.dgvLibri.RowTemplate.Height = 24;
-            this.dgvLibri.Size = new System.Drawing.Size(580, 343);
+            this.dgvLibri.Size = new System.Drawing.Size(950, 479);
             this.dgvLibri.TabIndex = 1;
             // 
             // tabPage2
@@ -203,7 +413,7 @@ namespace Biblioteca
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 355);
+            this.tabPage2.Size = new System.Drawing.Size(1162, 491);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -217,7 +427,7 @@ namespace Biblioteca
             this.dgvUtenti.RowHeadersVisible = false;
             this.dgvUtenti.RowHeadersWidth = 51;
             this.dgvUtenti.RowTemplate.Height = 24;
-            this.dgvUtenti.Size = new System.Drawing.Size(786, 349);
+            this.dgvUtenti.Size = new System.Drawing.Size(1156, 485);
             this.dgvUtenti.TabIndex = 0;
             // 
             // tabPage3
@@ -225,7 +435,7 @@ namespace Biblioteca
             this.tabPage3.Controls.Add(this.tableLayoutPanel2);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(792, 355);
+            this.tabPage3.Size = new System.Drawing.Size(1162, 491);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -247,7 +457,7 @@ namespace Biblioteca
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(792, 355);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1162, 491);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // txtLoginCodice
@@ -259,7 +469,7 @@ namespace Biblioteca
             this.txtLoginCodice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtLoginCodice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLoginCodice.ForeColor = System.Drawing.Color.DimGray;
-            this.txtLoginCodice.Location = new System.Drawing.Point(299, 156);
+            this.txtLoginCodice.Location = new System.Drawing.Point(484, 224);
             this.txtLoginCodice.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtLoginCodice.Multiline = false;
             this.txtLoginCodice.Name = "txtLoginCodice";
@@ -273,7 +483,7 @@ namespace Biblioteca
             // label1
             // 
             this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Location = new System.Drawing.Point(296, 129);
+            this.label1.Location = new System.Drawing.Point(481, 197);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 23);
@@ -292,7 +502,7 @@ namespace Biblioteca
             this.btnEntraUser.FlatAppearance.BorderSize = 0;
             this.btnEntraUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEntraUser.ForeColor = System.Drawing.Color.White;
-            this.btnEntraUser.Location = new System.Drawing.Point(299, 205);
+            this.btnEntraUser.Location = new System.Drawing.Point(484, 273);
             this.btnEntraUser.Name = "btnEntraUser";
             this.btnEntraUser.Size = new System.Drawing.Size(194, 40);
             this.btnEntraUser.TabIndex = 2;
@@ -301,22 +511,11 @@ namespace Biblioteca
             this.btnEntraUser.UseVisualStyleBackColor = false;
             this.btnEntraUser.Click += new System.EventHandler(this.btnEntraUser_Click);
             // 
-            // lblNome
-            // 
-            this.lblNome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNome.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblNome.Location = new System.Drawing.Point(0, 0);
-            this.lblNome.Name = "lblNome";
-            this.lblNome.Size = new System.Drawing.Size(800, 66);
-            this.lblNome.TabIndex = 0;
-            this.lblNome.Text = "label2";
-            this.lblNome.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1170, 560);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Name = "frmAdmin";
@@ -327,6 +526,11 @@ namespace Biblioteca
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel8.ResumeLayout(false);
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibri)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).EndInit();
@@ -346,15 +550,24 @@ namespace Biblioteca
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dgvLibri;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.Button btnFiltra;
-        private System.Windows.Forms.ComboBox cmbGenres;
-        private components.LoginCustomTextBox txtBookName;
-        private components.LoginCustomTextBox txtAutori;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private components.LoginCustomTextBox txtLoginCodice;
         private System.Windows.Forms.Label label1;
         private CustomButton btnEntraUser;
         private System.Windows.Forms.Label lblNome;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private CustomButton btnFiltra;
+        private CustomButton btnReset;
+        private components.LoginCustomTextBox txtBookName;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private CustomButton btnModifica;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private CustomButton btnElimina;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private components.LoginCustomTextBox txtNewIsbn;
+        private CustomButton btnAdd;
     }
 }

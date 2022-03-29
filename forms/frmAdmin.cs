@@ -25,8 +25,8 @@ namespace Biblioteca
         {
             InitializeComponent();
             libriData = new List<Libro>();
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out Form1.usersElenco);
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
+            //Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco);
+            //Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco);
             libriData = Form1.libriElenco.Values.ToList();
             currentUser = admin;
             lblNome.Text = "Admin: " + currentUser.GetFullName();
@@ -45,36 +45,34 @@ namespace Biblioteca
             watcher.EnableRaisingEvents = true;
             BindingData();
         }
-        public static void ReloadPrestiti()
-        {
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
-        }
+        //public static void ReloadPrestiti()
+        //{
+        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
+        //}
 
-        public static void ReloadBooks()
-        {
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
-        }
-        public static void ReloadUsers()
-        {
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out Form1.libriElenco);
-        }
+        //public static void ReloadBooks()
+        //{
+        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
+        //}
+        //public static void ReloadUsers()
+        //{
+        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out Form1.libriElenco);
+        //}
         public void OnChanged(object source, FileSystemEventArgs e)
         {
             switch (e.Name)
             {
                 case "prestiti.json":
-                    ReloadPrestiti();
-                    BindingData();
-                    OnPrestitiChange?.Invoke(null, null);
-                    break;
                 case "books.json":
-                    BindingData();
-                    ReloadBooks();
-                    OnBookChange?.Invoke(null, null);
-                    break;
                 case "users.json":
-                    ReloadUsers();
-                    OnUsersChange?.Invoke(null, null);
+                    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref Form1.prestiti);
+                    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco);
+                    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco);
+                    //ReloadPrestiti();
+                    OnPrestitiChange?.Invoke(null, null);
+                    OnBookChange?.Invoke(null, null);
+                    OnUsersChange?.Invoke(null, null);  
+                    BindingData();     
                     break;
                 default:
                     break;
@@ -115,40 +113,26 @@ namespace Biblioteca
                 ac.Add(item.Titolo);
             }
             txtBookName.Suggestions(ac);
-            ac = new AutoCompleteStringCollection();
-            foreach (Libro item in libriData)
-            {
-                ac.Add(item.Autori);
-            }
-            txtAutori.Suggestions(ac);
-            List<string> genres = libriData.Select(o => o.Categorie).Where(g => g != "").Distinct().ToList();
-            cmbGenres.DataSource = genres;
         }
 
         private void btnFiltra_Click(object sender, EventArgs e)
         {
             libriData = Form1.libriElenco.Values.ToList();
-            Dictionary<string, string> filters = new Dictionary<string, string>();
-            if (!String.IsNullOrWhiteSpace(txtBookName.Texts)) filters.Add("Titolo", txtBookName.Texts);
-            if (!String.IsNullOrWhiteSpace(txtAutori.Texts)) filters.Add("Autori", txtAutori.Texts);
-            if (!String.IsNullOrWhiteSpace(cmbGenres.Text)) filters.Add("Categorie", cmbGenres.Text);
 
-            if (filters.Count != 0)
+            if (!String.IsNullOrWhiteSpace(txtBookName.Texts))
             {
-                foreach (var item in filters)
-                {
-                    PropertyInfo pinfo = typeof(Libro).GetProperty(item.Key);
-                    libriData = libriData.Where(x => pinfo.GetValue(x, null).ToString() == item.Value.ToString()).ToList();
-                }
-                dgvLibri.DataSource = null;
-                dgvLibri.DataSource = libriData.Select(x => new {
-                    Isbn = x.Isbn,
-                    Titolo = x.Titolo,
-                    Autore = x.Autori,
-                    Categoria = x.Categorie,
-                    Pagine = x.Pagine
-                }).ToList();
-            }
+                libriData = libriData.Where(x => x.Titolo == txtBookName.Texts).ToList();
+            };
+           
+            dgvLibri.DataSource = null;
+            dgvLibri.DataSource = libriData.Select(x => new {
+                Isbn = x.Isbn,
+                Titolo = x.Titolo,
+                Autore = x.Autori,
+                Categoria = x.Categorie,
+                Pagine = x.Pagine
+            }).ToList();
+            
         }
 
         private void btnEntraUser_Click(object sender, EventArgs e)
@@ -161,9 +145,44 @@ namespace Biblioteca
                 }
             }
         }
-        private void RestituzioneLibri()
+
+        private void btnReset_Click(object sender, EventArgs e)
         {
+            BindingData();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (txtNewIsbn.Texts.Trim() == "")
+            {
+                MessageBox.Show("Write new book isbn");
+            }
+            else if (Form1.libriElenco.ContainsKey(txtNewIsbn.Texts.Trim()))
+            {
+                MessageBox.Show("Book already exists");
+            } else
+            {
+                new forms.GestioneLibro(txtNewIsbn.Texts.Trim(), true).Show();
+            }
+        }
+
+        private void btnElimina_Click(object sender, EventArgs e)
+        {
+            string isbn = dgvLibri.Rows[dgvLibri.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            if (!Form1.prestiti.Any(p => p.Isbn == isbn))
+            {
+                Form1.libriElenco.Remove(isbn);
+            } else
+            {
+                MessageBox.Show("Libro in prestito");
+            }
             
+        }
+
+        private void btnModifica_Click(object sender, EventArgs e)
+        {
+            string isbn = dgvLibri.Rows[dgvLibri.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            new forms.GestioneLibro(Form1.libriElenco[isbn], false);
         }
     }
 }

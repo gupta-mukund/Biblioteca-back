@@ -69,6 +69,12 @@
     <Compile Include="components\Rating.Designer.cs">
       <DependentUpon>Rating.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\BookModifyData.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="forms\BookModifyData.Designer.cs">
+      <DependentUpon>BookModifyData.cs</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +120,12 @@
     <Compile Include="forms\frmRestituzione.Designer.cs">
       <DependentUpon>frmRestituzione.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\GestioneLibro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\GestioneLibro.Designer.cs">
+      <DependentUpon>GestioneLibro.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +161,9 @@
     <EmbeddedResource Include="components\Rating.resx">
       <DependentUpon>Rating.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\BookModifyData.resx">
+      <DependentUpon>BookModifyData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmRestituzione.resx">
       <DependentUpon>frmRestituzione.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\GestioneLibro.resx">
+      <DependentUpon>GestioneLibro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

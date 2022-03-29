@@ -9,22 +9,7 @@ namespace Biblioteca
 {
     public class Libro
     {
-        public Libro(string isbn, string titolo, string autori = "", string sottotiolo = "", string categorie = "", string immagine = "/",
-            string descrizione = "", string anno = "", float mediaVoti = 0, string pagine = "/", int quantitaVoti = 0, int quantita = 1)
-        {
-            Isbn = isbn;
-            Titolo = titolo;
-            Autori = autori;
-            Sottotiolo = sottotiolo;
-            Categorie = categorie;
-            Immagine = immagine;
-            Descrizione = descrizione;
-            Anno = anno;
-            MediaVoti = mediaVoti;
-            Pagine = pagine;
-            QuantitaVoti = quantitaVoti;
-            Quantita = quantita;
-        }
+        
 
         public void CalculateRating()
         {
@@ -41,7 +26,7 @@ namespace Biblioteca
         public string Autori { get; set; }
 
         [JsonProperty("subtitle")]
-        public string Sottotiolo { get; set; }
+        public string Sottotitolo { get; set; }
 
         [JsonProperty("categories")]
         public string Categorie { get; set; }

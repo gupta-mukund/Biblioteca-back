@@ -17,55 +17,87 @@ namespace Biblioteca
                 File.WriteAllText(filePath, output);
             }
         }
-        public static bool Deserialize<T>(string path, string field, out Dictionary<string, T> dict)
+
+        public static bool FileIsLocked(string filename)
+        {
+            bool Locked = false;
+            try
+            {
+                FileStream fs =
+                    File.Open(filename, FileMode.OpenOrCreate,
+                    FileAccess.ReadWrite, FileShare.None);
+                fs.Close();
+            }
+            catch (IOException)
+            {
+                Locked = true;
+            }
+            return Locked;
+        }
+        public static void Deserialize<T>(string path, string field, ref Dictionary<string, T> dict)
         {
             List<T> list = new List<T>();
-            
-            if (File.Exists(path))
+            if (!FileIsLocked(path))
             {
-                var tmp = JsonConvert.DeserializeObject(File.ReadAllText(path));
-                string tmp2 = tmp.ToString().Trim();
-                if (tmp2.StartsWith("{") && tmp2.EndsWith("}"))
+                if (File.Exists(path))
                 {
-                    dict = JsonConvert.DeserializeObject<Dictionary<string, T>>(File.ReadAllText(path));
+                    var tmp = JsonConvert.DeserializeObject(File.ReadAllText(path));
+                    string tmp2 = tmp.ToString().Trim();
+                    if (tmp2.StartsWith("{") && tmp2.EndsWith("}"))
+                    {
+                        dict = JsonConvert.DeserializeObject<Dictionary<string, T>>(File.ReadAllText(path));
+                    }
+                    else
+                    {
+                        list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
+                        dict = list.ToDictionary(keySelector: m => (string)typeof(T).GetProperty(field).GetValue(m, null), elementSelector: m => m);
+                    }
                 }
                 else
                 {
-                    list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
-                    dict = list.ToDictionary(keySelector: m => (string)typeof(T).GetProperty(field).GetValue(m, null), elementSelector: m => m);
+                    File.WriteAllText(path, String.Empty);
+                    dict = new Dictionary<string, T>();
                 }
-                return true;
+                
             }
-            else
-            {
-                File.WriteAllText(path, String.Empty);
-                dict = new Dictionary<string, T>();
-                return false;
-            }
+            
         }
 
-        public static bool Deserialize<T>(string path, string field, out List<T> list)
+        public static void Deserialize<T>(string path, string field, ref List<T> list)
         {
-            
-            if (File.Exists(path))
+            if (!FileIsLocked(path))
             {
-                if (new FileInfo(path).Length <= 3)
+                if (File.Exists(path))
                 {
-                    list = new List<T>();
-                    return false;
+                    if (new FileInfo(path).Length <= 3)
+                    {
+                        list = new List<T>();
+                    }
+                    list = null;
+                    list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
+
+                    //Console.WriteLine(list[0].ToString());
+
                 }
-                list = null;
-                list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
-                
-                //Console.WriteLine(list[0].ToString());
-                return true;
-            } else
-            {
-                File.WriteAllText(path, String.Empty);
-                list = new List<T>();
-                return false;
-            }
+                else
+                {
+                    File.WriteAllText(path, String.Empty);
+                    list = new List<T>();
+
+                }
+            }           
             
+        }
+
+        public static void ReloadData<T>(string path, string field, ref Dictionary<string, T> dict)
+        {
+            dict = null;
+            Methods.Deserialize(path, field, ref dict);
+        }
+        public static void ReloadData<T>(string path, string field, ref List<T> list)
+        {
+            list = null;
+            Methods.Deserialize(path, field, ref list);
         }
     }
 }

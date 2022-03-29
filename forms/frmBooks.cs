@@ -20,7 +20,7 @@ namespace Biblioteca.forms
         string booksPath = Directory.GetCurrentDirectory() + @"\books.json";
         private static object lockerFile = new Object();
         //public static event EventHandler OnPrestitiChange;
-        private delegate void InitCallback();
+        private delegate void SetDataCallback();
         public frmBooks()
         {
             InitializeComponent();
@@ -52,19 +52,19 @@ namespace Biblioteca.forms
 
         private void Init()
         {
-            foreach (Control item in this.tlpMain.Controls)
-            {
-                if (this.tlpMain.InvokeRequired)
-                {
-                    InitCallback d = new InitCallback(Init);
-                    this.Invoke(d);
-                } else
-                {
-                    tlpMain.Controls.Remove(item);
-                }
+            //foreach (Control item in this.tlpMain.Controls)
+            //{
+            //    if (this.tlpMain.InvokeRequired)
+            //    {
+            //        InitCallback d = new InitCallback(Init);
+            //        this.Invoke(d);
+            //    } else
+            //    {
+            //        tlpMain.Controls.Remove(item);
+            //    }
 
                 
-            }
+            //}
             tlpMain.ColumnCount = 1;
             tlpMain.RowCount = 0;
             myBooks = new List<components.BookTextCell>();
@@ -103,8 +103,8 @@ namespace Biblioteca.forms
         }
         public bool TryOrderBook(string isbn)
         {
-            DateTime x = File.GetLastWriteTime(booksPath);
-            double difference = frmMainPage.ExecutedTime.Subtract(x).TotalMinutes;
+            //DateTime x = File.GetLastWriteTime(booksPath);
+            //double difference = frmMainPage.ExecutedTime.Subtract(x).TotalMinutes;
             //if (difference > 0) // file modificato dopo esecuzione file
             //{
             //    frmMainPage.ReloadBooks();
@@ -169,9 +169,9 @@ namespace Biblioteca.forms
                     writer3.Write(output3);
                     writer3.Close();
 
-                Form1.ReloadUsers();
-                    frmMainPage.ReloadBooks();
-                    frmMainPage.ReloadPrestiti();
+                //Form1.ReloadUsers();
+                //    frmMainPage.ReloadBooks();
+                //    frmMainPage.ReloadPrestiti();
 
                     
                 }
@@ -199,26 +199,38 @@ namespace Biblioteca.forms
             Pagination.PaginationData = libriData.Skip(Pagination.CurrentStart).Take(Pagination.CurrentEnd - Pagination.CurrentStart).ToList();
             for (int i = 0; i < Pagination.PaginationData.Count; i++)
             {
-                myBooks[i].Visible = true;
-                myBooks[i].Identity= Pagination.PaginationData[i];
+                if (this.myBooks[i].InvokeRequired)
+                {
+                    SetDataCallback d = new SetDataCallback(SetData);
+                    this.Invoke(d);
+                }
+                else
+                {
+                    myBooks[i].Visible = true;
+                    myBooks[i].Identity = Pagination.PaginationData[i];
 
-                bool isPrestito = Form1.prestiti.Count > 0 && frmMainPage.currentUser.Prestiti > 0;
-                if (!isPrestito && myBooks[i].Identity.Quantita == 0)
-                {
-                    myBooks[i].FinishedBook();
-                } else if (isPrestito)
-                {
-                    var tmp = Form1.prestiti.Where(x => x.Isbn == Pagination.PaginationData[i].Isbn)
-                        .Select(y => y.Prestiti)
-                        .Where(z => z.ContainsKey(frmMainPage.currentUser.CodiceFiscale));
-                    if (tmp.Count() > 0)
+                    bool isPrestito = Form1.prestiti.Count > 0 && frmMainPage.currentUser.Prestiti > 0;
+                    if (!isPrestito && myBooks[i].Identity.Quantita == 0)
                     {
-                        myBooks[i].AlreadyHaveBook();
-                    } else
-                    {
-                        myBooks[i].NormalizeButton();
+                        myBooks[i].FinishedBook();
                     }
-                }                                     
+                    else if (isPrestito)
+                    {
+                        var tmp = Form1.prestiti.Where(x => x.Isbn == Pagination.PaginationData[i].Isbn)
+                            .Select(y => y.Prestiti)
+                            .Where(z => z.ContainsKey(frmMainPage.currentUser.CodiceFiscale));
+                        if (tmp.Count() > 0)
+                        {
+                            myBooks[i].AlreadyHaveBook();
+                        }
+                        else
+                        {
+                            myBooks[i].NormalizeButton();
+                        }
+                    }
+                    Application.DoEvents();
+                }
+                                                
             }
             if (Pagination.PaginationData.Count < Pagination.DataPerPage)
             {

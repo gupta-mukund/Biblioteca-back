@@ -62,7 +62,7 @@ namespace Biblioteca
         {
             InitializeComponent();
             txt.DataBindings.Clear();
-            txt.DataBindings.Add("Text", this, "Title", true, DataSourceUpdateMode.OnPropertyChanged);
+            txt.DataBindings.Add("Text", this, "Title", true, DataSourceUpdateMode.OnValidation);
         }
 
         string _title = "";
@@ -72,10 +72,10 @@ namespace Biblioteca
             set
             {
                 _title = value;
-                if (Title == _title)
-                {
-                    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Title"));
-                }
+                //if (Title == _title)
+                //{
+                //    PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Title"));
+                //}
             }
         }
 

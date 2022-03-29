@@ -24,23 +24,19 @@ namespace Biblioteca
         public Form1()
         {
             InitializeComponent();
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out prestiti);
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref prestiti);
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref libriElenco);
             emailWorker = new BackgroundWorker();
             emailWorker.DoWork += EmailWorker_DoWork;
             emailTimer = new System.Timers.Timer(5000);
             emailTimer.Elapsed += EmailTimer_Elapsed;
             emailTimer.Start();
 
-
-
-
-
-
             currentLabel = this.lblLogin;
             lblTitolo.Text = currentLabel.Text;
             btnLogin.Text = currentLabel.Text;
             usersElenco = new Dictionary<string, User>();
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out usersElenco);
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref usersElenco);
             panel4.BackColor = ColorTranslator.FromHtml("#6FE0CC");
             panel1.BackColor = ColorTranslator.FromHtml("#253243");
             pnlSignup.BackColor = ColorTranslator.FromHtml(SelectedPanelColour);
@@ -51,7 +47,7 @@ namespace Biblioteca
             //txtPassword.Texts = "dIIosgaCb4w";
             txtUsername.Texts = "KLBSIN66B98X469N";
             txtPassword.Texts = "nc7cOVbGg";
-            
+
             btnLogin_Click(null, null);
         }
 
@@ -66,45 +62,45 @@ namespace Biblioteca
         private void EmailWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             int index = 0;
-            foreach (Prestito item in prestiti)
-            {
-                foreach (KeyValuePair<string, DateTime> it in item.Prestiti)
-                {
-                    var client = new SmtpClient("smtp.mailtrap.io", 2525)
-                    {
-                        Credentials = new NetworkCredential("9e08f2fd43d2b3", "e7426694403040"),
-                        EnableSsl = true
-                    };
-                    string text;
-                    if (it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes <= 40)
-                    {    
-                         text = "Buongiorno gentile cliente,\n" +
-                            $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' scade tra poco.\n\n" +
-                            "Biblioteca di Manchester";
-                        client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
-                    }
-                    else if (it.Value.AddDays(30) <= DateTime.Now)
-                    {
-                        text = "Buongiorno gentile cliente,\n" +
-                            $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' non è stato consegnato in tempo.\n\n" +
-                            "Biblioteca di Manchester";
-                        client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
-                        HandleRitardoPrestito(item.Isbn, index);
-                    }
-                }
-                index++;
-            }
+            //foreach (Prestito item in prestiti)
+            //{
+            //    foreach (KeyValuePair<string, DateTime> it in item.Prestiti)
+            //    {
+            //        var client = new SmtpClient("smtp.mailtrap.io", 2525)
+            //        {
+            //            Credentials = new NetworkCredential("9e08f2fd43d2b3", "e7426694403040"),
+            //            EnableSsl = true
+            //        };
+            //        string text;
+            //        if (it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes <= 40)
+            //        {    
+            //             text = "Buongiorno gentile cliente,\n" +
+            //                $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' scade tra poco.\n\n" +
+            //                "Biblioteca di Manchester";
+            //            client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
+            //        }
+            //        else if (it.Value.AddDays(30) <= DateTime.Now)
+            //        {
+            //            text = "Buongiorno gentile cliente,\n" +
+            //                $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' non è stato consegnato in tempo.\n\n" +
+            //                "Biblioteca di Manchester";
+            //            client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
+            //            HandleRitardoPrestito(it.Key, index);
+            //        }
+            //    }
+            //    index++;
+            //}
 
         }
-        private void HandleRitardoPrestito(string isbn, int position)
+        private void HandleRitardoPrestito(string codice, int position)
         {
-            prestiti[position].Prestiti.Remove(isbn);
+            prestiti[position].Prestiti.Remove(codice);
         }
-        public static void ReloadUsers()
-        {
-            usersElenco = null;
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out usersElenco);
-        }
+        //public static void ReloadUsers()
+        //{
+        //    usersElenco = null;
+        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out usersElenco);
+        //}
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (currentLabel == lblLogin)
@@ -171,10 +167,7 @@ namespace Biblioteca
             form.Show();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void LabelLoginClicks(object sender, EventArgs e)
         {

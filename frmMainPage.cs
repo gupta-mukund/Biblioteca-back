@@ -19,7 +19,7 @@ namespace Biblioteca
         public forms.frmPrestiti PrestitiForm;
         public forms.frmCarta CartaForm;
         
-        public static DateTime ExecutedTime;
+        //public static DateTime ExecutedTime;
         public FileSystemWatcher watcher;
 
         public static event EventHandler OnPrestitiChange;
@@ -33,7 +33,7 @@ namespace Biblioteca
         {
             InitializeComponent();
             Form1.libriElenco = new Dictionary<string, Libro>();
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
+            
             foreach (KeyValuePair<string, Libro> item in Form1.libriElenco)
             {
                 item.Value.CalculateRating();
@@ -41,7 +41,7 @@ namespace Biblioteca
             
             watcher = new FileSystemWatcher();
             watcher.Path = Directory.GetCurrentDirectory();
-            ExecutedTime = DateTime.Now;
+            //ExecutedTime = DateTime.Now;
             watcher.NotifyFilter = NotifyFilters.Attributes |
                 NotifyFilters.CreationTime |
                 NotifyFilters.DirectoryName |
@@ -71,36 +71,45 @@ namespace Biblioteca
 
         public static void OnChanged(object source, FileSystemEventArgs e)
         {
+            
             switch (e.Name)
             {
                 case "prestiti.json":
-                    ReloadPrestiti();
+                case "book.json":
+                case "user.json":
+                    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref Form1.prestiti);
+                    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco);
+                    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco);
+                    //ReloadPrestiti();
                     OnPrestitiChange?.Invoke(null, null);
-                    break;
-                case "books.json":
-                    ReloadBooks();
                     OnBookChange?.Invoke(null, null);
-                    break;
-                case "users.json":
-                    Form1.ReloadUsers();
                     OnUsersChange?.Invoke(null, null);
                     break;
+                //case "books.json":
+                //    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco);
+                //    //ReloadBooks();
+                //    OnBookChange?.Invoke(null, null);
+                //    break;
+                //case "users.json":
+                //    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco);
+                //    OnUsersChange?.Invoke(null, null);
+                //    break;
                 default:
                     break;
             }
             //Console.WriteLine("{0}, with path {1} has been {2}", e.Name, e.FullPath, e.ChangeType);
         }
 
-        public static void ReloadBooks()
-        {
-            Form1.libriElenco = null;
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
-        }
-        public static void ReloadPrestiti()
-        {
-            Form1.prestiti = null;
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
-        }
+        //public static void ReloadBooks()
+        //{
+        //    Form1.libriElenco = null;
+        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
+        //}
+        //public static void ReloadPrestiti()
+        //{
+        //    Form1.prestiti = null;
+        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
+        //}
         public void ChangeForm(object form)
         {
             this.pnlCentralPage.Controls.Clear();
