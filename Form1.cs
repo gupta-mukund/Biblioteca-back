@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 using System.Windows.Forms;
 using System.Net.Mail;
 using System.Net;
@@ -24,25 +25,18 @@ namespace Biblioteca
         private System.Timers.Timer emailTimer;
         public Form1()
         {
-           
-            
-                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref libriElenco);
-                //usersElenco = JsonConvert.DeserializeObject<Dictionary<string, User>>(File.ReadAllText(Directory.GetCurrentDirectory() + @"\users.json"));
-                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref usersElenco);
-                //libriElenco = JsonConvert.DeserializeObject<Dictionary<string, Libro>>(File.ReadAllText(Directory.GetCurrentDirectory() + @"\books.json"));
-                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref prestiti);
-            
+            //real
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref libriElenco);
+            //usersElenco = JsonConvert.DeserializeObject<Dictionary<string, User>>(File.ReadAllText(Directory.GetCurrentDirectory() + @"\users.json"));
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref usersElenco);
+            //libriElenco = JsonConvert.DeserializeObject<Dictionary<string, Libro>>(File.ReadAllText(Directory.GetCurrentDirectory() + @"\books.json"));
+            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref prestiti);
             
             InitializeComponent();
-            
-            
-            
-             
-            
-            
+           
             emailWorker = new BackgroundWorker();
             emailWorker.DoWork += EmailWorker_DoWork;
-            emailTimer = new System.Timers.Timer(5000);
+            emailTimer = new System.Timers.Timer(20 * 1000);
             emailTimer.Elapsed += EmailTimer_Elapsed;
             emailTimer.Start();
 
@@ -58,12 +52,13 @@ namespace Biblioteca
             pcbIconMain.SizeMode = PictureBoxSizeMode.StretchImage;
             //txtUsername.Texts = "TYJIKR47F60M553C";
             //txtPassword.Texts = "dIIosgaCb4w";
-            txtUsername.Texts = "KLBSIN66B98X469N";
-            txtPassword.Texts = "nc7cOVbGg";
+            //txtUsername.Texts = "KLBSIN66B98X469N";
+            //txtPassword.Texts = "nc7cOVbGg";
 
-            btnLogin_Click(null, null);
+            //btnLogin_Click(null, null);
         }
 
+        
         private void EmailTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             if (!emailWorker.IsBusy)
@@ -75,39 +70,42 @@ namespace Biblioteca
         private void EmailWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             int index = 0;
-            //foreach (Prestito item in prestiti)
-            //{
-            //    foreach (KeyValuePair<string, DateTime> it in item.Prestiti)
-            //    {
-            //        var client = new SmtpClient("smtp.mailtrap.io", 2525)
-            //        {
-            //            Credentials = new NetworkCredential("9e08f2fd43d2b3", "e7426694403040"),
-            //            EnableSsl = true
-            //        };
-            //        string text;
-            //        if (it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes <= 40)
-            //        {    
-            //             text = "Buongiorno gentile cliente,\n" +
-            //                $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' scade tra poco.\n\n" +
-            //                "Biblioteca di Manchester";
-            //            client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
-            //        }
-            //        else if (it.Value.AddDays(30) <= DateTime.Now)
-            //        {
-            //            text = "Buongiorno gentile cliente,\n" +
-            //                $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' non è stato consegnato in tempo.\n\n" +
-            //                "Biblioteca di Manchester";
-            //            client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
-            //            HandleRitardoPrestito(it.Key, index);
-            //        }
-            //    }
-            //    index++;
-            //}
+            foreach (Prestito item in prestiti)
+            {
+                foreach (KeyValuePair<string, DateTime> it in item.Prestiti)
+                {
+                    var client = new SmtpClient("smtp.mailtrap.io", 2525)
+                    {
+                        Credentials = new NetworkCredential("9e08f2fd43d2b3", "e7426694403040"),
+                        EnableSsl = true
+                    };
+                    string text;
+                    //
+                    if (it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes <= 40)
+                    {
+                        MessageBox.Show(it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes.ToString());
+                        text = "Buongiorno gentile cliente,\n" +
+                           $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' scade tra poco.\n\n" +
+                           "Biblioteca di Manchester.";
+                        client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
+                    }
+                    else if (it.Value.AddDays(30) <= DateTime.Now)
+                    {
+                        text = "Buongiorno gentile cliente,\n" +
+                            $"Le informiamo che il suo prestito '{Form1.libriElenco[item.Isbn].Titolo}' non è stato consegnato in tempo.\n\n" +
+                            "Biblioteca di Manchester.";
+                        client.Send("manchesterlibrary@library.com", $"{Form1.usersElenco[it.Key].GetFullName().Replace(" ", "")}@client.com", "Promemoria resituzione libro", text);
+                        HandleRitardoPrestito(it.Key, index);
+                    }
+                }
+                index++;
+            }
 
         }
         private void HandleRitardoPrestito(string codice, int position)
         {
             prestiti[position].Prestiti.Remove(codice);
+            usersElenco[codice].Punti--;
         }
         //public static void ReloadUsers()
         //{
@@ -191,6 +189,13 @@ namespace Biblioteca
                 lblTitolo.Text = currentLabel.Text;
                 btnLogin.Text = currentLabel.Text;
             }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Methods.Serialize(libriElenco, Directory.GetCurrentDirectory() + @"\books.json");
+            Methods.Serialize(usersElenco, Directory.GetCurrentDirectory() + @"\users.json");
+            Methods.Serialize(prestiti, Directory.GetCurrentDirectory() + @"\prestiti.json");
         }
     }
 }

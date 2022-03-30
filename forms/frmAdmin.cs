@@ -27,8 +27,7 @@ namespace Biblioteca
             InitializeComponent();
             libriData = new List<Libro>();
             userData = new List<User>();
-            //Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco);
-            //Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco);
+            
             libriData = Form1.libriElenco.Values.ToList();
             userData = Form1.usersElenco.Values.ToList();
             currentUser = admin;
@@ -69,15 +68,12 @@ namespace Biblioteca
                 case "books.json":
                 case "users.json":
                     if (Methods.ReloadData(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref Form1.prestiti) &&
-                    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco) &&
-                    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco))
-                    {
-                        //ReloadPrestiti();
-                        OnPrestitiChange?.Invoke(null, null);
-                        OnBookChange?.Invoke(null, null);
-                        OnUsersChange?.Invoke(null, null);
-                        BindingData();
-                    }
+                        Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco) &&
+                        Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco))
+                       OnPrestitiChange?.Invoke(null, null);
+                    OnBookChange?.Invoke(null, null);
+                     OnUsersChange?.Invoke(null, null);
+                    BindingData();
                     break;
                 default:
                     break;
@@ -184,6 +180,7 @@ namespace Biblioteca
             if (!Form1.prestiti.Any(p => p.Isbn == isbn))
             {
                 Form1.libriElenco.Remove(isbn);
+                Methods.Serialize(Form1.libriElenco, Directory.GetCurrentDirectory() + @"\books.json");
             } else
             {
                 MessageBox.Show("Libro in prestito");

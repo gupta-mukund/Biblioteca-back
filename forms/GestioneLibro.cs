@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Biblioteca.forms
 {
@@ -121,7 +122,8 @@ namespace Biblioteca.forms
                     Form1.libriElenco[thisLibro.Isbn].Descrizione = campi[5];
                     Form1.libriElenco[thisLibro.Isbn].Anno = campi[6];
                 }
-                this.Close();
+                if(Methods.Serialize(Form1.libriElenco, Directory.GetCurrentDirectory() + @"\books.json")) this.Close();
+
             }
             else
             {

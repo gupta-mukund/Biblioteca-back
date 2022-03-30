@@ -77,15 +77,9 @@ namespace Biblioteca
                 case "prestiti.json":
                 case "book.json":
                 case "user.json":
-                    if (Methods.ReloadData(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref Form1.prestiti) &&
-                     Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco) &&
-                     Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco))
-                    {
-                        //ReloadPrestiti();
-                        OnPrestitiChange?.Invoke(null, null);
-                        OnBookChange?.Invoke(null, null);
-                        OnUsersChange?.Invoke(null, null);
-                    }
+                    if (Methods.ReloadData(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref Form1.prestiti)) OnPrestitiChange?.Invoke(null, null);
+                    if (Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco)) OnBookChange?.Invoke(null, null);
+                    if (Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco)) OnUsersChange?.Invoke(null, null);
                     break;
                 //case "books.json":
                 //    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco);

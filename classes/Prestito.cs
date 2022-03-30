@@ -10,7 +10,6 @@ namespace Biblioteca
     {
         public string Isbn { get; set; }
         public Dictionary<string, DateTime> Prestiti { get; set; }
-
         public Prestito(string isbn, Dictionary<string, DateTime> dict)
         {
             Isbn = isbn;

@@ -32,6 +32,7 @@ namespace Biblioteca
         private void FrmAdmin_OnPrestitiChange(object sender, EventArgs e)
         {
             Init();
+
             BindData();
         }
 
@@ -54,17 +55,26 @@ namespace Biblioteca
                 this.Invoke(d);
             } else
             {
-
-            dgvPrestiti.DataSource = null;
-            dgvPrestiti.DataSource = myPrestiti.Select(p => new { Isbn = p.Isbn, Titolo = Form1.libriElenco[p.Isbn].Titolo , Scadenza = p.Prestiti[myUser.CodiceFiscale]}).ToList();
+                if (myPrestiti.Count > 0)
+                {
+                    dgvPrestiti.DataSource = null;
+                    dgvPrestiti.DataSource = myPrestiti.Select(p => new { Isbn = p.Isbn, Titolo = Form1.libriElenco[p.Isbn].Titolo, Scadenza = p.Prestiti[myUser.CodiceFiscale] }).ToList();
+                } else {
+                    dgvPrestiti.DataSource = null;
+                }
+            
             }
         }
 
-        private void dgvPrestiti_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvPrestiti_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             var grid = (DataGridView)sender;
             if (grid[e.ColumnIndex, e.RowIndex] is DataGridViewButtonCell)
             {
+                currentRating = 0;
+                tsc = new TaskCompletionSource<bool>();
+                HandleRating();
+                await tsc.Task;
                 HandleRestituzione(grid[e.ColumnIndex + 1, e.RowIndex].Value.ToString());
                 
             }
@@ -86,46 +96,47 @@ namespace Biblioteca
             tsc.TrySetResult(true);
         }
 
-        private async void HandleRestituzione(string isbn)
+        private void HandleRestituzione(string isbn)
         {
-            while (FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json"))
-            {
-                Console.WriteLine("Loading");
-            }
+            
             //if (!FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json"))
             //{
-                currentRating = 0;
-                tsc = new TaskCompletionSource<bool>();
-                HandleRating();
-                
-                await tsc.Task;
-                
-                WriteToFile(isbn);
+            
+            WriteToFile(isbn);
+            
+            
             //}   
         }
 
         public void WriteToFile(string isbn)
         {
-            lock (locker)
+            if (FileIsLocked(Directory.GetCurrentDirectory() + @"\users.json") || FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json") || FileIsLocked(Directory.GetCurrentDirectory() + @"\prestiti.json"))
             {
-                //File.WriteAllText(Directory.GetCurrentDirectory() + @"\books.json", string.Empty);
-                using (FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
-                using (FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
-                using (FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                WriteToFile(isbn);
+            } else
+            {
+
+
+                lock (locker)
                 {
-                    Form1.libriElenco[isbn].Quantita++;
-                    
-                    int totalVotanti = Form1.libriElenco[isbn].QuantitaVoti;
-                    float totalStars = Form1.libriElenco[isbn].MediaVoti * totalVotanti;
-                    totalVotanti++;
-                    totalStars += this.currentRating * 100;
-                    Form1.libriElenco[isbn].MediaVoti = totalStars / totalVotanti;
-                    Form1.libriElenco[isbn].QuantitaVoti = totalVotanti;
-                    //MessageBox.Show(Methods.FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json").ToString());
-                    
-                    
-                    
-                        int position = Form1.prestiti.FindIndex(s => s.Isbn == isbn );
+                    //File.WriteAllText(Directory.GetCurrentDirectory() + @"\books.json", string.Empty);
+                    using (FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                    using (FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                    using (FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                    {
+                        Form1.libriElenco[isbn].Quantita++;
+
+                        int totalVotanti = Form1.libriElenco[isbn].QuantitaVoti;
+                        float totalStars = Form1.libriElenco[isbn].MediaVoti * totalVotanti;
+                        totalVotanti++;
+                        totalStars += this.currentRating * 100;
+                        Form1.libriElenco[isbn].MediaVoti = totalStars / totalVotanti;
+                        Form1.libriElenco[isbn].QuantitaVoti = totalVotanti;
+                        //MessageBox.Show(Methods.FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json").ToString());
+
+
+
+                        int position = Form1.prestiti.FindIndex(s => s.Isbn == isbn);
                         //int position = Form1.prestiti.Select((item, i) => new
                         //{
                         //    Item = item,
@@ -140,27 +151,28 @@ namespace Biblioteca
                             Form1.prestiti.RemoveAt(position);
                         }
                         //Form1.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(this.myUser.CodiceFiscale, DateTime.Now); });
-                    
-                    Form1.usersElenco[myUser.CodiceFiscale].Storico.Add(isbn);
-                    Form1.usersElenco[myUser.CodiceFiscale].RemovePrestito();
 
-                    StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
-                    StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
-                    StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
-                    string output = JsonConvert.SerializeObject(Form1.libriElenco, Formatting.Indented);
-                    string output2 = JsonConvert.SerializeObject(Form1.prestiti, Formatting.Indented);
-                    string output3 = JsonConvert.SerializeObject(Form1.usersElenco, Formatting.Indented);
+                        Form1.usersElenco[myUser.CodiceFiscale].Storico.Add(isbn);
+                        Form1.usersElenco[myUser.CodiceFiscale].Punti++;
+                        Form1.usersElenco[myUser.CodiceFiscale].RemovePrestito();
 
-                    //writer3.Write(String.Empty);
-                    
-                    writer.Write(output);
-                    writer.Close();
-                    writer2.Write(output2);
-                    writer2.Close();
-                    writer3.Write(output3);
-                    writer3.Close();
+                        StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
+                        StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
+                        StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
+                        string output = JsonConvert.SerializeObject(Form1.libriElenco, Formatting.Indented);
+                        string output2 = JsonConvert.SerializeObject(Form1.prestiti, Formatting.Indented);
+                        string output3 = JsonConvert.SerializeObject(Form1.usersElenco, Formatting.Indented);
+
+                        //writer3.Write(String.Empty);
+
+                        writer.Write(output);
+                        writer.Close();
+                        writer2.Write(output2);
+                        writer2.Close();
+                        writer3.Write(output3);
+                        writer3.Close();
+                    }
                 }
-
 
                 
                 //File.WriteAllText(Directory.GetCurrentDirectory() + @"\books.json", String.Empty);

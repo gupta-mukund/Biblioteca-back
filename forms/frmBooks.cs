@@ -113,9 +113,9 @@ namespace Biblioteca.forms
             //    Init();
             //}
 
-            while (FileIsLocked(booksPath))
+            if (FileIsLocked(booksPath))
             {
-                Console.WriteLine("Loading");                
+                TryOrderBook(isbn);            
             }
             WriteToFile(isbn);
             return true;
