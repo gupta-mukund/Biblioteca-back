@@ -117,13 +117,13 @@ namespace Biblioteca.forms
                     }
                     else
                     {
-                        Form1.libriElenco[thisLibro.Isbn].Titolo = campi[0];
-                        Form1.libriElenco[thisLibro.Isbn].Autori = campi[1];
-                        Form1.libriElenco[thisLibro.Isbn].Sottotitolo = campi[2];
-                        Form1.libriElenco[thisLibro.Isbn].Categorie = campi[3];
-                        Form1.libriElenco[thisLibro.Isbn].Immagine = campi[4];
-                        Form1.libriElenco[thisLibro.Isbn].Descrizione = campi[5];
-                        Form1.libriElenco[thisLibro.Isbn].Anno = campi[6];
+                        Form1.libriElenco[thisLibro.Isbn].Titolo = results[0];
+                        Form1.libriElenco[thisLibro.Isbn].Autori = results[1];
+                        Form1.libriElenco[thisLibro.Isbn].Sottotitolo = results[2];
+                        Form1.libriElenco[thisLibro.Isbn].Categorie = results[3];
+                        Form1.libriElenco[thisLibro.Isbn].Immagine = results[4];
+                        Form1.libriElenco[thisLibro.Isbn].Descrizione = results[5];
+                        Form1.libriElenco[thisLibro.Isbn].Anno = results[6];
                     }
                     if (Methods.Serialize(Form1.libriElenco, Directory.GetCurrentDirectory() + @"\books.json")) this.Close();
                 }
@@ -144,12 +144,12 @@ namespace Biblioteca.forms
                         Form1.usersElenco.Add(code, tmp);
                     } else
                     {
-                        Form1.usersElenco[thisUser.CodiceFiscale].Nome = campi[0];
-                        Form1.usersElenco[thisUser.CodiceFiscale].Cognome = campi[1];
-                        Form1.usersElenco[thisUser.CodiceFiscale].Email = campi[2];
-                        Form1.usersElenco[thisUser.CodiceFiscale].Citta = campi[3];
-                        Form1.usersElenco[thisUser.CodiceFiscale].Password = campi[4];
-                        Form1.usersElenco[thisUser.CodiceFiscale].DataNascita = campi[5];
+                        Form1.usersElenco[thisUser.CodiceFiscale].Nome = results[0];
+                        Form1.usersElenco[thisUser.CodiceFiscale].Cognome = results[1];
+                        Form1.usersElenco[thisUser.CodiceFiscale].Email = results[2];
+                        Form1.usersElenco[thisUser.CodiceFiscale].Citta = results[3];
+                        Form1.usersElenco[thisUser.CodiceFiscale].Password = results[4];
+                        Form1.usersElenco[thisUser.CodiceFiscale].DataNascita = results[5];
                     }
                     if (Methods.Serialize(Form1.usersElenco, Directory.GetCurrentDirectory() + @"\users.json")) this.Close();
                 }

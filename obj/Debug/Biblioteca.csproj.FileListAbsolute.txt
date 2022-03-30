@@ -66,10 +66,8 @@ C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Bib
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.Form1.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.forms.frmBooks.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.forms.frmPrestiti.resources
-C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.frmMain.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.frmMainPage.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.Properties.Resources.resources
-C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.tmp.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.csproj.GenerateResource.cache
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.csproj.CoreCompileInputs.cache
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.exe
@@ -79,6 +77,5 @@ C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Bib
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.components.Rating.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.Registrazione.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.forms.frmCarta.resources
-C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.forms.BookModifyData.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.forms.GestioneLibro.resources
 C:\Users\gupta\Downloads\Biblioteca-1a33e69582b89a803960729cd4f8a2701ee7c2fb\Biblioteca\obj\Debug\Biblioteca.frmRecensioni.resources

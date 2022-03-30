@@ -51,19 +51,6 @@ namespace Biblioteca
             watcher.EnableRaisingEvents = true;
             BindingData();
         }
-        //public static void ReloadPrestiti()
-        //{
-        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
-        //}
-
-        //public static void ReloadBooks()
-        //{
-        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
-        //}
-        //public static void ReloadUsers()
-        //{
-        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out Form1.libriElenco);
-        //}
         public void OnChanged(object source, FileSystemEventArgs e)
         {
             switch (e.Name)
@@ -82,10 +69,10 @@ namespace Biblioteca
                 default:
                     break;
             }
-            //Console.WriteLine("{0}, with path {1} has been {2}", e.Name, e.FullPath, e.ChangeType);
         }
         public void BindingData()
         {
+            //pattern che modifica la ui in sicurezza
             if (this.dgvLibri.InvokeRequired)
             {
                 BindingCallback d = new BindingCallback(BindingData);
@@ -93,6 +80,7 @@ namespace Biblioteca
             }
             else
             {
+                //setto il databinding dei dati
                 dgvLibri.DataSource = Form1.libriElenco.Select(x => new {
                     Isbn = x.Key,
                     Titolo = x.Value.Titolo,
@@ -112,6 +100,7 @@ namespace Biblioteca
 
         private void frmAdmin_Load(object sender, EventArgs e)
         {
+            //setto l'autocomplete dei campi di filtraggio
             AutoCompleteStringCollection ac = new AutoCompleteStringCollection();
             foreach (Libro item in libriData)
             {
@@ -195,7 +184,7 @@ namespace Biblioteca
         private void btnModifica_Click(object sender, EventArgs e)
         {
             string isbn = dgvLibri.Rows[dgvLibri.CurrentCell.RowIndex].Cells[0].Value.ToString();
-            new forms.GestioneLibro(Form1.libriElenco[isbn], false, typeof(Libro));
+            new forms.GestioneLibro(Form1.libriElenco[isbn], false, typeof(Libro)).Show();
         }
 
         private void btnFiltraUser_Click(object sender, EventArgs e)
@@ -256,7 +245,7 @@ namespace Biblioteca
 
         private void btnModificaUser_Click(object sender, EventArgs e)
         {
-            string codice = dgvUtenti.Rows[dgvLibri.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            string codice = dgvUtenti.Rows[dgvLibri.CurrentCell.RowIndex].Cells[3].Value.ToString();
             new forms.GestioneLibro(Form1.usersElenco[codice], false, typeof(User));
         }
 

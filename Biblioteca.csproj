@@ -69,12 +69,6 @@
     <Compile Include="components\Rating.Designer.cs">
       <DependentUpon>Rating.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\BookModifyData.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="forms\BookModifyData.Designer.cs">
-      <DependentUpon>BookModifyData.cs</DependentUpon>
-    </Compile>
     <Compile Include="forms\frmAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,12 +120,6 @@
     <Compile Include="forms\GestioneLibro.Designer.cs">
       <DependentUpon>GestioneLibro.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMainPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,20 +143,11 @@
     <Compile Include="forms\Registrazione.Designer.cs">
       <DependentUpon>Registrazione.cs</DependentUpon>
     </Compile>
-    <Compile Include="tmp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="tmp.Designer.cs">
-      <DependentUpon>tmp.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="components\BookTextCell.resx">
       <DependentUpon>BookTextCell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="components\Rating.resx">
       <DependentUpon>Rating.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\BookModifyData.resx">
-      <DependentUpon>BookModifyData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
@@ -194,9 +173,6 @@
     <EmbeddedResource Include="forms\GestioneLibro.resx">
       <DependentUpon>GestioneLibro.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMainPage.resx">
       <DependentUpon>frmMainPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,9 +192,6 @@
     <EmbeddedResource Include="forms\Registrazione.resx">
       <DependentUpon>Registrazione.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="tmp.resx">
-      <DependentUpon>tmp.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -229,6 +202,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="uml.cd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

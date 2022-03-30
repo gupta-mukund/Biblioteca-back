@@ -20,15 +20,17 @@ namespace Biblioteca
         public forms.frmCarta CartaForm;
         public frmRecensioni RecensioniForm;
         
-        //public static DateTime ExecutedTime;
+        // oggetto che vede i cambiamenti nei file
         public FileSystemWatcher watcher;
 
+        // evnti che triggerò quando i file venogno cambiati e devono essere aggiornati
         public static event EventHandler OnPrestitiChange;
         public static event EventHandler OnBookChange;
         public static event EventHandler OnUsersChange;
 
         private string currentForm;
 
+        //dizionario che mi permette di aggiungere i diversi form in un'unico form
         private Dictionary<string, Form> formReference;
         public frmMainPage(User user)
         {
@@ -47,6 +49,7 @@ namespace Biblioteca
             watcher = new FileSystemWatcher();
             watcher.Path = Directory.GetCurrentDirectory();
             //ExecutedTime = DateTime.Now;
+            //attributi di quando il watcher mi deve notificare
             watcher.NotifyFilter = NotifyFilters.Attributes |
                 NotifyFilters.CreationTime |
                 NotifyFilters.DirectoryName |
@@ -62,7 +65,6 @@ namespace Biblioteca
             this.formReference = new Dictionary<string, Form>();
             currentUser = user;
             lblCodiceFiscale.Text = currentUser.CodiceFiscale;
-            //pcbProfile.ImageLocation = $"https://via.placeholder.com/1000.png/FFFFFF/000000?text={currentUser.GetFullName()}";
 
             BooksForm = new forms.frmBooks();
             PrestitiForm = new forms.frmPrestiti();
@@ -78,6 +80,7 @@ namespace Biblioteca
 
         public static void OnChanged(object source, FileSystemEventArgs e)
         {
+            //quando il watcher vede cambiamenti, ricarico i dati e lo dico altri form che aggiornano i loro
             
             switch (e.Name)
             {
@@ -88,31 +91,13 @@ namespace Biblioteca
                     if (Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco)) OnBookChange?.Invoke(null, null);
                     if (Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco)) OnUsersChange?.Invoke(null, null);
                     break;
-                //case "books.json":
-                //    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco);
-                //    //ReloadBooks();
-                //    OnBookChange?.Invoke(null, null);
-                //    break;
-                //case "users.json":
-                //    Methods.ReloadData(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco);
-                //    OnUsersChange?.Invoke(null, null);
-                //    break;
                 default:
                     break;
             }
             //Console.WriteLine("{0}, with path {1} has been {2}", e.Name, e.FullPath, e.ChangeType);
         }
 
-        //public static void ReloadBooks()
-        //{
-        //    Form1.libriElenco = null;
-        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", out Form1.libriElenco);
-        //}
-        //public static void ReloadPrestiti()
-        //{
-        //    Form1.prestiti = null;
-        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", out Form1.prestiti);
-        //}
+        //evento che uso per caricare i vari form
         public void ChangeForm(object form)
         {
             this.pnlCentralPage.Controls.Clear();
@@ -126,39 +111,7 @@ namespace Biblioteca
             f.Show();
 
         }
-        
-        private void ActivateButton(object btnSender)
-        {
-            if (btnSender != null)
-            {
-                if (currentFormBtn != (IconButton)btnSender)
-                {
-                    DisableButton();
-                    currentFormBtn = (IconButton)btnSender;
-                    currentForm = "";
-                    currentFormBtn.BackColor = Color.Red;
-                    //currentButton.ForeColor = Color.White;
-                    //currentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                    //panelTitleBar.BackColor = color;
-                    //panelLogo.BackColor = ThemeColor.ChangeColorBrightness(color, -0.3);
-                    //ThemeColor.PrimaryColor = color;
-                    //ThemeColor.SecondaryColor = ThemeColor.ChangeColorBrightness(color, -0.3);
-                    //btnCloseChildForm.Visible = true;
-                }
-            }
-        }
-        private void DisableButton()
-        {
-            foreach (Control previousBtn in pnlMain.Controls)
-            {
-                if (previousBtn.GetType() == typeof(IconButton))
-                {
-                    previousBtn.BackColor = Color.Green;
-                    //previousBtn.ForeColor = Color.Gainsboro;
-                    //previousBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                }
-            }
-        }
+  
         public bool CheckCurrentForm(string actualForm)
         {
             if (actualForm != currentForm) return true;
@@ -172,7 +125,6 @@ namespace Biblioteca
             currentFormBtn = (IconButton)sender;
             if (CheckCurrentForm(form))
             {
-                ActivateButton(sender);
                 ChangeForm(formReference[form]);
             }
         }

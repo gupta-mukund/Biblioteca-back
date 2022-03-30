@@ -100,28 +100,19 @@ namespace Biblioteca
 
         private void HandleRestituzione(string isbn)
         {
-            
-            //if (!FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json"))
-            //{
-            
-            WriteToFile(isbn);
-            
-            
-            //}   
+            WriteToFile(isbn);  
         }
 
         public void WriteToFile(string isbn)
         {
-            if (FileIsLocked(Directory.GetCurrentDirectory() + @"\users.json") || FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json") || FileIsLocked(Directory.GetCurrentDirectory() + @"\prestiti.json"))
+            if (Methods.FileIsLocked(Directory.GetCurrentDirectory() + @"\users.json") || Methods.FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json") || Methods.FileIsLocked(Directory.GetCurrentDirectory() + @"\prestiti.json"))
             {
                 WriteToFile(isbn);
             } else
             {
 
-
                 lock (locker)
                 {
-                    //File.WriteAllText(Directory.GetCurrentDirectory() + @"\books.json", string.Empty);
                     using (FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
                     using (FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
                     using (FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
@@ -134,25 +125,17 @@ namespace Biblioteca
                         totalStars += this.currentRating * 100;
                         Form1.libriElenco[isbn].MediaVoti = totalStars / totalVotanti;
                         Form1.libriElenco[isbn].QuantitaVoti = totalVotanti;
-                        //MessageBox.Show(Methods.FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json").ToString());
 
 
 
                         int position = Form1.prestiti.FindIndex(s => s.Isbn == isbn);
-                        //int position = Form1.prestiti.Select((item, i) => new
-                        //{
-                        //    Item = item,
-                        //    Position = i
-                        //}).Where(m => m.Item.Isbn == isbn).First().Position;
-                        //List<string> list = (Form1.prestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key)).ToList();
-                        //MessageBox.Show(Form1.prestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
-                        //MessageBox.Show(Form1.prestiti[position].Prestiti.Where(p => p.Key == myUser.CodiceFiscale).Select(u => u.Key).ToList()[0]);
+
                         Form1.prestiti[position].Prestiti.Remove(myUser.CodiceFiscale);
                         if (Form1.prestiti[position].Prestiti.Count == 0)
                         {
                             Form1.prestiti.RemoveAt(position);
                         }
-                        //Form1.prestiti.Where(pre => pre.Isbn == isbn).Select(obj => { obj.Prestiti.Add(this.myUser.CodiceFiscale, DateTime.Now); });
+                     
 
                         Form1.usersElenco[myUser.CodiceFiscale].Storico.Add(isbn);
                         Form1.usersElenco[myUser.CodiceFiscale].Punti++;
@@ -165,7 +148,6 @@ namespace Biblioteca
                         string output2 = JsonConvert.SerializeObject(Form1.prestiti, Formatting.Indented);
                         string output3 = JsonConvert.SerializeObject(Form1.usersElenco, Formatting.Indented);
 
-                        //writer3.Write(String.Empty);
 
                         writer.Write(output);
                         writer.Close();
@@ -174,39 +156,8 @@ namespace Biblioteca
                         writer3.Write(output3);
                         writer3.Close();
                     }
-                }
-
-                
-                //File.WriteAllText(Directory.GetCurrentDirectory() + @"\books.json", String.Empty);
-                //FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                //StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
-                //writer.Write(String.Empty);
-               
-
-                
-
-                
-                
+                }  
             }
-            //init();
-            //binddata();
-        }
-
-        private bool FileIsLocked(string filename)
-        {
-            bool Locked = false;
-            try
-            {
-                FileStream fs =
-                    File.Open(filename, FileMode.OpenOrCreate,
-                    FileAccess.ReadWrite, FileShare.None);
-                fs.Close();
-            }
-            catch (IOException)
-            {
-                Locked = true;
-            }
-            return Locked;
         }
     }
 }

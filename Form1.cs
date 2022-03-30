@@ -26,15 +26,14 @@ namespace Biblioteca
         private System.Timers.Timer emailTimer;
         public Form1()
         {
-            //real
+            //deserializzo i vari dati
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref libriElenco);
-            //usersElenco = JsonConvert.DeserializeObject<Dictionary<string, User>>(File.ReadAllText(Directory.GetCurrentDirectory() + @"\users.json"));
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref usersElenco);
-            //libriElenco = JsonConvert.DeserializeObject<Dictionary<string, Libro>>(File.ReadAllText(Directory.GetCurrentDirectory() + @"\books.json"));
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref prestiti);
             
             InitializeComponent();
             Istance = this;
+            //inizio un background worker che controlla se ci sono email da mandare
             emailWorker = new BackgroundWorker();
             emailWorker.DoWork += EmailWorker_DoWork;
             emailTimer = new System.Timers.Timer(20 * 1000);
@@ -51,12 +50,6 @@ namespace Biblioteca
             pnlLogin.BackColor = ColorTranslator.FromHtml(NotSelectedPanelColour);
             pcbIconMain.Image = Properties.Resources.libraryIcon;
             pcbIconMain.SizeMode = PictureBoxSizeMode.StretchImage;
-            //txtUsername.Texts = "TYJIKR47F60M553C";
-            //txtPassword.Texts = "dIIosgaCb4w";
-            //txtUsername.Texts = "KLBSIN66B98X469N";
-            //txtPassword.Texts = "nc7cOVbGg";
-
-            //btnLogin_Click(null, null);
         }
 
         
@@ -81,7 +74,7 @@ namespace Biblioteca
                         EnableSsl = true
                     };
                     string text;
-                    //
+                    
                     if (it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes <= 40)
                     {
                         MessageBox.Show(it.Value.AddDays(30).Subtract(DateTime.Now).TotalMinutes.ToString());
@@ -105,14 +98,10 @@ namespace Biblioteca
         }
         private void HandleRitardoPrestito(string codice, int position)
         {
+            //se sono in ritardo, tolgo punti all'utente
             prestiti[position].Prestiti.Remove(codice);
             usersElenco[codice].Punti--;
         }
-        //public static void ReloadUsers()
-        //{
-        //    usersElenco = null;
-        //    Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", out usersElenco);
-        //}
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (currentLabel == lblLogin)
@@ -126,6 +115,7 @@ namespace Biblioteca
         }
         private void Login()
         {
+            //sistema di login
             if(!String.IsNullOrEmpty(txtUsername.Texts.Trim()) && !string.IsNullOrEmpty(txtPassword.Texts.Trim()))
             {
                 if (usersElenco.ContainsKey(txtUsername.Texts.ToUpper()))

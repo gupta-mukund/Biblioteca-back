@@ -20,9 +20,7 @@ namespace Biblioteca.forms
             InitializeComponent();
             frmMainPage.OnPrestitiChange += FrmMainPage_OnPrestitiChange;
             frmMainPage.OnUsersChange += FrmMainPage_OnUsersChange;
-            //frmBooks.OnPrestitiChange += FrmBooks_OnPrestitiChange;
             myPrestiti = new List<Prestito>();
-            //dgvPrestiti.DataSource = frmMainPage.currentUser.GetPrestiti().Where(o => new { });
             GetPrestiti();
             BindPrenotazioni();
             BindStorico();
@@ -35,6 +33,7 @@ namespace Biblioteca.forms
 
         private void FrmMainPage_OnPrestitiChange(object sender, EventArgs e)
         {
+            //eseguo il data binding dei vari dati quando cambiano
             GetPrestiti();
             BindPrenotazioni();
         }
@@ -56,8 +55,6 @@ namespace Biblioteca.forms
             } else
             {
                 dgvPrestiti.DataSource = null;
-                //MessageBox.Show(Form1.libriElenco["9780006163831"].Titolo);
-                //MessageBox.Show(myPrestiti[0].Prestiti[frmMainPage.currentUser.CodiceFiscale].AddDays(30).ToString());
                 dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = Form1.libriElenco[p.Isbn].Titolo, Scadenza = p.Prestiti[frmMainPage.currentUser.CodiceFiscale].AddDays(30) }).ToList();   
             }
         }

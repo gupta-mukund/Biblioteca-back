@@ -15,13 +15,14 @@ namespace Biblioteca.forms
         public frmCarta()
         {
             InitializeComponent();
-            this.lblPunti.Text = frmMainPage.currentUser.Punti.ToString();
+            lblPunti.BackColor = ColorTranslator.FromHtml("#253243");
+            this.lblPunti.Text = frmMainPage.currentUser.Punti.ToString() + " Punti";
             frmMainPage.OnUsersChange += FrmMainPage_OnUsersChange;
         }
 
         private void FrmMainPage_OnUsersChange(object sender, EventArgs e)
         {
-            this.lblPunti.Text = frmMainPage.currentUser.Punti.ToString();
+            this.lblPunti.Text = frmMainPage.currentUser.Punti.ToString() + " Punti";
         }
     }
 }
