@@ -43,10 +43,8 @@ namespace Biblioteca
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvLibri = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvUtenti = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
@@ -54,7 +52,10 @@ namespace Biblioteca
             this.label3 = new System.Windows.Forms.Label();
             this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
-            this.dgvUtenti = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnLogOut = new FontAwesome.Sharp.IconButton();
             this.btnModifica = new Biblioteca.CustomButton();
             this.btnElimina = new Biblioteca.CustomButton();
             this.btnReset = new Biblioteca.CustomButton();
@@ -83,21 +84,22 @@ namespace Biblioteca
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibri)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).BeginInit();
             this.tableLayoutPanel10.SuspendLayout();
             this.tableLayoutPanel11.SuspendLayout();
             this.tableLayoutPanel12.SuspendLayout();
             this.tableLayoutPanel13.SuspendLayout();
             this.tableLayoutPanel14.SuspendLayout();
             this.tableLayoutPanel15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Chocolate;
+            this.panel1.Controls.Add(this.btnLogOut);
             this.panel1.Controls.Add(this.lblNome);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -108,6 +110,8 @@ namespace Biblioteca
             // lblNome
             // 
             this.lblNome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNome.ForeColor = System.Drawing.Color.White;
             this.lblNome.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblNome.Location = new System.Drawing.Point(0, 0);
             this.lblNome.Name = "lblNome";
@@ -122,6 +126,7 @@ namespace Biblioteca
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(0, 40);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -131,10 +136,10 @@ namespace Biblioteca
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1162, 491);
+            this.tabPage1.Size = new System.Drawing.Size(1162, 487);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Libri";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -152,7 +157,7 @@ namespace Biblioteca
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1156, 485);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1156, 481);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel5
@@ -172,7 +177,7 @@ namespace Biblioteca
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(200, 485);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(200, 481);
             this.tableLayoutPanel5.TabIndex = 17;
             // 
             // tableLayoutPanel8
@@ -182,14 +187,14 @@ namespace Biblioteca
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel8.Controls.Add(this.btnModifica, 0, 1);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 387);
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(0, 384);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 3;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Size = new System.Drawing.Size(200, 98);
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(200, 97);
             this.tableLayoutPanel8.TabIndex = 10;
             // 
             // tableLayoutPanel7
@@ -199,14 +204,14 @@ namespace Biblioteca
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.Controls.Add(this.btnElimina, 0, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 290);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(0, 288);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 3;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(200, 97);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(200, 96);
             this.tableLayoutPanel7.TabIndex = 9;
             // 
             // tableLayoutPanel6
@@ -224,7 +229,7 @@ namespace Biblioteca
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(200, 145);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(200, 144);
             this.tableLayoutPanel6.TabIndex = 7;
             // 
             // label2
@@ -251,7 +256,7 @@ namespace Biblioteca
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(200, 59);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(200, 58);
             this.tableLayoutPanel3.TabIndex = 7;
             // 
             // tableLayoutPanel4
@@ -261,7 +266,7 @@ namespace Biblioteca
             this.tableLayoutPanel4.Controls.Add(this.txtNewIsbn, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.btnAdd, 0, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 145);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 144);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 4;
@@ -269,7 +274,7 @@ namespace Biblioteca
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.84211F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(200, 145);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(200, 144);
             this.tableLayoutPanel4.TabIndex = 8;
             // 
             // dgvLibri
@@ -286,7 +291,7 @@ namespace Biblioteca
             this.dgvLibri.RowHeadersVisible = false;
             this.dgvLibri.RowHeadersWidth = 51;
             this.dgvLibri.RowTemplate.Height = 24;
-            this.dgvLibri.Size = new System.Drawing.Size(950, 479);
+            this.dgvLibri.Size = new System.Drawing.Size(950, 475);
             this.dgvLibri.TabIndex = 1;
             // 
             // tabPage2
@@ -299,47 +304,6 @@ namespace Biblioteca
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Utenti";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.tableLayoutPanel2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1162, 491);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Resituzione";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.txtLoginCodice, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnEntraUser, 1, 2);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1162, 491);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Location = new System.Drawing.Point(481, 197);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Codice Fiscale";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel9
             // 
@@ -356,6 +320,23 @@ namespace Biblioteca
             this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(1156, 485);
             this.tableLayoutPanel9.TabIndex = 1;
+            // 
+            // dgvUtenti
+            // 
+            this.dgvUtenti.AllowUserToAddRows = false;
+            this.dgvUtenti.AllowUserToDeleteRows = false;
+            this.dgvUtenti.AllowUserToResizeColumns = false;
+            this.dgvUtenti.AllowUserToResizeRows = false;
+            this.dgvUtenti.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvUtenti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUtenti.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvUtenti.Location = new System.Drawing.Point(203, 3);
+            this.dgvUtenti.Name = "dgvUtenti";
+            this.dgvUtenti.RowHeadersVisible = false;
+            this.dgvUtenti.RowHeadersWidth = 51;
+            this.dgvUtenti.RowTemplate.Height = 24;
+            this.dgvUtenti.Size = new System.Drawing.Size(950, 479);
+            this.dgvUtenti.TabIndex = 18;
             // 
             // tableLayoutPanel10
             // 
@@ -474,22 +455,66 @@ namespace Biblioteca
             this.tableLayoutPanel15.Size = new System.Drawing.Size(200, 145);
             this.tableLayoutPanel15.TabIndex = 8;
             // 
-            // dgvUtenti
+            // tabPage3
             // 
-            this.dgvUtenti.AllowUserToAddRows = false;
-            this.dgvUtenti.AllowUserToDeleteRows = false;
-            this.dgvUtenti.AllowUserToResizeColumns = false;
-            this.dgvUtenti.AllowUserToResizeRows = false;
-            this.dgvUtenti.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvUtenti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUtenti.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUtenti.Location = new System.Drawing.Point(203, 3);
-            this.dgvUtenti.Name = "dgvUtenti";
-            this.dgvUtenti.RowHeadersVisible = false;
-            this.dgvUtenti.RowHeadersWidth = 51;
-            this.dgvUtenti.RowTemplate.Height = 24;
-            this.dgvUtenti.Size = new System.Drawing.Size(950, 479);
-            this.dgvUtenti.TabIndex = 18;
+            this.tabPage3.Controls.Add(this.tableLayoutPanel2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1162, 491);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Restituzione";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.txtLoginCodice, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnEntraUser, 1, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1162, 491);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label1.Location = new System.Drawing.Point(481, 197);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 23);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Codice Fiscale";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnLogOut.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnLogOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.Color.White;
+            this.btnLogOut.IconChar = FontAwesome.Sharp.IconChar.Earlybirds;
+            this.btnLogOut.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnLogOut.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnLogOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogOut.Location = new System.Drawing.Point(0, 0);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(207, 40);
+            this.btnLogOut.TabIndex = 7;
+            this.btnLogOut.Tag = "";
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // btnModifica
             // 
@@ -502,7 +527,7 @@ namespace Biblioteca
             this.btnModifica.FlatAppearance.BorderSize = 0;
             this.btnModifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModifica.ForeColor = System.Drawing.Color.White;
-            this.btnModifica.Location = new System.Drawing.Point(3, 32);
+            this.btnModifica.Location = new System.Drawing.Point(3, 31);
             this.btnModifica.Name = "btnModifica";
             this.btnModifica.Size = new System.Drawing.Size(194, 34);
             this.btnModifica.TabIndex = 1;
@@ -624,7 +649,7 @@ namespace Biblioteca
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Location = new System.Drawing.Point(3, 71);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(194, 32);
+            this.btnAdd.Size = new System.Drawing.Size(194, 31);
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Nuovo";
             this.btnAdd.TextColor = System.Drawing.Color.White;
@@ -833,16 +858,16 @@ namespace Biblioteca
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibri)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).EndInit();
             this.tableLayoutPanel10.ResumeLayout(false);
             this.tableLayoutPanel11.ResumeLayout(false);
             this.tableLayoutPanel12.ResumeLayout(false);
             this.tableLayoutPanel13.ResumeLayout(false);
             this.tableLayoutPanel14.ResumeLayout(false);
             this.tableLayoutPanel15.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -891,5 +916,6 @@ namespace Biblioteca
         private components.LoginCustomTextBox txtNewUser;
         private CustomButton btnNewUser;
         private System.Windows.Forms.DataGridView dgvUtenti;
+        private FontAwesome.Sharp.IconButton btnLogOut;
     }
 }

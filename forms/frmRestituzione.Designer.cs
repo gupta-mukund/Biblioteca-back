@@ -37,6 +37,10 @@ namespace Biblioteca
             // dgvPrestiti
             // 
             this.dgvPrestiti.AllowUserToAddRows = false;
+            this.dgvPrestiti.AllowUserToDeleteRows = false;
+            this.dgvPrestiti.AllowUserToResizeColumns = false;
+            this.dgvPrestiti.AllowUserToResizeRows = false;
+            this.dgvPrestiti.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvPrestiti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPrestiti.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmRestituisci});
@@ -57,7 +61,6 @@ namespace Biblioteca
             this.clmRestituisci.MinimumWidth = 6;
             this.clmRestituisci.Name = "clmRestituisci";
             this.clmRestituisci.ReadOnly = true;
-            this.clmRestituisci.Width = 125;
             // 
             // frmRestituzione
             // 
@@ -66,7 +69,7 @@ namespace Biblioteca
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.dgvPrestiti);
             this.Name = "frmRestituzione";
-            this.Text = "frmRestituzione";
+            this.Text = "Restituzione";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPrestiti)).EndInit();
             this.ResumeLayout(false);
 

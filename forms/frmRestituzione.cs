@@ -85,7 +85,9 @@ namespace Biblioteca
             tmpForm = new Form();
             components.Rating tmpRat = new components.Rating();
             tmpRat.RatingDone += TmpRat_RatingDone;
+            tmpRat.Dock = DockStyle.Fill;
             tmpForm.Controls.Add(tmpRat);
+            tmpForm.StartPosition = FormStartPosition.CenterParent;
             tmpForm.Show();
         }
 

@@ -138,6 +138,12 @@
     <Compile Include="frmMainPage.Designer.cs">
       <DependentUpon>frmMainPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmRecensioni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmRecensioni.Designer.cs">
+      <DependentUpon>frmRecensioni.cs</DependentUpon>
+    </Compile>
     <Compile Include="Methods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMainPage.resx">
       <DependentUpon>frmMainPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmRecensioni.resx">
+      <DependentUpon>frmRecensioni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

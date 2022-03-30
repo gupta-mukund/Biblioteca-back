@@ -31,6 +31,7 @@
             this.txt = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dgvUtenti = new System.Windows.Forms.DataGridView();
+            this.rating1 = new Biblioteca.components.Rating();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,11 +64,19 @@
             this.dgvUtenti.Size = new System.Drawing.Size(804, 450);
             this.dgvUtenti.TabIndex = 2;
             // 
+            // rating1
+            // 
+            this.rating1.Location = new System.Drawing.Point(265, 192);
+            this.rating1.Name = "rating1";
+            this.rating1.Size = new System.Drawing.Size(274, 145);
+            this.rating1.TabIndex = 3;
+            // 
             // tmp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 450);
+            this.Controls.Add(this.rating1);
             this.Controls.Add(this.dgvUtenti);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txt);
@@ -84,5 +93,6 @@
         private System.Windows.Forms.TextBox txt;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgvUtenti;
+        private components.Rating rating1;
     }
 }

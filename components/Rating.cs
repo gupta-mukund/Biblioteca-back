@@ -36,12 +36,12 @@ namespace Biblioteca.components
                 tmp.Add(i.ToString());
             }
 
-            return this.Controls.OfType<IconPictureBox>().Where(p => tmp.Any(x => x == p.Tag.ToString())).ToList();
+            return this.tableLayoutPanel2.Controls.OfType<IconPictureBox>().Where(p => tmp.Any(x => x == p.Tag.ToString())).ToList();
         }
 
         private void InitStars()
         {
-            foreach (IconPictureBox item in this.Controls.OfType<IconPictureBox>())
+            foreach (IconPictureBox item in this.tableLayoutPanel2.Controls.OfType<IconPictureBox>())
             {
                 item.IconChar = IconChar.Star;
                 item.IconFont = IconFont.Solid;

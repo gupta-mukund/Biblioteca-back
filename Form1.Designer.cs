@@ -39,16 +39,18 @@
             this.lblSignup = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtPassword = new Biblioteca.components.LoginCustomTextBox();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtUsername = new Biblioteca.components.LoginCustomTextBox();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnLogin = new Biblioteca.CustomButton();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.ckbPassShow = new System.Windows.Forms.CheckBox();
+            this.lblShow = new System.Windows.Forms.Label();
             this.lblTitolo = new System.Windows.Forms.Label();
+            this.lblAdmin = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.pcbIconMain = new System.Windows.Forms.PictureBox();
+            this.txtPassword = new Biblioteca.components.LoginCustomTextBox();
+            this.txtUsername = new Biblioteca.components.LoginCustomTextBox();
+            this.btnLogin = new Biblioteca.CustomButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -157,6 +159,7 @@
             // lblLogin
             // 
             this.lblLogin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblLogin.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.Location = new System.Drawing.Point(0, 0);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(62, 30);
@@ -179,6 +182,7 @@
             // lblSignup
             // 
             this.lblSignup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSignup.Font = new System.Drawing.Font("Verdana", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSignup.Location = new System.Drawing.Point(0, 0);
             this.lblSignup.Name = "lblSignup";
             this.lblSignup.Size = new System.Drawing.Size(63, 30);
@@ -193,24 +197,25 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 1, 5);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 3);
-            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel8, 1, 7);
-            this.tableLayoutPanel5.Controls.Add(this.lblTitolo, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel7, 1, 4);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 2);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel8, 1, 6);
+            this.tableLayoutPanel5.Controls.Add(this.lblTitolo, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.lblAdmin, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 67);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 9;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2F));
+            this.tableLayoutPanel5.RowCount = 8;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(440, 383);
             this.tableLayoutPanel5.TabIndex = 1;
             // 
@@ -230,26 +235,6 @@
             this.tableLayoutPanel7.Size = new System.Drawing.Size(264, 76);
             this.tableLayoutPanel7.TabIndex = 1;
             // 
-            // txtPassword
-            // 
-            this.txtPassword.BackColor = System.Drawing.SystemColors.Window;
-            this.txtPassword.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtPassword.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtPassword.BorderSize = 2;
-            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.ForeColor = System.Drawing.Color.DimGray;
-            this.txtPassword.Location = new System.Drawing.Point(3, 42);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtPassword.Multiline = false;
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Padding = new System.Windows.Forms.Padding(7);
-            this.txtPassword.PasswordChar = false;
-            this.txtPassword.Size = new System.Drawing.Size(258, 35);
-            this.txtPassword.TabIndex = 0;
-            this.txtPassword.Texts = "";
-            this.txtPassword.UnderlinedStyle = false;
-            // 
             // tableLayoutPanel6
             // 
             this.tableLayoutPanel6.ColumnCount = 1;
@@ -257,7 +242,7 @@
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel6.Controls.Add(this.txtUsername, 0, 1);
             this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(88, 71);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(88, 83);
             this.tableLayoutPanel6.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
@@ -265,26 +250,6 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(264, 76);
             this.tableLayoutPanel6.TabIndex = 0;
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.BackColor = System.Drawing.SystemColors.Window;
-            this.txtUsername.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            this.txtUsername.BorderFocusColor = System.Drawing.Color.HotPink;
-            this.txtUsername.BorderSize = 2;
-            this.txtUsername.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsername.ForeColor = System.Drawing.Color.DimGray;
-            this.txtUsername.Location = new System.Drawing.Point(3, 42);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtUsername.Multiline = false;
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Padding = new System.Windows.Forms.Padding(7);
-            this.txtUsername.PasswordChar = false;
-            this.txtUsername.Size = new System.Drawing.Size(258, 35);
-            this.txtUsername.TabIndex = 0;
-            this.txtUsername.Texts = "";
-            this.txtUsername.UnderlinedStyle = false;
             // 
             // tableLayoutPanel8
             // 
@@ -303,64 +268,72 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(264, 57);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
-            // btnLogin
-            // 
-            this.btnLogin.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnLogin.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnLogin.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnLogin.BorderRadius = 0;
-            this.btnLogin.BorderSize = 0;
-            this.btnLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnLogin.FlatAppearance.BorderSize = 0;
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(0, 0);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(0);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(118, 57);
-            this.btnLogin.TabIndex = 0;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.TextColor = System.Drawing.Color.White;
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
             // tableLayoutPanel9
             // 
-            this.tableLayoutPanel9.ColumnCount = 1;
+            this.tableLayoutPanel9.ColumnCount = 2;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel9.Controls.Add(this.label2, 0, 1);
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel9.Controls.Add(this.ckbPassShow, 1, 1);
+            this.tableLayoutPanel9.Controls.Add(this.lblShow, 0, 1);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(157, 0);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel9.Name = "tableLayoutPanel9";
             this.tableLayoutPanel9.RowCount = 3;
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel9.Size = new System.Drawing.Size(107, 57);
             this.tableLayoutPanel9.TabIndex = 1;
             // 
-            // label2
+            // ckbPassShow
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 5);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 45);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Forgot Password?";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ckbPassShow.AutoSize = true;
+            this.ckbPassShow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ckbPassShow.Location = new System.Drawing.Point(80, 16);
+            this.ckbPassShow.Name = "ckbPassShow";
+            this.ckbPassShow.Size = new System.Drawing.Size(24, 24);
+            this.ckbPassShow.TabIndex = 0;
+            this.ckbPassShow.Text = "checkBox1";
+            this.ckbPassShow.UseVisualStyleBackColor = true;
+            this.ckbPassShow.CheckStateChanged += new System.EventHandler(this.ckbPassShow_CheckStateChanged);
+            // 
+            // lblShow
+            // 
+            this.lblShow.AutoSize = true;
+            this.lblShow.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblShow.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShow.ForeColor = System.Drawing.Color.White;
+            this.lblShow.Location = new System.Drawing.Point(3, 13);
+            this.lblShow.Name = "lblShow";
+            this.lblShow.Size = new System.Drawing.Size(71, 30);
+            this.lblShow.TabIndex = 1;
+            this.lblShow.Text = "Show Password";
+            this.lblShow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblTitolo
             // 
             this.lblTitolo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTitolo.Location = new System.Drawing.Point(91, 7);
+            this.lblTitolo.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitolo.ForeColor = System.Drawing.Color.White;
+            this.lblTitolo.Location = new System.Drawing.Point(91, 0);
             this.lblTitolo.Name = "lblTitolo";
             this.lblTitolo.Size = new System.Drawing.Size(258, 57);
             this.lblTitolo.TabIndex = 3;
             this.lblTitolo.Text = "Login";
             this.lblTitolo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblAdmin
+            // 
+            this.lblAdmin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblAdmin.ForeColor = System.Drawing.Color.White;
+            this.lblAdmin.Location = new System.Drawing.Point(91, 57);
+            this.lblAdmin.Name = "lblAdmin";
+            this.lblAdmin.Size = new System.Drawing.Size(258, 26);
+            this.lblAdmin.TabIndex = 4;
+            this.lblAdmin.Text = "Log in with an admin to register.";
+            this.lblAdmin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblAdmin.Visible = false;
             // 
             // panel4
             // 
@@ -382,6 +355,68 @@
             this.pcbIconMain.TabIndex = 0;
             this.pcbIconMain.TabStop = false;
             // 
+            // txtPassword
+            // 
+            this.txtPassword.BackColor = System.Drawing.SystemColors.Window;
+            this.txtPassword.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtPassword.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtPassword.BorderSize = 2;
+            this.txtPassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.ForeColor = System.Drawing.Color.DimGray;
+            this.txtPassword.Location = new System.Drawing.Point(3, 42);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtPassword.Multiline = false;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Padding = new System.Windows.Forms.Padding(7);
+            this.txtPassword.PasswordChar = true;
+            this.txtPassword.Size = new System.Drawing.Size(258, 35);
+            this.txtPassword.TabIndex = 0;
+            this.txtPassword.Texts = "";
+            this.txtPassword.UnderlinedStyle = false;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.BackColor = System.Drawing.SystemColors.Window;
+            this.txtUsername.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtUsername.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtUsername.BorderSize = 2;
+            this.txtUsername.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.ForeColor = System.Drawing.Color.DimGray;
+            this.txtUsername.Location = new System.Drawing.Point(3, 42);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtUsername.Multiline = false;
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Padding = new System.Windows.Forms.Padding(7);
+            this.txtUsername.PasswordChar = false;
+            this.txtUsername.Size = new System.Drawing.Size(258, 35);
+            this.txtUsername.TabIndex = 0;
+            this.txtUsername.Texts = "";
+            this.txtUsername.UnderlinedStyle = false;
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnLogin.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnLogin.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnLogin.BorderRadius = 0;
+            this.btnLogin.BorderSize = 0;
+            this.btnLogin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(0, 0);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(0);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(118, 57);
+            this.btnLogin.TabIndex = 0;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.TextColor = System.Drawing.Color.White;
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -390,7 +425,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Biblioteca";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -429,11 +464,13 @@
         private CustomButton btnLogin;
         private System.Windows.Forms.Label lblTitolo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblLogin;
         private System.Windows.Forms.Label lblSignup;
         private System.Windows.Forms.PictureBox pcbIconMain;
+        private System.Windows.Forms.CheckBox ckbPassShow;
+        private System.Windows.Forms.Label lblShow;
+        private System.Windows.Forms.Label lblAdmin;
     }
 }
 

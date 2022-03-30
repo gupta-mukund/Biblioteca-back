@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using FontAwesome.Sharp;
 using System.Reflection;
 
 namespace Biblioteca
@@ -25,6 +26,9 @@ namespace Biblioteca
         public frmAdmin(User admin)
         {
             InitializeComponent();
+            this.btnLogOut.IconChar = IconChar.ArrowCircleRight;
+            panel1.BackColor = ColorTranslator.FromHtml("#6FE0CC");
+            this.Text = admin.GetFullName();
             libriData = new List<Libro>();
             userData = new List<User>();
             
@@ -232,18 +236,34 @@ namespace Biblioteca
             }
             else
             {
-                new forms.GestioneLibro(txtNewIsbn.Texts.Trim(), true, typeof(User)).Show();
+                new forms.GestioneLibro(txtNewUser.Texts.Trim(), true, typeof(User)).Show();
             }
         }
 
         private void btnEliminaUser_Click(object sender, EventArgs e)
         {
-
+            string codice = dgvUtenti.Rows[dgvUtenti.CurrentCell.RowIndex].Cells[2].Value.ToString();
+            if (!Form1.prestiti.Any(p => p.Prestiti.Any(x => x.Key == codice)))
+            {
+                Form1.usersElenco.Remove(codice);
+                Methods.Serialize(Form1.usersElenco, Directory.GetCurrentDirectory() + @"\users.json");
+            }
+            else
+            {
+                MessageBox.Show("Utente con libri in prestito");
+            }
         }
 
         private void btnModificaUser_Click(object sender, EventArgs e)
         {
+            string codice = dgvUtenti.Rows[dgvLibri.CurrentCell.RowIndex].Cells[0].Value.ToString();
+            new forms.GestioneLibro(Form1.usersElenco[codice], false, typeof(User));
+        }
 
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1.Istance.Show();
         }
     }
 }

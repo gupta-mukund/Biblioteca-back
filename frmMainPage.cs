@@ -18,6 +18,7 @@ namespace Biblioteca
         public forms.frmBooks BooksForm;
         public forms.frmPrestiti PrestitiForm;
         public forms.frmCarta CartaForm;
+        public frmRecensioni RecensioniForm;
         
         //public static DateTime ExecutedTime;
         public FileSystemWatcher watcher;
@@ -32,8 +33,12 @@ namespace Biblioteca
         public frmMainPage(User user)
         {
             InitializeComponent();
-            
-            
+            this.btnCarta.IconChar = IconChar.IdCard;
+            this.btnLogOut.IconChar = IconChar.ArrowCircleRight;
+            pnlProfileInfo.BackColor = ColorTranslator.FromHtml("#6FE0CC");
+            pnlMain.BackColor = ColorTranslator.FromHtml("#253243");
+            pnlMainTitle.BackColor = ColorTranslator.FromHtml("#253243");
+            this.Text = user.GetFullName();
             foreach (KeyValuePair<string, Libro> item in Form1.libriElenco)
             {
                 item.Value.CalculateRating();
@@ -62,9 +67,11 @@ namespace Biblioteca
             BooksForm = new forms.frmBooks();
             PrestitiForm = new forms.frmPrestiti();
             CartaForm = new forms.frmCarta();
+            RecensioniForm = new frmRecensioni();
             formReference.Add("UserBooks", BooksForm);
             formReference.Add("UserPrestiti", PrestitiForm);
             formReference.Add("Carta", CartaForm);
+            formReference.Add("Recensioni", RecensioniForm);
             currentForm = "UserBook";
             ChangeForm(formReference["UserBooks"]);
         }
@@ -168,6 +175,12 @@ namespace Biblioteca
                 ActivateButton(sender);
                 ChangeForm(formReference[form]);
             }
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Form1.Istance.Show();
         }
     }
 }

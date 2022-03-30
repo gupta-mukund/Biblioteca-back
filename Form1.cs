@@ -22,6 +22,7 @@ namespace Biblioteca
         private Label currentLabel;
         private string NotSelectedPanelColour = "#505F74";
         private BackgroundWorker emailWorker;
+        public static Form1 Istance;
         private System.Timers.Timer emailTimer;
         public Form1()
         {
@@ -33,7 +34,7 @@ namespace Biblioteca
             Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref prestiti);
             
             InitializeComponent();
-           
+            Istance = this;
             emailWorker = new BackgroundWorker();
             emailWorker.DoWork += EmailWorker_DoWork;
             emailTimer = new System.Timers.Timer(20 * 1000);
@@ -137,6 +138,9 @@ namespace Biblioteca
                         {
                             UserLogin(usersElenco[txtUsername.Texts.ToUpper()]);
                         }
+                        txtPassword.Texts = "";
+                        txtUsername.Texts = "";
+                        this.Hide();
                     }
                     
                     else MessageBox.Show("wrong password");
@@ -186,8 +190,14 @@ namespace Biblioteca
             if (send != currentLabel)
             {
                 currentLabel = send;
-                lblTitolo.Text = currentLabel.Text;
-                btnLogin.Text = currentLabel.Text;
+                
+                if (send.Text == "Sign Up")
+                {
+                    lblAdmin.Visible = true;
+                } else
+                {
+                    lblAdmin.Visible = false;
+                }
             }
         }
 
@@ -196,6 +206,19 @@ namespace Biblioteca
             Methods.Serialize(libriElenco, Directory.GetCurrentDirectory() + @"\books.json");
             Methods.Serialize(usersElenco, Directory.GetCurrentDirectory() + @"\users.json");
             Methods.Serialize(prestiti, Directory.GetCurrentDirectory() + @"\prestiti.json");
+        }
+
+        private void ckbPassShow_CheckStateChanged(object sender, EventArgs e)
+        {
+            if (ckbPassShow.Checked)
+            {
+                txtPassword.PasswordChar = false;
+                lblShow.Text = "Hide Password";
+            } else
+            {
+                txtPassword.PasswordChar = true;
+                lblShow.Text = "Show Password";
+            }
         }
     }
 }

@@ -49,6 +49,7 @@ namespace Biblioteca.forms
             this.tbcPrenotazioni.Controls.Add(this.tbpInCorso);
             this.tbcPrenotazioni.Controls.Add(this.tbpPrenotazioni);
             this.tbcPrenotazioni.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbcPrenotazioni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbcPrenotazioni.Location = new System.Drawing.Point(0, 0);
             this.tbcPrenotazioni.Name = "tbcPrenotazioni";
             this.tbcPrenotazioni.SelectedIndex = 0;
@@ -86,12 +87,12 @@ namespace Biblioteca.forms
             // tbpPrenotazioni
             // 
             this.tbpPrenotazioni.Controls.Add(this.tableLayoutPanel1);
-            this.tbpPrenotazioni.Location = new System.Drawing.Point(4, 25);
+            this.tbpPrenotazioni.Location = new System.Drawing.Point(4, 29);
             this.tbpPrenotazioni.Name = "tbpPrenotazioni";
             this.tbpPrenotazioni.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPrenotazioni.Size = new System.Drawing.Size(792, 421);
+            this.tbpPrenotazioni.Size = new System.Drawing.Size(792, 417);
             this.tbpPrenotazioni.TabIndex = 1;
-            this.tbpPrenotazioni.Text = "Prenotazioni";
+            this.tbpPrenotazioni.Text = "Elenco";
             this.tbpPrenotazioni.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -108,7 +109,7 @@ namespace Biblioteca.forms
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 415);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(786, 411);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -137,7 +138,7 @@ namespace Biblioteca.forms
             this.dgvStorico.RowHeadersVisible = false;
             this.dgvStorico.RowHeadersWidth = 51;
             this.dgvStorico.RowTemplate.Height = 24;
-            this.dgvStorico.Size = new System.Drawing.Size(786, 365);
+            this.dgvStorico.Size = new System.Drawing.Size(786, 361);
             this.dgvStorico.TabIndex = 1;
             // 
             // frmPrestiti
