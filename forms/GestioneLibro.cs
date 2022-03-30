@@ -17,14 +17,17 @@ namespace Biblioteca.forms
         private string[] results;
         private bool IsCrea;
         private Libro thisLibro;
+        private User thisUser;
+        private Type theType;
         private int index;
-        private string isbn;
-        public GestioneLibro(Libro libro, bool crea)
+        private string code;
+        public GestioneLibro(Libro libro, bool crea, Type type)
         {
             InitializeComponent();
             index = 0;
             thisLibro = libro;
             results = new string[7];
+            theType = type;
             campi = new string[] { "Titolo", "Autori", "Sottotitolo", "Categorie", "Immagine", "Descrizione", "Anno" };
             lblTitolo.Text = campi[index];
             IsCrea = crea;
@@ -33,19 +36,51 @@ namespace Biblioteca.forms
                 txtField.Texts = typeof(Libro).GetProperty(campi[index]).GetValue(thisLibro, null).ToString();
             }
         }
-        public GestioneLibro(string code, bool crea)
+
+        public GestioneLibro(User user, bool crea, Type type)
         {
             InitializeComponent();
             index = 0;
-            isbn = code;
-            results = new string[7];
-            campi = new string[] { "Titolo", "Autori", "Sottotitolo", "Categorie", "Immagine", "Descrizione", "Anno" };
+            thisUser = user;
+            results = new string[6];
+            theType = type;
+            campi = new string[] { "Nome", "Cognome", "Email", "Citta", "Password", "DataNascita" };
             lblTitolo.Text = campi[index];
             IsCrea = crea;
             if (!IsCrea)
             {
-                txtField.Texts = typeof(Libro).GetProperty(campi[index]).GetValue(thisLibro, null).ToString();
+                txtField.Texts = typeof(User).GetProperty(campi[index]).GetValue(thisUser, null).ToString();
             }
+        }
+        public GestioneLibro(string codice, bool crea, Type type)
+        {
+            InitializeComponent();
+            index = 0;
+            code = codice;
+            theType = type;
+            if (type == typeof(Libro))
+            {
+                results = new string[7];
+                campi = new string[] { "Titolo", "Autori", "Sottotitolo", "Categorie", "Immagine", "Descrizione", "Anno" };
+                lblTitolo.Text = campi[index];
+                IsCrea = crea;
+                if (!IsCrea)
+                {
+                    txtField.Texts = typeof(Libro).GetProperty(campi[index]).GetValue(thisLibro, null).ToString();
+                }
+            }
+            else if (type == typeof(User))
+            {
+                results = new string[6];
+                campi = new string[] { "Nome", "Cognome", "Email", "Citta", "Password", "DataNascita" };
+                lblTitolo.Text = campi[index];
+                IsCrea = crea;
+                if (!IsCrea)
+                {
+                    txtField.Texts = typeof(User).GetProperty(campi[index]).GetValue(thisUser, null).ToString();
+                }
+            }
+            
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -75,7 +110,7 @@ namespace Biblioteca.forms
                     tmp.Immagine = results[4];
                     tmp.Descrizione = results[5];
                     tmp.Anno = results[6];
-                    Form1.libriElenco.Add(isbn, tmp);
+                    Form1.libriElenco.Add(code, tmp);
                 } else
                 {
                     Form1.libriElenco[thisLibro.Isbn].Titolo = campi[0];
@@ -93,7 +128,7 @@ namespace Biblioteca.forms
                 lblTitolo.Text = campi[index];
                 if (!IsCrea)
                 {
-                    txtField.Texts = typeof(Libro).GetProperty(campi[index]).GetValue(thisLibro, null).ToString();
+                    txtField.Texts = theType.GetProperty(campi[index]).GetValue(thisLibro, null).ToString();
                 } else
                 {
                     txtField.Texts = "";

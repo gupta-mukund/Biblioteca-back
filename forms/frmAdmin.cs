@@ -15,6 +15,7 @@ namespace Biblioteca
     public partial class frmAdmin : Form
     {
         private List<Libro> libriData;
+        private List<User> userData;
         public FileSystemWatcher watcher;
         private User currentUser = null;
         public static event EventHandler OnPrestitiChange;
@@ -25,9 +26,11 @@ namespace Biblioteca
         {
             InitializeComponent();
             libriData = new List<Libro>();
+            userData = new List<User>();
             //Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref Form1.usersElenco);
             //Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref Form1.libriElenco);
             libriData = Form1.libriElenco.Values.ToList();
+            userData = Form1.usersElenco.Values.ToList();
             currentUser = admin;
             lblNome.Text = "Admin: " + currentUser.GetFullName();
             watcher = new FileSystemWatcher();
@@ -115,6 +118,13 @@ namespace Biblioteca
                 ac.Add(item.Titolo);
             }
             txtBookName.Suggestions(ac);
+
+            AutoCompleteStringCollection ac2 = new AutoCompleteStringCollection();
+            foreach (User item in userData)
+            {
+                ac2.Add(item.GetFullName());
+            }
+            txtNome.Suggestions(ac2);
         }
 
         private void btnFiltra_Click(object sender, EventArgs e)
@@ -164,7 +174,7 @@ namespace Biblioteca
                 MessageBox.Show("Book already exists");
             } else
             {
-                new forms.GestioneLibro(txtNewIsbn.Texts.Trim(), true).Show();
+                new forms.GestioneLibro(txtNewIsbn.Texts.Trim(), true, typeof(Libro)).Show();
             }
         }
 
@@ -184,7 +194,59 @@ namespace Biblioteca
         private void btnModifica_Click(object sender, EventArgs e)
         {
             string isbn = dgvLibri.Rows[dgvLibri.CurrentCell.RowIndex].Cells[0].Value.ToString();
-            new forms.GestioneLibro(Form1.libriElenco[isbn], false);
+            new forms.GestioneLibro(Form1.libriElenco[isbn], false, typeof(Libro));
+        }
+
+        private void btnFiltraUser_Click(object sender, EventArgs e)
+        {
+            userData = Form1.usersElenco.Values.ToList();
+
+            if (!String.IsNullOrWhiteSpace(txtNome.Texts))
+            {
+               
+                userData = userData.Where(x => x.GetFullName() == txtNome.Texts).ToList();
+            };
+            dgvUtenti.DataSource = null;
+            dgvUtenti.DataSource = userData.Select(x => new {
+                Nome = x.Nome,
+                Cognome = x.Cognome,
+                Codice = x.CodiceFiscale,
+                Prestiti = x.Prestiti,
+            }).ToList();
+        }
+
+        private void btnResetUSer_Click(object sender, EventArgs e)
+        {
+            BindingData();
+        }
+
+        private void btnNewUser_Click(object sender, EventArgs e)
+        {
+            if (txtNewUser.Texts.Trim() == "")
+            {
+                MessageBox.Show("Write new user code");
+            } else if (txtNewUser.Texts.Trim().Length != 16)
+            {
+                MessageBox.Show("User must have 16 chars");
+            }
+            else if (Form1.usersElenco.ContainsKey(txtNewUser.Texts))
+            {
+                MessageBox.Show("User already exists");
+            }
+            else
+            {
+                new forms.GestioneLibro(txtNewIsbn.Texts.Trim(), true, typeof(User)).Show();
+            }
+        }
+
+        private void btnEliminaUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnModificaUser_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

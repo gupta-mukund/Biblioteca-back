@@ -36,25 +36,40 @@ namespace Biblioteca
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnModifica = new Biblioteca.CustomButton();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnElimina = new Biblioteca.CustomButton();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvLibri = new System.Windows.Forms.DataGridView();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel11 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel14 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel15 = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvUtenti = new System.Windows.Forms.DataGridView();
+            this.btnModifica = new Biblioteca.CustomButton();
+            this.btnElimina = new Biblioteca.CustomButton();
             this.btnReset = new Biblioteca.CustomButton();
             this.btnFiltra = new Biblioteca.CustomButton();
             this.txtBookName = new Biblioteca.components.LoginCustomTextBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.txtNewIsbn = new Biblioteca.components.LoginCustomTextBox();
             this.btnAdd = new Biblioteca.CustomButton();
-            this.dgvLibri = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dgvUtenti = new System.Windows.Forms.DataGridView();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnModificaUser = new Biblioteca.CustomButton();
+            this.btnEliminaUser = new Biblioteca.CustomButton();
+            this.btnResetUSer = new Biblioteca.CustomButton();
+            this.btnFiltraUser = new Biblioteca.CustomButton();
+            this.txtNome = new Biblioteca.components.LoginCustomTextBox();
+            this.txtNewUser = new Biblioteca.components.LoginCustomTextBox();
+            this.btnNewUser = new Biblioteca.CustomButton();
             this.txtLoginCodice = new Biblioteca.components.LoginCustomTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnEntraUser = new Biblioteca.CustomButton();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -68,9 +83,16 @@ namespace Biblioteca
             this.tableLayoutPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibri)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel9.SuspendLayout();
+            this.tableLayoutPanel10.SuspendLayout();
+            this.tableLayoutPanel11.SuspendLayout();
+            this.tableLayoutPanel12.SuspendLayout();
+            this.tableLayoutPanel13.SuspendLayout();
+            this.tableLayoutPanel14.SuspendLayout();
+            this.tableLayoutPanel15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -170,26 +192,6 @@ namespace Biblioteca
             this.tableLayoutPanel8.Size = new System.Drawing.Size(200, 98);
             this.tableLayoutPanel8.TabIndex = 10;
             // 
-            // btnModifica
-            // 
-            this.btnModifica.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnModifica.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnModifica.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnModifica.BorderRadius = 0;
-            this.btnModifica.BorderSize = 0;
-            this.btnModifica.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnModifica.FlatAppearance.BorderSize = 0;
-            this.btnModifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnModifica.ForeColor = System.Drawing.Color.White;
-            this.btnModifica.Location = new System.Drawing.Point(3, 32);
-            this.btnModifica.Name = "btnModifica";
-            this.btnModifica.Size = new System.Drawing.Size(194, 34);
-            this.btnModifica.TabIndex = 1;
-            this.btnModifica.Text = "Modifica";
-            this.btnModifica.TextColor = System.Drawing.Color.White;
-            this.btnModifica.UseVisualStyleBackColor = false;
-            this.btnModifica.Click += new System.EventHandler(this.btnModifica_Click);
-            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
@@ -206,26 +208,6 @@ namespace Biblioteca
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.Size = new System.Drawing.Size(200, 97);
             this.tableLayoutPanel7.TabIndex = 9;
-            // 
-            // btnElimina
-            // 
-            this.btnElimina.BackColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnElimina.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
-            this.btnElimina.BorderColor = System.Drawing.Color.PaleVioletRed;
-            this.btnElimina.BorderRadius = 0;
-            this.btnElimina.BorderSize = 0;
-            this.btnElimina.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnElimina.FlatAppearance.BorderSize = 0;
-            this.btnElimina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnElimina.ForeColor = System.Drawing.Color.White;
-            this.btnElimina.Location = new System.Drawing.Point(3, 31);
-            this.btnElimina.Name = "btnElimina";
-            this.btnElimina.Size = new System.Drawing.Size(194, 34);
-            this.btnElimina.TabIndex = 1;
-            this.btnElimina.Text = "Elimina";
-            this.btnElimina.TextColor = System.Drawing.Color.White;
-            this.btnElimina.UseVisualStyleBackColor = false;
-            this.btnElimina.Click += new System.EventHandler(this.btnElimina_Click);
             // 
             // tableLayoutPanel6
             // 
@@ -271,6 +253,283 @@ namespace Biblioteca
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(200, 59);
             this.tableLayoutPanel3.TabIndex = 7;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 1;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.Controls.Add(this.txtNewIsbn, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnAdd, 0, 2);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 145);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 4;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.52632F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.84211F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(200, 145);
+            this.tableLayoutPanel4.TabIndex = 8;
+            // 
+            // dgvLibri
+            // 
+            this.dgvLibri.AllowUserToAddRows = false;
+            this.dgvLibri.AllowUserToDeleteRows = false;
+            this.dgvLibri.AllowUserToResizeColumns = false;
+            this.dgvLibri.AllowUserToResizeRows = false;
+            this.dgvLibri.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvLibri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLibri.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvLibri.Location = new System.Drawing.Point(203, 3);
+            this.dgvLibri.Name = "dgvLibri";
+            this.dgvLibri.RowHeadersVisible = false;
+            this.dgvLibri.RowHeadersWidth = 51;
+            this.dgvLibri.RowTemplate.Height = 24;
+            this.dgvLibri.Size = new System.Drawing.Size(950, 479);
+            this.dgvLibri.TabIndex = 1;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.tableLayoutPanel9);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1162, 491);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Utenti";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.tableLayoutPanel2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1162, 491);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Resituzione";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.txtLoginCodice, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btnEntraUser, 1, 2);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1162, 491);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label1.Location = new System.Drawing.Point(481, 197);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(200, 23);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Codice Fiscale";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel9
+            // 
+            this.tableLayoutPanel9.ColumnCount = 2;
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Controls.Add(this.dgvUtenti, 0, 0);
+            this.tableLayoutPanel9.Controls.Add(this.tableLayoutPanel10, 0, 0);
+            this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel9.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel9.Name = "tableLayoutPanel9";
+            this.tableLayoutPanel9.RowCount = 1;
+            this.tableLayoutPanel9.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel9.Size = new System.Drawing.Size(1156, 485);
+            this.tableLayoutPanel9.TabIndex = 1;
+            // 
+            // tableLayoutPanel10
+            // 
+            this.tableLayoutPanel10.ColumnCount = 1;
+            this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel11, 0, 3);
+            this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel12, 0, 2);
+            this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel13, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.tableLayoutPanel15, 0, 1);
+            this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel10.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel10.Name = "tableLayoutPanel10";
+            this.tableLayoutPanel10.RowCount = 4;
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel10.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel10.Size = new System.Drawing.Size(200, 485);
+            this.tableLayoutPanel10.TabIndex = 17;
+            // 
+            // tableLayoutPanel11
+            // 
+            this.tableLayoutPanel11.ColumnCount = 1;
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel11.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel11.Controls.Add(this.btnModificaUser, 0, 1);
+            this.tableLayoutPanel11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel11.Location = new System.Drawing.Point(0, 387);
+            this.tableLayoutPanel11.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel11.Name = "tableLayoutPanel11";
+            this.tableLayoutPanel11.RowCount = 3;
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel11.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel11.Size = new System.Drawing.Size(200, 98);
+            this.tableLayoutPanel11.TabIndex = 10;
+            // 
+            // tableLayoutPanel12
+            // 
+            this.tableLayoutPanel12.ColumnCount = 1;
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel12.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel12.Controls.Add(this.btnEliminaUser, 0, 1);
+            this.tableLayoutPanel12.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel12.Location = new System.Drawing.Point(0, 290);
+            this.tableLayoutPanel12.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel12.Name = "tableLayoutPanel12";
+            this.tableLayoutPanel12.RowCount = 3;
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel12.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel12.Size = new System.Drawing.Size(200, 97);
+            this.tableLayoutPanel12.TabIndex = 9;
+            // 
+            // tableLayoutPanel13
+            // 
+            this.tableLayoutPanel13.ColumnCount = 1;
+            this.tableLayoutPanel13.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel13.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel13.Controls.Add(this.tableLayoutPanel14, 0, 2);
+            this.tableLayoutPanel13.Controls.Add(this.txtNome, 0, 1);
+            this.tableLayoutPanel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel13.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel13.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel13.Name = "tableLayoutPanel13";
+            this.tableLayoutPanel13.RowCount = 3;
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel13.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel13.Size = new System.Drawing.Size(200, 145);
+            this.tableLayoutPanel13.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label3.Location = new System.Drawing.Point(3, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(194, 23);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Nome";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel14
+            // 
+            this.tableLayoutPanel14.ColumnCount = 2;
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel14.Controls.Add(this.btnResetUSer, 0, 0);
+            this.tableLayoutPanel14.Controls.Add(this.btnFiltraUser, 0, 0);
+            this.tableLayoutPanel14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel14.Location = new System.Drawing.Point(0, 86);
+            this.tableLayoutPanel14.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel14.Name = "tableLayoutPanel14";
+            this.tableLayoutPanel14.RowCount = 1;
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel14.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
+            this.tableLayoutPanel14.Size = new System.Drawing.Size(200, 59);
+            this.tableLayoutPanel14.TabIndex = 7;
+            // 
+            // tableLayoutPanel15
+            // 
+            this.tableLayoutPanel15.ColumnCount = 1;
+            this.tableLayoutPanel15.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel15.Controls.Add(this.txtNewUser, 0, 1);
+            this.tableLayoutPanel15.Controls.Add(this.btnNewUser, 0, 2);
+            this.tableLayoutPanel15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel15.Location = new System.Drawing.Point(0, 145);
+            this.tableLayoutPanel15.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel15.Name = "tableLayoutPanel15";
+            this.tableLayoutPanel15.RowCount = 4;
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.52632F));
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.84211F));
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
+            this.tableLayoutPanel15.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
+            this.tableLayoutPanel15.Size = new System.Drawing.Size(200, 145);
+            this.tableLayoutPanel15.TabIndex = 8;
+            // 
+            // dgvUtenti
+            // 
+            this.dgvUtenti.AllowUserToAddRows = false;
+            this.dgvUtenti.AllowUserToDeleteRows = false;
+            this.dgvUtenti.AllowUserToResizeColumns = false;
+            this.dgvUtenti.AllowUserToResizeRows = false;
+            this.dgvUtenti.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvUtenti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUtenti.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvUtenti.Location = new System.Drawing.Point(203, 3);
+            this.dgvUtenti.Name = "dgvUtenti";
+            this.dgvUtenti.RowHeadersVisible = false;
+            this.dgvUtenti.RowHeadersWidth = 51;
+            this.dgvUtenti.RowTemplate.Height = 24;
+            this.dgvUtenti.Size = new System.Drawing.Size(950, 479);
+            this.dgvUtenti.TabIndex = 18;
+            // 
+            // btnModifica
+            // 
+            this.btnModifica.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnModifica.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnModifica.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnModifica.BorderRadius = 0;
+            this.btnModifica.BorderSize = 0;
+            this.btnModifica.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnModifica.FlatAppearance.BorderSize = 0;
+            this.btnModifica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModifica.ForeColor = System.Drawing.Color.White;
+            this.btnModifica.Location = new System.Drawing.Point(3, 32);
+            this.btnModifica.Name = "btnModifica";
+            this.btnModifica.Size = new System.Drawing.Size(194, 34);
+            this.btnModifica.TabIndex = 1;
+            this.btnModifica.Text = "Modifica";
+            this.btnModifica.TextColor = System.Drawing.Color.White;
+            this.btnModifica.UseVisualStyleBackColor = false;
+            this.btnModifica.Click += new System.EventHandler(this.btnModifica_Click);
+            // 
+            // btnElimina
+            // 
+            this.btnElimina.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnElimina.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnElimina.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnElimina.BorderRadius = 0;
+            this.btnElimina.BorderSize = 0;
+            this.btnElimina.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnElimina.FlatAppearance.BorderSize = 0;
+            this.btnElimina.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnElimina.ForeColor = System.Drawing.Color.White;
+            this.btnElimina.Location = new System.Drawing.Point(3, 31);
+            this.btnElimina.Name = "btnElimina";
+            this.btnElimina.Size = new System.Drawing.Size(194, 34);
+            this.btnElimina.TabIndex = 1;
+            this.btnElimina.Text = "Elimina";
+            this.btnElimina.TextColor = System.Drawing.Color.White;
+            this.btnElimina.UseVisualStyleBackColor = false;
+            this.btnElimina.Click += new System.EventHandler(this.btnElimina_Click);
             // 
             // btnReset
             // 
@@ -332,24 +591,6 @@ namespace Biblioteca
             this.txtBookName.Texts = "";
             this.txtBookName.UnderlinedStyle = false;
             // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 1;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.txtNewIsbn, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.btnAdd, 0, 2);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 145);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 4;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.52632F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 36.84211F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.31579F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(200, 145);
-            this.tableLayoutPanel4.TabIndex = 8;
-            // 
             // txtNewIsbn
             // 
             this.txtNewIsbn.BackColor = System.Drawing.SystemColors.Window;
@@ -390,75 +631,145 @@ namespace Biblioteca
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // dgvLibri
+            // btnModificaUser
             // 
-            this.dgvLibri.AllowUserToAddRows = false;
-            this.dgvLibri.AllowUserToDeleteRows = false;
-            this.dgvLibri.AllowUserToResizeColumns = false;
-            this.dgvLibri.AllowUserToResizeRows = false;
-            this.dgvLibri.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvLibri.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLibri.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvLibri.Location = new System.Drawing.Point(203, 3);
-            this.dgvLibri.Name = "dgvLibri";
-            this.dgvLibri.RowHeadersVisible = false;
-            this.dgvLibri.RowHeadersWidth = 51;
-            this.dgvLibri.RowTemplate.Height = 24;
-            this.dgvLibri.Size = new System.Drawing.Size(950, 479);
-            this.dgvLibri.TabIndex = 1;
+            this.btnModificaUser.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnModificaUser.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnModificaUser.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnModificaUser.BorderRadius = 0;
+            this.btnModificaUser.BorderSize = 0;
+            this.btnModificaUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnModificaUser.FlatAppearance.BorderSize = 0;
+            this.btnModificaUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificaUser.ForeColor = System.Drawing.Color.White;
+            this.btnModificaUser.Location = new System.Drawing.Point(3, 32);
+            this.btnModificaUser.Name = "btnModificaUser";
+            this.btnModificaUser.Size = new System.Drawing.Size(194, 34);
+            this.btnModificaUser.TabIndex = 1;
+            this.btnModificaUser.Text = "Modifica";
+            this.btnModificaUser.TextColor = System.Drawing.Color.White;
+            this.btnModificaUser.UseVisualStyleBackColor = false;
+            this.btnModificaUser.Click += new System.EventHandler(this.btnModificaUser_Click);
             // 
-            // tabPage2
+            // btnEliminaUser
             // 
-            this.tabPage2.Controls.Add(this.dgvUtenti);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1162, 491);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Utenti";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.btnEliminaUser.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnEliminaUser.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnEliminaUser.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnEliminaUser.BorderRadius = 0;
+            this.btnEliminaUser.BorderSize = 0;
+            this.btnEliminaUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnEliminaUser.FlatAppearance.BorderSize = 0;
+            this.btnEliminaUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminaUser.ForeColor = System.Drawing.Color.White;
+            this.btnEliminaUser.Location = new System.Drawing.Point(3, 31);
+            this.btnEliminaUser.Name = "btnEliminaUser";
+            this.btnEliminaUser.Size = new System.Drawing.Size(194, 34);
+            this.btnEliminaUser.TabIndex = 1;
+            this.btnEliminaUser.Text = "Elimina";
+            this.btnEliminaUser.TextColor = System.Drawing.Color.White;
+            this.btnEliminaUser.UseVisualStyleBackColor = false;
+            this.btnEliminaUser.Click += new System.EventHandler(this.btnEliminaUser_Click);
             // 
-            // dgvUtenti
+            // btnResetUSer
             // 
-            this.dgvUtenti.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUtenti.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvUtenti.Location = new System.Drawing.Point(3, 3);
-            this.dgvUtenti.Name = "dgvUtenti";
-            this.dgvUtenti.RowHeadersVisible = false;
-            this.dgvUtenti.RowHeadersWidth = 51;
-            this.dgvUtenti.RowTemplate.Height = 24;
-            this.dgvUtenti.Size = new System.Drawing.Size(1156, 485);
-            this.dgvUtenti.TabIndex = 0;
+            this.btnResetUSer.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnResetUSer.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnResetUSer.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnResetUSer.BorderRadius = 0;
+            this.btnResetUSer.BorderSize = 0;
+            this.btnResetUSer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnResetUSer.FlatAppearance.BorderSize = 0;
+            this.btnResetUSer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetUSer.ForeColor = System.Drawing.Color.White;
+            this.btnResetUSer.Location = new System.Drawing.Point(103, 3);
+            this.btnResetUSer.Name = "btnResetUSer";
+            this.btnResetUSer.Size = new System.Drawing.Size(94, 27);
+            this.btnResetUSer.TabIndex = 13;
+            this.btnResetUSer.Text = "Reset";
+            this.btnResetUSer.TextColor = System.Drawing.Color.White;
+            this.btnResetUSer.UseVisualStyleBackColor = false;
+            this.btnResetUSer.Click += new System.EventHandler(this.btnResetUSer_Click);
             // 
-            // tabPage3
+            // btnFiltraUser
             // 
-            this.tabPage3.Controls.Add(this.tableLayoutPanel2);
-            this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1162, 491);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Resituzione";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.btnFiltraUser.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnFiltraUser.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnFiltraUser.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnFiltraUser.BorderRadius = 0;
+            this.btnFiltraUser.BorderSize = 0;
+            this.btnFiltraUser.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnFiltraUser.FlatAppearance.BorderSize = 0;
+            this.btnFiltraUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiltraUser.ForeColor = System.Drawing.Color.White;
+            this.btnFiltraUser.Location = new System.Drawing.Point(3, 3);
+            this.btnFiltraUser.Name = "btnFiltraUser";
+            this.btnFiltraUser.Size = new System.Drawing.Size(94, 27);
+            this.btnFiltraUser.TabIndex = 12;
+            this.btnFiltraUser.Text = "Filtra";
+            this.btnFiltraUser.TextColor = System.Drawing.Color.White;
+            this.btnFiltraUser.UseVisualStyleBackColor = false;
+            this.btnFiltraUser.Click += new System.EventHandler(this.btnFiltraUser_Click);
             // 
-            // tableLayoutPanel2
+            // txtNome
             // 
-            this.tableLayoutPanel2.ColumnCount = 3;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.txtLoginCodice, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnEntraUser, 1, 2);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1162, 491);
-            this.tableLayoutPanel2.TabIndex = 0;
+            this.txtNome.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNome.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtNome.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtNome.BorderSize = 2;
+            this.txtNome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNome.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNome.Location = new System.Drawing.Point(3, 47);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNome.Multiline = false;
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Padding = new System.Windows.Forms.Padding(7);
+            this.txtNome.PasswordChar = false;
+            this.txtNome.Size = new System.Drawing.Size(194, 35);
+            this.txtNome.TabIndex = 8;
+            this.txtNome.Texts = "";
+            this.txtNome.UnderlinedStyle = false;
+            // 
+            // txtNewUser
+            // 
+            this.txtNewUser.BackColor = System.Drawing.SystemColors.Window;
+            this.txtNewUser.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.txtNewUser.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.txtNewUser.BorderSize = 2;
+            this.txtNewUser.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtNewUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNewUser.ForeColor = System.Drawing.Color.DimGray;
+            this.txtNewUser.Location = new System.Drawing.Point(3, 29);
+            this.txtNewUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNewUser.Multiline = false;
+            this.txtNewUser.Name = "txtNewUser";
+            this.txtNewUser.Padding = new System.Windows.Forms.Padding(7);
+            this.txtNewUser.PasswordChar = false;
+            this.txtNewUser.Size = new System.Drawing.Size(194, 35);
+            this.txtNewUser.TabIndex = 9;
+            this.txtNewUser.Texts = "";
+            this.txtNewUser.UnderlinedStyle = false;
+            // 
+            // btnNewUser
+            // 
+            this.btnNewUser.BackColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnNewUser.BackgroundColor = System.Drawing.Color.MediumSlateBlue;
+            this.btnNewUser.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.btnNewUser.BorderRadius = 0;
+            this.btnNewUser.BorderSize = 0;
+            this.btnNewUser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnNewUser.FlatAppearance.BorderSize = 0;
+            this.btnNewUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNewUser.ForeColor = System.Drawing.Color.White;
+            this.btnNewUser.Location = new System.Drawing.Point(3, 71);
+            this.btnNewUser.Name = "btnNewUser";
+            this.btnNewUser.Size = new System.Drawing.Size(194, 32);
+            this.btnNewUser.TabIndex = 1;
+            this.btnNewUser.Text = "Nuovo";
+            this.btnNewUser.TextColor = System.Drawing.Color.White;
+            this.btnNewUser.UseVisualStyleBackColor = false;
+            this.btnNewUser.Click += new System.EventHandler(this.btnNewUser_Click);
             // 
             // txtLoginCodice
             // 
@@ -479,17 +790,6 @@ namespace Biblioteca
             this.txtLoginCodice.TabIndex = 0;
             this.txtLoginCodice.Texts = "";
             this.txtLoginCodice.UnderlinedStyle = false;
-            // 
-            // label1
-            // 
-            this.label1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.label1.Location = new System.Drawing.Point(481, 197);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Codice Fiscale";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnEntraUser
             // 
@@ -533,9 +833,16 @@ namespace Biblioteca
             this.tableLayoutPanel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLibri)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel9.ResumeLayout(false);
+            this.tableLayoutPanel10.ResumeLayout(false);
+            this.tableLayoutPanel11.ResumeLayout(false);
+            this.tableLayoutPanel12.ResumeLayout(false);
+            this.tableLayoutPanel13.ResumeLayout(false);
+            this.tableLayoutPanel14.ResumeLayout(false);
+            this.tableLayoutPanel15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUtenti)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -546,7 +853,6 @@ namespace Biblioteca
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dgvUtenti;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dgvLibri;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
@@ -569,5 +875,21 @@ namespace Biblioteca
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private components.LoginCustomTextBox txtNewIsbn;
         private CustomButton btnAdd;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel11;
+        private CustomButton btnModificaUser;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel12;
+        private CustomButton btnEliminaUser;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel13;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel14;
+        private CustomButton btnResetUSer;
+        private CustomButton btnFiltraUser;
+        private components.LoginCustomTextBox txtNome;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel15;
+        private components.LoginCustomTextBox txtNewUser;
+        private CustomButton btnNewUser;
+        private System.Windows.Forms.DataGridView dgvUtenti;
     }
 }
