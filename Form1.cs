@@ -56,10 +56,10 @@ namespace Biblioteca
             pnlLogin.BackColor = ColorTranslator.FromHtml(NotSelectedPanelColour);
             pcbIconMain.Image = Properties.Resources.libraryIcon;
             pcbIconMain.SizeMode = PictureBoxSizeMode.StretchImage;
-            //txtUsername.Texts = "TYJIKR47F60M553C";
-            //txtPassword.Texts = "dIIosgaCb4w";
-            txtUsername.Texts = "KLBSIN66B98X469N";
-            txtPassword.Texts = "nc7cOVbGg";
+            txtUsername.Texts = "TYJIKR47F60M553C";
+            txtPassword.Texts = "dIIosgaCb4w";
+            //txtUsername.Texts = "KLBSIN66B98X469N";
+            //txtPassword.Texts = "nc7cOVbGg";
 
             btnLogin_Click(null, null);
         }

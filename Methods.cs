@@ -54,6 +54,7 @@ namespace Biblioteca
                     {
                         list = JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(path));
                         dict = list.ToDictionary(keySelector: m => (string)typeof(T).GetProperty(field).GetValue(m, null), elementSelector: m => m);
+                        Serialize(dict, path);
                     }
                 }
                 else

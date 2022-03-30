@@ -87,9 +87,13 @@ namespace Biblioteca
         }
 
         private async void HandleRestituzione(string isbn)
-        {          
-            if (!FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json"))
+        {
+            while (FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json"))
             {
+                Console.WriteLine("Loading");
+            }
+            //if (!FileIsLocked(Directory.GetCurrentDirectory() + @"\books.json"))
+            //{
                 currentRating = 0;
                 tsc = new TaskCompletionSource<bool>();
                 HandleRating();
@@ -97,7 +101,7 @@ namespace Biblioteca
                 await tsc.Task;
                 
                 WriteToFile(isbn);
-            }   
+            //}   
         }
 
         public void WriteToFile(string isbn)

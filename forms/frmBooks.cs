@@ -125,18 +125,11 @@ namespace Biblioteca.forms
         {
                 lock (lockerFile)
                 {
-                    FileStream file = new FileStream(booksPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                    FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
-                    FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+                using (FileStream file = new FileStream(Directory.GetCurrentDirectory() + @"\books.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                using (FileStream file3 = new FileStream(Directory.GetCurrentDirectory() + @"\users.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                using (FileStream file2 = new FileStream(Directory.GetCurrentDirectory() + @"\prestiti.json", FileMode.Truncate, FileAccess.ReadWrite, FileShare.None))
+                {
                     Form1.libriElenco[isbn].Quantita--;
-                    StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
-                    StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
-                    StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
-                    
-                    writer.Write(String.Empty);
-                    string output = JsonConvert.SerializeObject(Form1.libriElenco.Values, Formatting.Indented);
-                    writer.Write(output);
-                    writer.Close();
 
                     if (Form1.prestiti != null)
                     {
@@ -161,15 +154,27 @@ namespace Biblioteca.forms
                         Form1.prestiti.Add(new Prestito(isbn, new Dictionary<string, DateTime> { [frmMainPage.currentUser.CodiceFiscale] = DateTime.Now }));
                     }
                     Form1.usersElenco[frmMainPage.currentUser.CodiceFiscale].AddPrestito();
-                    writer2.Write(String.Empty);
-                    string output2 = JsonConvert.SerializeObject(Form1.prestiti, Formatting.Indented);
-                    writer2.Write(output2);
-                    writer2.Close();
 
-                    writer3.Write(String.Empty);
+                    StreamWriter writer = new StreamWriter(file, Encoding.Unicode);
+                    StreamWriter writer2 = new StreamWriter(file2, Encoding.Unicode);
+                    StreamWriter writer3 = new StreamWriter(file3, Encoding.Unicode);
+             
+                    string output2 = JsonConvert.SerializeObject(Form1.prestiti, Formatting.Indented);
+                    string output = JsonConvert.SerializeObject(Form1.libriElenco.Values, Formatting.Indented);
                     string output3 = JsonConvert.SerializeObject(Form1.usersElenco, Formatting.Indented);
+
+                    writer.Write(output);
+                    writer2.Write(output2);
                     writer3.Write(output3);
+                    writer.Close();
+                    writer2.Close();
                     writer3.Close();
+                }
+
+
+                    
+                   
+                   
 
                 //Form1.ReloadUsers();
                 //    frmMainPage.ReloadBooks();
