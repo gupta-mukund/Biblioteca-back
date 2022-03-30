@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Net.Mail;
 using System.Net;
 using System.IO;
+using Newtonsoft.Json;
 namespace Biblioteca
 {
     public partial class Form1 : Form
@@ -23,9 +24,22 @@ namespace Biblioteca
         private System.Timers.Timer emailTimer;
         public Form1()
         {
+           
+            
+                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref libriElenco);
+                //usersElenco = JsonConvert.DeserializeObject<Dictionary<string, User>>(File.ReadAllText(Directory.GetCurrentDirectory() + @"\users.json"));
+                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref usersElenco);
+                //libriElenco = JsonConvert.DeserializeObject<Dictionary<string, Libro>>(File.ReadAllText(Directory.GetCurrentDirectory() + @"\books.json"));
+                Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref prestiti);
+            
+            
             InitializeComponent();
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\prestiti.json", "", ref prestiti);
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\books.json", "Isbn", ref libriElenco);
+            
+            
+            
+             
+            
+            
             emailWorker = new BackgroundWorker();
             emailWorker.DoWork += EmailWorker_DoWork;
             emailTimer = new System.Timers.Timer(5000);
@@ -35,15 +49,14 @@ namespace Biblioteca
             currentLabel = this.lblLogin;
             lblTitolo.Text = currentLabel.Text;
             btnLogin.Text = currentLabel.Text;
-            usersElenco = new Dictionary<string, User>();
-            Methods.Deserialize(Directory.GetCurrentDirectory() + @"\users.json", "CodiceFiscale", ref usersElenco);
+            
             panel4.BackColor = ColorTranslator.FromHtml("#6FE0CC");
             panel1.BackColor = ColorTranslator.FromHtml("#253243");
             pnlSignup.BackColor = ColorTranslator.FromHtml(SelectedPanelColour);
             pnlLogin.BackColor = ColorTranslator.FromHtml(NotSelectedPanelColour);
             pcbIconMain.Image = Properties.Resources.libraryIcon;
             pcbIconMain.SizeMode = PictureBoxSizeMode.StretchImage;
-            //txtUsername.Texts = "tyjikr47f60m553c";
+            //txtUsername.Texts = "TYJIKR47F60M553C";
             //txtPassword.Texts = "dIIosgaCb4w";
             txtUsername.Texts = "KLBSIN66B98X469N";
             txtPassword.Texts = "nc7cOVbGg";

@@ -56,6 +56,8 @@ namespace Biblioteca.forms
             } else
             {
                 dgvPrestiti.DataSource = null;
+                //MessageBox.Show(Form1.libriElenco["9780006163831"].Titolo);
+                //MessageBox.Show(myPrestiti[0].Prestiti[frmMainPage.currentUser.CodiceFiscale].AddDays(30).ToString());
                 dgvPrestiti.DataSource = myPrestiti.Select(p => new { Titolo = Form1.libriElenco[p.Isbn].Titolo, Scadenza = p.Prestiti[frmMainPage.currentUser.CodiceFiscale].AddDays(30) }).ToList();   
             }
         }

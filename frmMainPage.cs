@@ -32,7 +32,7 @@ namespace Biblioteca
         public frmMainPage(User user)
         {
             InitializeComponent();
-            Form1.libriElenco = new Dictionary<string, Libro>();
+            
             
             foreach (KeyValuePair<string, Libro> item in Form1.libriElenco)
             {

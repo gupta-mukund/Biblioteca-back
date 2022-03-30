@@ -91,6 +91,8 @@ namespace Biblioteca.forms
         {
             if (frmMainPage.currentUser.NumeroPrestiti() < 3)
             {
+                
+
                 if (TryOrderBook(e.Book.Isbn))
                 {
                     SetData();
@@ -110,13 +112,13 @@ namespace Biblioteca.forms
             //    frmMainPage.ReloadBooks();
             //    Init();
             //}
-            if (!FileIsLocked(booksPath))
+
+            while (FileIsLocked(booksPath))
             {
-                WriteToFile(isbn);
-                
-                return true;
+                Console.WriteLine("Loading");                
             }
-            return false;
+            WriteToFile(isbn);
+            return true;
             //MessageBox.Show(FileIsLocked(booksPath).ToString());
         }
         public void WriteToFile(string isbn)
